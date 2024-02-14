@@ -37,6 +37,11 @@ To interact with the blockchain, you can use [CLI](https://docs.cosmos.network/v
 and [gRPC or REST endpoints](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest). Additionally, the node
 provides an [Ethereum RPC endpoint](https://ethereum.org/en/developers/docs/apis/json-rpc).
 
+## Joining Network
+
+Our [wiki](https://github.com/Galactica-corp/galactica/wiki) gives you information on how to run Galactica validators to
+take part in the decentralized infrastructure and blockchain consensus.
+
 ## Contributing
 
 Contributions to the blockchain project are welcome! Feel free to open issues for bug fixes, feature requests, or submit
