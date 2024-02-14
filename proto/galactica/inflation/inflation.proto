@@ -1,0 +1,20 @@
+syntax = "proto3";
+package galactica.inflation;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/Galactica-corp/galactica/x/inflation/types";
+
+// InflationShare represents the share information for various roles other than validators.
+message InflationShare {
+  string address = 1; 
+  string name = 2;
+  string share = 3 [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (gogoproto.nullable) = false];
+}
+
+// InflationDistribution defines the distribution in which inflation is
+// allocated through minting on each epoch (staking, incentives, community).
+message InflationDistribution {
+  string validators_share = 1 [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (gogoproto.nullable) = false];
+  repeated InflationShare other_shares = 2; // A list of other shares with address, name and share information.
+}

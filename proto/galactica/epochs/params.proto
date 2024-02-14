@@ -1,0 +1,15 @@
+syntax = "proto3";
+package galactica.epochs;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/Galactica-corp/galactica/x/epochs/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "galactica/x/epochs/Params";
+  option (gogoproto.equal) = true;
+
+  
+}

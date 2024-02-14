@@ -1,0 +1,91 @@
+version: "3"
+
+services:
+  validator01:
+    container_name: validator01
+    build:
+      context: ..
+      dockerfile: localnet/Dockerfile
+    environment:
+      - DEBUG=1
+      - ID=0
+      - LOG=${LOG:-galacticad.log}
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "26656-26657:26656-26657"
+      - "1317:1317"
+      - "9090:9090"
+      - "2345:2345"
+      - "8545:8545"
+      - "8546:8546"
+    volumes:
+      - ../.galactica/validators/validator01:/root/.galactica:Z
+      - ../.galactica/keyring-test:/root/.galactica/keyring-test:Z
+    networks:
+      galanet:
+        ipv4_address: 192.168.20.2
+
+  validator02:
+    container_name: validator02
+    build:
+      context: ..
+      dockerfile: localnet/Dockerfile
+    environment:
+      - DEBUG=1
+      - ID=0
+      - LOG=${LOG:-galacticad.log}
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "26666-26667:26656-26657"
+      - "1318:1317"
+      - "9091:9090"
+      - "2346:2345"
+      - "18545:8545"
+      - "18546:8546"
+    volumes:
+      - ../.galactica/validators/validator02:/root/.galactica:Z
+      - ../.galactica/keyring-test:/root/.galactica/keyring-test:Z
+    networks:
+      galanet:
+        ipv4_address: 192.168.20.3
+
+  validator03:
+    container_name: validator03
+    build:
+      context: ..
+      dockerfile: localnet/Dockerfile
+    environment:
+      - DEBUG=1
+      - ID=0
+      - LOG=${LOG:-galacticad.log}
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "26676-26677:26656-26657"
+      - "1319:1317"
+      - "9092:9090"
+      - "2347:2345"
+      - "28545:8545"
+      - "28546:8546"
+    volumes:
+      - ../.galactica/validators/validator03:/root/.galactica:Z
+      - ../.galactica/keyring-test:/root/.galactica/keyring-test:Z
+    networks:
+      galanet:
+        ipv4_address: 192.168.20.4
+
+networks:
+  galanet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.20.0/25

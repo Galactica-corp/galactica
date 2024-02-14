@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Modified EVMOS source" pattern="(file[galactica]:x/epochs//*||file[galactica]:x/inflation//*)&amp;&amp;!file[galactica]:x/epochs//*_test.go&amp;&amp;!file[galactica]:x/inflation//*_test.go" />
+</component>

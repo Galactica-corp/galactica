@@ -1,0 +1,21 @@
+syntax = "proto3";
+package galactica.inflation;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "galactica/inflation/inflation.proto";
+
+option go_package = "github.com/Galactica-corp/galactica/x/inflation/types";
+
+// Params holds parameters for the inflation module.
+message Params {
+  option (amino.name) = "galactica/x/inflation/Params";
+  option (gogoproto.equal) = true;
+
+  // mint_denom specifies the type of coin to mint
+  string mint_denom = 1;
+  // inflation_distribution of the minted denom
+  InflationDistribution inflation_distribution = 2 [(gogoproto.nullable) = false];
+  // enable_inflation is the parameter that enables inflation and halts increasing the skipped_epochs
+  bool enable_inflation = 3;
+}
