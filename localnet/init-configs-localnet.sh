@@ -16,6 +16,7 @@
 
 MAIN_PATH_HOME=${1:-"./.galactica"}
 MAIN_PATH_CONFIG=$MAIN_PATH_HOME/config
+# {identifier}_{EIP155}-{version}
 CHAIN_ID=${2:-"galactica_9000-1"}
 KEYRING_BACKEND=${3:-"test"}
 BASE_DENOM=${4:-"agnet"}

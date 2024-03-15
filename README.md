@@ -3,6 +3,46 @@
 **Galactica** is a Layer 1 protocol that leverages zero-knowledge cryptography to achieve Sybil resistance,
 compliant privacy and infuse robust reputation primitives into DeFi and DAOs.
 
+## Project Build
+
+To compile and prepare the **Galactica** project for deployment, ensure you have the necessary tools and follow the outlined steps.
+
+### Prerequisites
+
+- **Go**: Galactica requires Go version 1.21. Verify your installation by running `go version` in your terminal.
+
+### Building the Project
+
+1. **Clone the Repository**: Get the Galactica source code by cloning the repository.
+
+   ```sh
+   git clone https://github.com/Galactica-corp/galactica.git
+   cd galactica
+   ```
+
+2. **Build the Binary**: Compile the source code into an executable binary with the `make` command.
+
+   ```sh
+   make build
+   ```
+
+   The binary will be located in the `build/` directory.
+
+
+3. **Install the Binary**: Install the Galactica binary into a directory of your choice. By default, the binary is installed to `/usr/local/bin`, but you can specify a custom directory by setting the `BINDIR` environment variable before running the `make install` command. This step may require administrative privileges.
+
+   ```sh
+   make install
+   ```
+
+   For a custom directory, such as `/opt/galactica/bin`, run:
+   
+   ```sh
+   BINDIR=/opt/galactica/bin make install
+   ```
+
+Ensure the installation path is included in your system's PATH environment variable to run Galactica from any terminal.
+
 ## Usage
 
 ### Run local network
