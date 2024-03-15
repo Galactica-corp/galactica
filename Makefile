@@ -4,10 +4,9 @@ VERSION ?= $(shell echo $(shell git describe --tags `git rev-list --tags="v*" --
 TMVERSION := $(shell go list -m github.com/cometbft/cometbft | sed 's:.* ::')
 COMMIT := $(shell git log -1 --format='%H')
 LEDGER_ENABLED ?= true
-BINDIR ?= $(GOPATH)/bin
 GALACTICA_BINARY = galacticad
 BUILDDIR ?= $(CURDIR)/build
-
+BINDIR ?= /usr/local/bin
 
 # RocksDB is a native dependency, so we don't assume the library is installed.
 # Instead, it must be explicitly enabled and we warn when it is not.
@@ -16,7 +15,7 @@ ENABLE_ROCKSDB ?= false
 # Default target executed when no arguments are given to make.
 default_target: all
 
-.PHONY: default_target build
+.PHONY: default_target build install
 
 # process build tags
 
@@ -54,12 +53,12 @@ build_tags_comma_sep := $(subst $(whitespace),$(comma),$(build_tags))
 
 # process linker flags
 
-ldflags = -X github.com/Galactica-corp/galactica/version.Name=galactica \
-		  -X github.com/Galactica-corp/galactica/version.AppName=$(GALACTICA_BINARY) \
-		  -X github.com/Galactica-corp/galactica/version.Version=$(VERSION) \
-		  -X github.com/Galactica-corp/galactica/version.Commit=$(COMMIT) \
-			-X "github.com/Galactica-corp/galactica/version.BuildTags=$(build_tags_comma_sep)" \
-			-X github.com/evmos/ethermint/version.TMCoreSemVer=$(TMVERSION)
+ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=galactica \
+		  -X github.com/cosmos/cosmos-sdk/version.AppName=$(GALACTICA_BINARY) \
+		  -X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
+		  -X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) \
+		  -X "github.com/cosmos/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)" \
+		  -X github.com/evmos/ethermint/version.TMCoreSemVer=$(TMVERSION)
 
 ifeq ($(ENABLE_ROCKSDB),true)
   BUILD_TAGS += rocksdb_build
@@ -125,7 +124,7 @@ $(BUILDDIR)/:
 
 build-alpine:
 	@echo "Building galacticad for alpine..."
-	@GOOS=linux CGO_ENABLED=1 go build -ldflags="-w -s" -o ./build/galacticad ./cmd/galacticad
+	@GOOS=linux CGO_ENABLED=1 go build -ldflags="-w -s" -o $(BUILDDIR)/$(GALACTICA_BINARY) ./cmd/galacticad
 
 localnet-build:
 	@make build
@@ -139,3 +138,9 @@ localnet-init:
 localnet-start:
 	@echo "Start localnet..."
 	@./localnet/run-validators.sh
+
+install: build
+	@echo "Installing the Galactica binary version $(VERSION) to $(BINDIR)"
+	mkdir -p $(BINDIR)
+	cp -f $(BUILDDIR)/$(GALACTICA_BINARY) $(BINDIR)/$(GALACTICA_BINARY)
+	@echo "Galactica has been installed to $(BINDIR)"
