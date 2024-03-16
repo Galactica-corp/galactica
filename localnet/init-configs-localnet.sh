@@ -64,32 +64,32 @@ function init_localtestnet() {
 
 function configure_app() {
     # Configure app settings
-    sed -i '' '/\[api\]/,+3 s/enable = false/enable = true/' $MAIN_PATH_CONFIG/app.toml
-    sed -i '' 's/address = "tcp:\/\/localhost:1317"/address = "tcp:\/\/0.0.0.0:1317"/' $MAIN_PATH_CONFIG/app.toml
-    # sed -i '' 's/enabled-unsafe-cors = false/enabled-unsafe-cors = true/' $MAIN_PATH_CONFIG/app.toml
-    sed -i '' 's/address = "localhost:9090"/address = "0.0.0.0:9090"/' $MAIN_PATH_CONFIG/app.toml
-    sed -i '' '/\[grpc-web\]/,+7 s/address = "localhost:9091"/address = "0.0.0.0:9091"/' $MAIN_PATH_CONFIG/app.toml
-    sed -i '' 's/pruning = "default"/pruning = "nothing"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i '' 's/minimum-gas-prices = "0stake"/minimum-gas-prices = "10'$BASE_DENOM'"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i '' '/\[telemetry\]/,+8 s/enabled = false/enabled = true/' $MAIN_PATH_CONFIG/app.toml
-    sed -i '' '/\[telemetry\]/,+20 s/prometheus-retention-time = 0/prometheus-retention-time = 60/' $MAIN_PATH_CONFIG/app.toml
-    sed -i '' '/global-labels = \[/a\
+    sed -i'' '/\[api\]/,+3 s/enable = false/enable = true/' $MAIN_PATH_CONFIG/app.toml
+    sed -i'' 's/address = "tcp:\/\/localhost:1317"/address = "tcp:\/\/0.0.0.0:1317"/' $MAIN_PATH_CONFIG/app.toml
+    # sed -i'' 's/enabled-unsafe-cors = false/enabled-unsafe-cors = true/' $MAIN_PATH_CONFIG/app.toml
+    sed -i'' 's/address = "localhost:9090"/address = "0.0.0.0:9090"/' $MAIN_PATH_CONFIG/app.toml
+    sed -i'' '/\[grpc-web\]/,+7 s/address = "localhost:9091"/address = "0.0.0.0:9091"/' $MAIN_PATH_CONFIG/app.toml
+    sed -i'' 's/pruning = "default"/pruning = "nothing"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i'' 's/minimum-gas-prices = "0stake"/minimum-gas-prices = "10'$BASE_DENOM'"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i'' '/\[telemetry\]/,+8 s/enabled = false/enabled = true/' $MAIN_PATH_CONFIG/app.toml
+    sed -i'' '/\[telemetry\]/,+20 s/prometheus-retention-time = 0/prometheus-retention-time = 60/' $MAIN_PATH_CONFIG/app.toml
+    sed -i'' '/global-labels = \[/a\
   \["chain_id", "'$CHAIN_ID'"\],
 ' $MAIN_PATH_CONFIG/app.toml
 
-    sed -i '' 's/timeout_propose = ".*"/timeout_propose = "3s"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i '' 's/timeout_propose_delta = ".*"/timeout_propose_delta = "500ms"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i '' 's/timeout_prevote = ".*"/timeout_prevote = "1s"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i '' 's/timeout_prevote_delta = ".*"/timeout_prevote_delta = "500ms"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i '' 's/timeout_precommit = ".*"/timeout_precommit = "1s"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i '' 's/timeout_precommit_delta = ".*"/timeout_precommit_delta = "500ms"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i '' 's/timeout_commit = ".*"/timeout_commit = "5s"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i'' 's/timeout_propose = ".*"/timeout_propose = "3s"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i'' 's/timeout_propose_delta = ".*"/timeout_propose_delta = "500ms"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i'' 's/timeout_prevote = ".*"/timeout_prevote = "1s"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i'' 's/timeout_prevote_delta = ".*"/timeout_prevote_delta = "500ms"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i'' 's/timeout_precommit = ".*"/timeout_precommit = "1s"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i'' 's/timeout_precommit_delta = ".*"/timeout_precommit_delta = "500ms"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i'' 's/timeout_commit = ".*"/timeout_commit = "5s"/g'  $MAIN_PATH_CONFIG/app.toml
 
 
     # configure config settings
-    sed -i '' 's/laddr = "tcp:\/\/127.0.0.1:26657"/laddr = "tcp:\/\/0.0.0.0:26657"/g'  $MAIN_PATH_CONFIG/config.toml
-    sed -i '' 's/proxy_app = "tcp:\/\/127.0.0.1:26658"/proxy_app = "tcp:\/\/127.0.0.1:26658"/g'  $MAIN_PATH_CONFIG/config.toml
-    sed -i '' 's/cors_allowed_origins = \[\]/cors_allowed_origins = \["*"\]/g'  $MAIN_PATH_CONFIG/config.toml
+    sed -i'' 's/laddr = "tcp:\/\/127.0.0.1:26657"/laddr = "tcp:\/\/0.0.0.0:26657"/g'  $MAIN_PATH_CONFIG/config.toml
+    sed -i'' 's/proxy_app = "tcp:\/\/127.0.0.1:26658"/proxy_app = "tcp:\/\/127.0.0.1:26658"/g'  $MAIN_PATH_CONFIG/config.toml
+    sed -i'' 's/cors_allowed_origins = \[\]/cors_allowed_origins = \["*"\]/g'  $MAIN_PATH_CONFIG/config.toml
 }
 
 function update_genesis_json() {
@@ -233,8 +233,8 @@ function configure_validator() {
     local new_persistent_peers=$(IFS=','; echo "${filtered_parts[*]}")
 
     echo "Validator $moniker persistent_peers: $new_persistent_peers"
-    sed -i '' "s/\(persistent_peers *= *\"\).*\(\" *\)/\1$new_persistent_peers\2/" $validator_home/config/config.toml
-    sed -i '' 's/moniker = "localtestnet"/moniker = "'$moniker'"/g'  $validator_home/config/config.toml
+    sed -i'' "s/\(persistent_peers *= *\"\).*\(\" *\)/\1$new_persistent_peers\2/" $validator_home/config/config.toml
+    sed -i'' 's/moniker = "localtestnet"/moniker = "'$moniker'"/g'  $validator_home/config/config.toml
 
     local key=$(gala keys unsafe-export-eth-key --keyring-backend test --keyring-dir ./$MAIN_PATH_HOME $moniker)
     yes '00000000' | gala keys unsafe-import-eth-key --keyring-backend test --keyring-dir ./$MAIN_PATH_HOME/validators/$moniker $moniker $key --chain-id $CHAIN_ID
