@@ -90,6 +90,8 @@ function configure_app() {
     sed -i '' 's/laddr = "tcp:\/\/127.0.0.1:26657"/laddr = "tcp:\/\/0.0.0.0:26657"/g'  $MAIN_PATH_CONFIG/config.toml
     sed -i '' 's/proxy_app = "tcp:\/\/127.0.0.1:26658"/proxy_app = "tcp:\/\/127.0.0.1:26658"/g'  $MAIN_PATH_CONFIG/config.toml
     sed -i '' 's/cors_allowed_origins = \[\]/cors_allowed_origins = \["*"\]/g'  $MAIN_PATH_CONFIG/config.toml
+    sed -i '' 's/max_num_inbound_peers = 40/max_num_inbound_peers = 120/g'  $MAIN_PATH_CONFIG/config.toml
+    sed -i '' 's/max_num_outbound_peers = 10/max_num_outbound_peers = 60/g'  $MAIN_PATH_CONFIG/config.toml
 }
 
 function update_genesis_json() {

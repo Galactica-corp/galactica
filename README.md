@@ -43,6 +43,20 @@ To compile and prepare the **Galactica** project for deployment, ensure you have
 
 Ensure the installation path is included in your system's PATH environment variable to run Galactica from any terminal.
 
+## galactica-testnet-v1
+
+After successfully building and installing the Galactica binary, the next step is to connect to the Galactica testnet v1. This involves generating a key, setting up your node's home directory, and ultimately submitting a genesis transaction (gentx) to become a validator. Follow these steps to join the network:
+
+1. **Generate Your Validator Key**: Within the same repository, you'll find scripts and guidance on generating your validator key. This key is essential for securing your node and participating in the network.
+
+2. **Set Up Node's Home Directory**: Navigate to the [Galactica Networks repository](https://github.com/Galactica-corp/networks) and follow the instructions to install the necessary home directory for your node. This step is crucial for configuring your node with the correct network parameters.
+
+3. **Submit Your Address for Genesis Airdrop**: After generating your key, submit your address to the Galactica network team. Your address will be included in the genesis airdrop, enabling you to stake tokens and participate in the network from the initial block.
+
+4. **Generate and Submit Your gentx**: With your address included in the genesis airdrop, generate your gentx using the provided scripts. Submit this gentx as a pull request to the [Galactica-corp/networks](https://github.com/Galactica-corp/networks) repository. This step registers you as a validator on the network.
+
+By following these streamlined steps, you can transition smoothly from building the Galactica binary to actively participating in the Galactica testnet v1 as a validator. This approach ensures that new validators have a clear and direct path to joining the network, contributing to its security and decentralization from the very first block.
+
 ## Usage
 
 ### Run local network
