@@ -6,7 +6,7 @@ COMMIT := $(shell git log -1 --format='%H')
 LEDGER_ENABLED ?= true
 GALACTICA_BINARY = galacticad
 BUILDDIR ?= $(CURDIR)/build
-BINDIR ?= /usr/local/bin
+BINDIR ?= $(GOPATH)/bin
 
 # RocksDB is a native dependency, so we don't assume the library is installed.
 # Instead, it must be explicitly enabled and we warn when it is not.
