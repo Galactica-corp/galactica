@@ -15,6 +15,8 @@
 package cmd
 
 import (
+	"math/big"
+
 	"cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
@@ -72,6 +74,10 @@ func initSDKConfig() {
 	config.SetAddressVerifier(VerifyAddressFormat)
 
 	RegisterDenoms()
+
+	sdk.DefaultPowerReduction = sdk.NewIntFromBigInt(
+		new(big.Int).Exp(big.NewInt(10), big.NewInt(BaseDenomUnit), nil),
+	)
 
 	config.Seal()
 }
