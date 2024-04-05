@@ -479,6 +479,8 @@ func New(
 		panic(err)
 	}
 
+	app.applyUpgrades()
+
 	return app
 }
 
@@ -654,4 +656,8 @@ func initParamsKeeper(
 	paramsKeeper.Subspace(feemarkettypes.ModuleName).WithKeyTable(feemarkettypes.ParamKeyTable())
 
 	return paramsKeeper
+}
+
+func (app *App) applyUpgrades() {
+	app.applyUpgrade_v0_1_2()
 }
