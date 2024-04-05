@@ -16,7 +16,6 @@ package app
 
 import (
 	"bytes"
-	"fmt"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
@@ -28,13 +27,18 @@ import (
 
 // applyUpgrade_v0_1_2 checks and applies the upgrade plan if necessary.
 func (app *App) applyUpgrade_v0_1_2() {
-	ctx, err := app.CreateQueryContext(v0_1_2.UpgradeBlockHeight, false)
+	latestBlock := app.LastBlockHeight()
+	logger := app.Logger().With("upgrade", v0_1_2.UpgradeName)
+
+	ctx, err := app.CreateQueryContext(latestBlock, false)
 	if err != nil {
+		logger.Error("Failed to create query context with block", "error", err, "block", latestBlock)
 		return
 	}
 
 	plan, err := app.UpgradeKeeper.ReadUpgradeInfoFromDisk()
 	if err != nil || plan.Height < v0_1_2.UpgradeBlockHeight {
+		logger.Info("Applying upgrade plan", "info", plan.Info)
 		app.UpgradeKeeper.SetUpgradeHandler(v0_1_2.UpgradeName, app.upgradeHandler_v0_1_2())
 		app.UpgradeKeeper.ApplyUpgrade(ctx, v0_1_2.Plan)
 	}
@@ -46,20 +50,28 @@ func (app *App) upgradeHandler_v0_1_2() func(
 	_ upgradetypes.Plan,
 	fromVM module.VersionMap,
 ) (module.VersionMap, error) {
-	return func(ctx sdk.Context, _ upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
-		logger := ctx.Logger().With("upgrade", v0_1_2.UpgradeName)
+	return func(ctx sdk.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+		logger := ctx.Logger().With("upgrade", plan.Name)
+
+		if plan.Name != v0_1_2.UpgradeName {
+			logger.Error("Invalid upgrade plan", "expected", v0_1_2.UpgradeName, "got", plan.Name)
+			return app.ModuleManager.RunMigrations(ctx, app.Configurator(), fromVM)
+		}
+
 		validators := app.StakingKeeper.GetAllValidators(ctx)
 
 		for _, validator := range validators {
 			if err := app.updateValidatorPowerIndex(ctx, validator); err != nil {
-				panic(fmt.Sprintf("failed to update validator power index: %v", err))
+				logger.Error("Failed to update validator power index", "error", err, "validator", validator.OperatorAddress)
+				return nil, err
 			}
-
 			logger.Info("Validator power index updated", "validator", validator.OperatorAddress)
 		}
+
 		logger.Info("All validators updated successfully.")
 
-		if err := app.UpgradeKeeper.DumpUpgradeInfoToDisk(v0_1_2.UpgradeBlockHeight, v0_1_2.Plan); err != nil {
+		if err := app.UpgradeKeeper.DumpUpgradeInfoToDisk(plan.Height, plan); err != nil {
+			logger.Error("Failed to dump upgrade info to disk", "error", err)
 			return nil, err
 		}
 
