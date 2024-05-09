@@ -229,7 +229,7 @@ sed -i '' 's/moniker = "localtestnet"/moniker = "'$VALIDATOR_MONIKER'"/g'  $VALI
 # Run the nodes
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 # Test staking delegation

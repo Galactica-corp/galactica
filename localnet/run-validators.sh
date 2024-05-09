@@ -14,4 +14,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cd localnet && docker-compose -f docker-compose.yml up -d
+cd localnet && docker compose -f docker-compose.yml up -d
