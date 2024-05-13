@@ -14,4 +14,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-docker-compose -f localnet/docker-compose.yml build
+docker compose -f localnet/docker-compose.yml build
