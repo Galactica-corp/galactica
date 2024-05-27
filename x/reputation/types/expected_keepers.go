@@ -16,11 +16,11 @@ package types
 
 import (
 	"cosmossdk.io/math"
+	"cosmossdk.io/x/feegrant"
+	"cosmossdk.io/x/nft"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/cosmos/cosmos-sdk/x/authz"
-	"github.com/cosmos/cosmos-sdk/x/feegrant"
-	"github.com/cosmos/cosmos-sdk/x/nft"
 )
 
 // AccountKeeper defines the expected interface for the Account module.
