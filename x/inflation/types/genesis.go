@@ -17,6 +17,7 @@
 package types
 
 import (
+	"cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	// this line is used by starport scaffolding # genesis/types/import
@@ -33,7 +34,7 @@ const (
 func DefaultInflationDistribution() InflationDistribution {
 	return InflationDistribution{
 		// If no other shares are specified, validators get 100% of the inflation
-		ValidatorsShare: sdk.MustNewDecFromStr("1.0"),
+		ValidatorsShare: math.LegacyMustNewDecFromStr("1.0"),
 		OtherShares:     []*InflationShare{},
 	}
 }
@@ -54,7 +55,7 @@ func DefaultPeriodMintProvisions() []sdk.DecCoin {
 	tokensPerPeriod := make([]sdk.DecCoin, len(amountPerPeriod))
 	for i, amount := range amountPerPeriod {
 		tokensPerPeriod[i] = sdk.NormalizeDecCoin(
-			sdk.NewDecCoinFromDec(defaultDenom, sdk.MustNewDecFromStr(amount)),
+			sdk.NewDecCoinFromDec(defaultDenom, math.LegacyMustNewDecFromStr(amount)),
 		)
 	}
 

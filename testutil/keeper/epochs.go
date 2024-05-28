@@ -17,15 +17,16 @@ package keeper
 import (
 	"testing"
 
-	"cosmossdk.io/store"
-	storetypes "cosmossdk.io/store/types"
-	tmdb "github.com/cometbft/cometbft-db"
 	"cosmossdk.io/log"
+	"cosmossdk.io/store"
+
+	sdktypes "cosmossdk.io/store/types"
+	storetypes "cosmossdk.io/store/types"
 	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
+	dbm "github.com/cosmos/cosmos-db"
 	"github.com/cosmos/cosmos-sdk/codec"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdktypes "cosmossdk.io/store/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	"github.com/stretchr/testify/require"
@@ -39,7 +40,7 @@ func EpochsKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
 	memStoreKey := storetypes.NewMemoryStoreKey(types.MemStoreKey)
 	logger := log.NewNopLogger()
 
-	db := tmdb.NewMemDB()
+	db := dbm.NewMemDB()
 	stateStore := store.NewCommitMultiStore(db, logger, nil)
 	stateStore.MountStoreWithDB(storeKey, storetypes.StoreTypeIAVL, db)
 	stateStore.MountStoreWithDB(memStoreKey, storetypes.StoreTypeMemory, nil)

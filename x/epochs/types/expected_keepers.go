@@ -45,7 +45,7 @@ type StakingKeeper interface {
 
 // SlashingKeeper defines the expected interface for the Slashing module.
 type SlashingKeeper interface {
-	Slash(ctx sdk.Context, consAddr sdk.ConsAddress, fraction sdk.Dec, power, distributionHeight int64)
+	Slash(ctx sdk.Context, consAddr sdk.ConsAddress, fraction math.LegacyDec, power, distributionHeight int64)
 	// Methods imported from account should be defined here
 }
 

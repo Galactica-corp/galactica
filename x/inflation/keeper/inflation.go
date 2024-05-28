@@ -19,6 +19,7 @@ package keeper
 import (
 	"fmt"
 
+	"cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	"github.com/Galactica-corp/galactica/x/inflation/types"
@@ -89,11 +90,11 @@ func (k Keeper) AllocateInflation(
 func (k Keeper) GetProportions(
 	_ sdk.Context,
 	coin sdk.Coin,
-	distribution sdk.Dec,
+	distribution math.LegacyDec,
 ) sdk.Coin {
 	return sdk.Coin{
 		Denom:  coin.Denom,
-		Amount: sdk.NewDecFromInt(coin.Amount).Mul(distribution).TruncateInt(),
+		Amount: math.LegacyNewDecFromInt(coin.Amount).Mul(distribution).TruncateInt(),
 	}
 }
 

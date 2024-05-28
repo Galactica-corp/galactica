@@ -53,13 +53,13 @@ type BankKeeper interface {
 type StakingKeeper interface {
 	TotalBondedTokens(sdk.Context) math.Int
 	// BondedRatio the fraction of the staking tokens which are currently bonded
-	BondedRatio(ctx sdk.Context) sdk.Dec
+	BondedRatio(ctx sdk.Context) math.LegacyDec
 	StakingTokenSupply(ctx sdk.Context) math.Int
 }
 
 // SlashingKeeper defines the expected interface for the Slashing module.
 type SlashingKeeper interface {
-	Slash(ctx sdk.Context, consAddr sdk.ConsAddress, fraction sdk.Dec, power, distributionHeight int64)
+	Slash(ctx sdk.Context, consAddr sdk.ConsAddress, fraction math.LegacyDec, power, distributionHeight int64)
 	// Methods imported from account should be defined here
 }
 

@@ -17,7 +17,7 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"cosmossdk.io/math"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 )
 
@@ -35,7 +35,7 @@ func NewParams() Params {
 		MintDenom:       defaultDenom,
 		InflationDistribution: InflationDistribution{
 			// If no other shares are specified, validators get 100% of the inflation
-			ValidatorsShare: sdk.MustNewDecFromStr("1.0"),
+			ValidatorsShare: math.LegacyMustNewDecFromStr("1.0"),
 			OtherShares:     []*InflationShare{},
 		},
 	}
