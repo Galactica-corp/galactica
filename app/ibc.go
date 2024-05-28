@@ -15,9 +15,9 @@
 package app
 
 import (
+	storetypes "cosmossdk.io/store/types"
 	"cosmossdk.io/x/upgrade"
 	upgradetypes "cosmossdk.io/x/upgrade/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	govv1beta1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
@@ -47,7 +47,7 @@ import (
 
 func (app *App) registerIBCModules() {
 	// set up non depinject support modules store keys
-	app.keys = sdk.NewKVStoreKeys(
+	app.keys = storetypes.NewKVStoreKeys(
 		ibcexported.StoreKey,
 		ibctransfertypes.StoreKey,
 		ibcfeetypes.StoreKey,

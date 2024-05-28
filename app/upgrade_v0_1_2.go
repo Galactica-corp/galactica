@@ -17,10 +17,11 @@ package app
 import (
 	"bytes"
 
+	storetypes "cosmossdk.io/store/types"
+	upgradetypes "cosmossdk.io/x/upgrade/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	upgradetypes "cosmossdk.io/x/upgrade/types"
 
 	"github.com/Galactica-corp/galactica/app/upgrades/v0_1_2"
 )
@@ -45,11 +46,7 @@ func (app *App) applyUpgrade_v0_1_2() {
 }
 
 // upgradeHandler_v0_1_2 returns a handler function for processing the upgrade.
-func (app *App) upgradeHandler_v0_1_2() func(
-	ctx sdk.Context,
-	_ upgradetypes.Plan,
-	fromVM module.VersionMap,
-) (module.VersionMap, error) {
+func (app *App) upgradeHandler_v0_1_2() func(ctx sdk.Context, _ upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
 	return func(ctx sdk.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
 		logger := ctx.Logger().With("upgrade", plan.Name)
 
@@ -58,7 +55,8 @@ func (app *App) upgradeHandler_v0_1_2() func(
 			return app.ModuleManager.RunMigrations(ctx, app.Configurator(), fromVM)
 		}
 
-		validators := app.StakingKeeper.GetAllValidators(ctx)
+		// TODO: error handling
+		validators, _ := app.StakingKeeper.GetAllValidators(ctx)
 
 		for _, validator := range validators {
 			if err := app.updateValidatorPowerIndex(ctx, validator); err != nil {
@@ -82,12 +80,12 @@ func (app *App) upgradeHandler_v0_1_2() func(
 // updateValidatorPowerIndex updates the power index for a single validator.
 func (app *App) updateValidatorPowerIndex(ctx sdk.Context, validator stakingtypes.Validator) error {
 	store := ctx.KVStore(app.GetKey(stakingtypes.StoreKey))
-	iterator := sdk.KVStorePrefixIterator(store, stakingtypes.ValidatorsByPowerIndexKey)
+	iterator := storetypes.KVStorePrefixIterator(store, stakingtypes.ValidatorsByPowerIndexKey)
 	defer iterator.Close()
 
 	for ; iterator.Valid(); iterator.Next() {
 		valAddr := stakingtypes.ParseValidatorPowerRankKey(iterator.Key())
-		if bytes.Equal(valAddr, validator.GetOperator()) {
+		if bytes.Equal(valAddr, []byte(validator.GetOperator())) {
 			store.Delete(iterator.Key())
 			break // Assuming unique power index key per validator.
 		}

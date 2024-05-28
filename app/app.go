@@ -370,7 +370,7 @@ func New(
 	// }
 	// baseAppOptions = append(baseAppOptions, prepareOpt)
 
-	app.App = appBuilder.Build(logger, db, traceStore, baseAppOptions...)
+	app.App = appBuilder.Build(db, traceStore, baseAppOptions...)
 
 	encConfig := MakeEncodingConfig()
 	app.appCodec = encConfig.Marshaler
@@ -381,11 +381,11 @@ func New(
 	initParamsKeeper(app.ParamsKeeper)
 
 	if err := app.RegisterStores(
-		sdk.NewKVStoreKey(evmtypes.StoreKey),
-		sdk.NewKVStoreKey(feemarkettypes.StoreKey),
+		storetypes.NewKVStoreKey(evmtypes.StoreKey),
+		storetypes.NewKVStoreKey(feemarkettypes.StoreKey),
 
-		sdk.NewTransientStoreKey(evmtypes.TransientKey),
-		sdk.NewTransientStoreKey(feemarkettypes.TransientKey),
+		storetypes.NewTransientStoreKey(evmtypes.TransientKey),
+		storetypes.NewTransientStoreKey(feemarkettypes.TransientKey),
 	); err != nil {
 		panic(err)
 	}
@@ -616,7 +616,7 @@ func BlockedAddresses() map[string]bool {
 }
 
 // InitChainer application update at chain initialization
-func (app *App) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
+func (app *App) InitChainer(ctx sdk.Context, req *abci.RequestInitChain) (*abci.ResponseInitChain, error) {
 	var genesisState GenesisState
 	if err := tmjson.Unmarshal(req.AppStateBytes, &genesisState); err != nil {
 		panic(err)

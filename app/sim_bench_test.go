@@ -142,7 +142,7 @@ func BenchmarkInvariants(b *testing.B) {
 		simtestutil.PrintStats(db)
 	}
 
-	ctx := bApp.NewContext(true, tmproto.Header{Height: bApp.LastBlockHeight() + 1})
+	ctx := bApp.NewContext(true).WithBlockHeader(tmproto.Header{Height: bApp.LastBlockHeight() + 1})
 
 	// 3. Benchmark each invariant separately
 	//

@@ -26,13 +26,11 @@ import (
 	ethermintconfig "github.com/evmos/ethermint/server/config"
 
 	"cosmossdk.io/log"
-	"cosmossdk.io/simapp/params"
 	"cosmossdk.io/store"
 	"cosmossdk.io/store/snapshots"
 	snapshottypes "cosmossdk.io/store/snapshots/types"
 	storetypes "cosmossdk.io/store/types"
 	rosettaCmd "cosmossdk.io/tools/rosetta/cmd"
-	dbm "github.com/cometbft/cometbft-db"
 	tmcfg "github.com/cometbft/cometbft/config"
 	tmcli "github.com/cometbft/cometbft/libs/cli"
 	tmtypes "github.com/cometbft/cometbft/types"
@@ -60,6 +58,7 @@ import (
 
 	ethermintclient "github.com/evmos/ethermint/client"
 	"github.com/evmos/ethermint/ethereum/eip712"
+	ethertypes "github.com/evmos/ethermint/types"
 
 	"github.com/Galactica-corp/galactica/app"
 	appparams "github.com/Galactica-corp/galactica/app/params"
@@ -80,7 +79,7 @@ func NewRootCmd() (*cobra.Command, appparams.EncodingConfig) {
 		WithKeyringOptions(hd.EthSecp256k1Option()).
 		WithViper("")
 
-	eip712.SetEncodingConfig(params.EncodingConfig{
+	eip712.SetEncodingConfig(ethertypes.EncodingConfig{
 		InterfaceRegistry: encodingConfig.InterfaceRegistry,
 		Codec:             encodingConfig.Marshaler,
 		TxConfig:          encodingConfig.TxConfig,
@@ -404,9 +403,9 @@ func initAppConfig() (string, interface{}) {
 	return customAppTemplate, customAppConfig
 }
 
-func openDB(_ servertypes.AppOptions, home string, backendType dbm.BackendType) (dbm.DB, error) {
+func openDB(_ servertypes.AppOptions, home string, backendType cosmosdb.BackendType) (cosmosdb.DB, error) {
 	dataDir := filepath.Join(home, "data")
-	return dbm.NewDB("application", backendType, dataDir)
+	return cosmosdb.NewDB("application", backendType, dataDir)
 }
 
 // WrapInitCmd extends `genutilcli.InitCmd`.
