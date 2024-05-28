@@ -20,6 +20,7 @@ import (
 	"fmt"
 	"strings"
 
+	"cosmossdk.io/errors"
 	crypto2 "github.com/cometbft/cometbft/crypto"
 	"github.com/cometbft/cometbft/crypto/armor"
 	"github.com/cosmos/cosmos-sdk/crypto"
@@ -156,7 +157,7 @@ func decryptPrivKey(
 ) (privKey cryptotypes.PrivKey, err error) {
 	key, err := bcrypt.GenerateFromPassword(saltBytes, []byte(passphrase), crypto.BcryptSecurityParameter)
 	if err != nil {
-		return privKey, sdkerrors.Wrap(err, "error generating bcrypt key from passphrase")
+		return privKey, errors.Wrap(err, "error generating bcrypt key from passphrase")
 	}
 
 	key = crypto2.Sha256(key) // Get 32 bytes

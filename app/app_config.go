@@ -288,7 +288,7 @@ var (
 			},
 			{
 				Name: capabilitytypes.ModuleName,
-				Config: appconfig.WrapAny(&capabilitymodulev1.Module{
+				Config: appconfig.WrapAny(&capabilitymodulev1.AppModule{
 					SealKeeper: true,
 				}),
 			},

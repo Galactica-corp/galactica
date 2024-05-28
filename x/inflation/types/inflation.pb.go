@@ -5,7 +5,8 @@ package types
 
 import (
 	fmt "fmt"
-	github_com_cosmos_cosmos_sdk_types "github.com/cosmos/cosmos-sdk/types"
+	// github_com_cosmos_cosmos_sdk_types "github.com/cosmos/cosmos-sdk/types"
+	sdkmath "cosmossdk.io/math"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	proto "github.com/cosmos/gogoproto/proto"
 	io "io"
@@ -28,7 +29,7 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 type InflationShare struct {
 	Address string                                 `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
 	Name    string                                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Share   github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,3,opt,name=share,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"share"`
+	Share   sdkmath.LegacyDec `protobuf:"bytes,3,opt,name=share,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"share"`
 }
 
 func (m *InflationShare) Reset()         { *m = InflationShare{} }
@@ -81,7 +82,7 @@ func (m *InflationShare) GetName() string {
 // InflationDistribution defines the distribution in which inflation is
 // allocated through minting on each epoch (staking, incentives, community).
 type InflationDistribution struct {
-	ValidatorsShare github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,1,opt,name=validators_share,json=validatorsShare,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"validators_share"`
+	ValidatorsShare sdkmath.LegacyDec `protobuf:"bytes,1,opt,name=validators_share,json=validatorsShare,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"validators_share"`
 	OtherShares     []*InflationShare                      `protobuf:"bytes,2,rep,name=other_shares,json=otherShares,proto3" json:"other_shares,omitempty"`
 }
 
