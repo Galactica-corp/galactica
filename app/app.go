@@ -406,6 +406,7 @@ func New(
 	app.AccountKeeper = authkeeper.NewAccountKeeper(
 		app.appCodec, app.GetKey(authtypes.StoreKey), ethermint.ProtoAccount,
 		maccPerms, sdk.GetConfig().GetBech32AccountAddrPrefix(), authAddr,
+		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
 	)
 
 	// Create Ethermint keepers

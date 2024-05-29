@@ -16,10 +16,10 @@ package app
 
 import (
 	"bytes"
+	"context"
 
 	storetypes "cosmossdk.io/store/types"
 	upgradetypes "cosmossdk.io/x/upgrade/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
@@ -46,9 +46,9 @@ func (app *App) applyUpgrade_v0_1_2() {
 }
 
 // upgradeHandler_v0_1_2 returns a handler function for processing the upgrade.
-func (app *App) upgradeHandler_v0_1_2() func(ctx sdk.Context, _ upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
-	return func(ctx sdk.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
-		logger := ctx.Logger().With("upgrade", plan.Name)
+func (app *App) upgradeHandler_v0_1_2() func(ctx context.Context, _ upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+	return func(ctx context.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+		logger := app.Logger().With("upgrade", plan.Name)
 
 		if plan.Name != v0_1_2.UpgradeName {
 			logger.Error("Invalid upgrade plan", "expected", v0_1_2.UpgradeName, "got", plan.Name)
@@ -78,7 +78,7 @@ func (app *App) upgradeHandler_v0_1_2() func(ctx sdk.Context, _ upgradetypes.Pla
 }
 
 // updateValidatorPowerIndex updates the power index for a single validator.
-func (app *App) updateValidatorPowerIndex(ctx sdk.Context, validator stakingtypes.Validator) error {
+func (app *App) updateValidatorPowerIndex(ctx context.Context, validator stakingtypes.Validator) error {
 	store := ctx.KVStore(app.GetKey(stakingtypes.StoreKey))
 	iterator := storetypes.KVStorePrefixIterator(store, stakingtypes.ValidatorsByPowerIndexKey)
 	defer iterator.Close()

@@ -142,19 +142,19 @@ func initRootCmd(
 		ethermintclient.ValidateChainID(
 			WrapInitCmd(app.DefaultNodeHome),
 		),
-		genutilcli.CollectGenTxsCmd(banktypes.GenesisBalancesIterator{}, app.DefaultNodeHome, gentxModule.GenTxValidator),
-		genutilcli.MigrateGenesisCmd(),
+		genutilcli.CollectGenTxsCmd(banktypes.GenesisBalancesIterator{}, app.DefaultNodeHome, gentxModule.GenTxValidator, nil), // TODO: Validator addr codec
+		genutilcli.MigrateGenesisCmd(nil), // TODO: add migrations map
 		genutilcli.GenTxCmd(
 			app.ModuleBasics,
 			encodingConfig.TxConfig,
 			banktypes.GenesisBalancesIterator{},
 			app.DefaultNodeHome,
-		),
+			nil), // TODO: validator addr codec
 		genutilcli.ValidateGenesisCmd(app.ModuleBasics),
 		AddGenesisAccountCmd(app.DefaultNodeHome),
 		tmcli.NewCompletionCmd(rootCmd, true),
 		debug.Cmd(),
-		config.Cmd(),
+		// config.Cmd(), // TODO: config cmd
 	)
 
 	a := appCreator{
