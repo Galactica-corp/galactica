@@ -28,7 +28,6 @@ import (
 	// "github.com/evmos/ethermint/x/evm/vm/geth"
 
 	"cosmossdk.io/depinject"
-	"cosmossdk.io/store/streaming"
 	storetypes "cosmossdk.io/store/types"
 	"cosmossdk.io/x/evidence"
 	evidencekeeper "cosmossdk.io/x/evidence/keeper"
@@ -82,7 +81,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/params"
 	paramsclient "github.com/cosmos/cosmos-sdk/x/params/client"
 	paramskeeper "github.com/cosmos/cosmos-sdk/x/params/keeper"
-	paramstypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	"github.com/cosmos/cosmos-sdk/x/slashing"
 	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
 	"github.com/cosmos/cosmos-sdk/x/staking"
@@ -96,6 +94,7 @@ import (
 	ibctransfer "github.com/cosmos/ibc-go/v8/modules/apps/transfer"
 	ibctransferkeeper "github.com/cosmos/ibc-go/v8/modules/apps/transfer/keeper"
 	ibc "github.com/cosmos/ibc-go/v8/modules/core"
+	v0evmtypes "github.com/evmos/ethermint/x/evm/migrations/v0/types"
 
 	// ibcclientclient "github.com/cosmos/ibc-go/v8/modules/core/02-client/client" // TODO: разобраться в клиенте gov
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
@@ -105,6 +104,7 @@ import (
 
 	cosmosdb "github.com/cosmos/cosmos-db"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	paramstypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	srvflags "github.com/evmos/ethermint/server/flags"
 	ethermint "github.com/evmos/ethermint/types"
 	"github.com/evmos/ethermint/x/evm"
@@ -385,8 +385,9 @@ func New(
 		storetypes.NewKVStoreKey(evmtypes.StoreKey),
 		storetypes.NewKVStoreKey(feemarkettypes.StoreKey),
 
-		storetypes.NewTransientStoreKey(evmtypes.TransientKey),
-		storetypes.NewTransientStoreKey(feemarkettypes.TransientKey),
+		storetypes.NewTransientStoreKey(paramstypes.TStoreKey),
+		// storetypes.NewTransientStoreKey(evmtypes.TransientKey),
+		// storetypes.NewTransientStoreKey(feemarkettypes.TransientKey),
 	); err != nil {
 		panic(err)
 	}
@@ -432,7 +433,7 @@ func New(
 	evmS := app.GetSubspace(evmtypes.ModuleName)
 	app.EvmKeeper = evmkeeper.NewKeeper(
 		app.appCodec,
-		app.GetKey(evmtypes.StoreKey), app.GetTransientKey(evmtypes.TransientKey), authtypes.NewModuleAddress(govtypes.ModuleName),
+		app.GetKey(evmtypes.StoreKey), app.GetKey(evmtypes.ObjectStoreKey), authtypes.NewModuleAddress(govtypes.ModuleName),
 		app.AccountKeeper, app.BankKeeper, app.StakingKeeper, app.FeeMarketKeeper,
 		tracer,
 		evmS,
@@ -459,9 +460,8 @@ func New(
 	)
 
 	// load state streaming if enabled
-	if _, _, err := streaming.LoadStreamingServices(app.App.BaseApp, appOpts, app.appCodec, logger, app.kvStoreKeys()); err != nil {
-		logger.Error("failed to load state streaming", "err", err)
-		os.Exit(1)
+	if err := app.RegisterStreamingServices(appOpts, app.kvStoreKeys()); err != nil {
+		panic(err)
 	}
 
 	/****  Module Options ****/
@@ -661,7 +661,7 @@ func initParamsKeeper(
 	paramsKeeper paramskeeper.Keeper,
 ) paramskeeper.Keeper {
 	// ethermint subspaces
-	paramsKeeper.Subspace(evmtypes.ModuleName).WithKeyTable(evmtypes.ParamKeyTable()) // nolint: staticcheck
+	paramsKeeper.Subspace(evmtypes.ModuleName).WithKeyTable(v0evmtypes.ParamKeyTable())
 	paramsKeeper.Subspace(feemarkettypes.ModuleName).WithKeyTable(feemarkettypes.ParamKeyTable())
 
 	return paramsKeeper
