@@ -286,7 +286,7 @@ replace (
 	// use cometbft
 	github.com/cometbft/cometbft => github.com/cometbft/cometbft v0.37.2-0.20230905115601-790d57e1748f
 	github.com/cometbft/cometbft-db => github.com/crypto-org-chain/cometbft-db v0.0.0-20231011055109-57922ac52a63
-	github.com/cosmos/cosmos-sdk => github.com/crypto-org-chain/cosmos-sdk v0.50.5
+	github.com/cosmos/cosmos-sdk => github.com/crypto-org-chain/cosmos-sdk v0.0.0-20240415105151-0108877a3201
 	github.com/evmos/ethermint => github.com/crypto-org-chain/ethermint v0.6.1-0.20240502052908-179e436703b3
 	// replace broken goleveldb
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
