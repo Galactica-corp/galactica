@@ -16,10 +16,10 @@ package app
 
 import (
 	"bytes"
-	"context"
 
 	storetypes "cosmossdk.io/store/types"
 	upgradetypes "cosmossdk.io/x/upgrade/types"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
@@ -40,14 +40,15 @@ func (app *App) applyUpgrade_v0_1_2() {
 	plan, err := app.UpgradeKeeper.ReadUpgradeInfoFromDisk()
 	if err != nil || plan.Height < v0_1_2.UpgradeBlockHeight {
 		logger.Info("Applying upgrade plan", "info", plan.Info)
-		app.UpgradeKeeper.SetUpgradeHandler(v0_1_2.UpgradeName, app.upgradeHandler_v0_1_2())
+		// TODO: sdk to context
+		// app.UpgradeKeeper.SetUpgradeHandler(v0_1_2.UpgradeName, app.upgradeHandler_v0_1_2())
 		app.UpgradeKeeper.ApplyUpgrade(ctx, v0_1_2.Plan)
 	}
 }
 
 // upgradeHandler_v0_1_2 returns a handler function for processing the upgrade.
-func (app *App) upgradeHandler_v0_1_2() func(ctx context.Context, _ upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
-	return func(ctx context.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+func (app *App) upgradeHandler_v0_1_2() func(ctx sdk.Context, _ upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+	return func(ctx sdk.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
 		logger := app.Logger().With("upgrade", plan.Name)
 
 		if plan.Name != v0_1_2.UpgradeName {
@@ -78,7 +79,7 @@ func (app *App) upgradeHandler_v0_1_2() func(ctx context.Context, _ upgradetypes
 }
 
 // updateValidatorPowerIndex updates the power index for a single validator.
-func (app *App) updateValidatorPowerIndex(ctx context.Context, validator stakingtypes.Validator) error {
+func (app *App) updateValidatorPowerIndex(ctx sdk.Context, validator stakingtypes.Validator) error {
 	store := ctx.KVStore(app.GetKey(stakingtypes.StoreKey))
 	iterator := storetypes.KVStorePrefixIterator(store, stakingtypes.ValidatorsByPowerIndexKey)
 	defer iterator.Close()

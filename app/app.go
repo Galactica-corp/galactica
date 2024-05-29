@@ -35,6 +35,7 @@ import (
 	feegrantkeeper "cosmossdk.io/x/feegrant/keeper"
 	feegrantmodule "cosmossdk.io/x/feegrant/module"
 	"cosmossdk.io/x/upgrade"
+	authcodec "github.com/cosmos/cosmos-sdk/x/auth/codec"
 
 	// upgradeclient "cosmossdk.io/x/upgrade/client" // TODO: gov модуль
 	"cosmossdk.io/log"
@@ -404,8 +405,12 @@ func New(
 	authAddr := authtypes.NewModuleAddress(govtypes.ModuleName).String()
 
 	app.AccountKeeper = authkeeper.NewAccountKeeper(
-		app.appCodec, app.GetKey(authtypes.StoreKey), ethermint.ProtoAccount,
-		maccPerms, sdk.GetConfig().GetBech32AccountAddrPrefix(), authAddr,
+		app.appCodec,
+		runtime.NewKVStoreService(app.GetKey(authtypes.StoreKey)),
+		ethermint.ProtoAccount,
+		maccPerms,
+		authcodec.NewBech32Codec(sdk.GetConfig().GetBech32AccountAddrPrefix()),
+		authAddr,
 		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
 	)
 
@@ -418,7 +423,7 @@ func New(
 		app.appCodec,
 		authtypes.NewModuleAddress(govtypes.ModuleName),
 		app.GetKey(feemarkettypes.StoreKey),
-		app.GetTransientKey(feemarkettypes.TransientKey),
+		// app.GetTransientKey(feemarkettypes.TransientKey), // cronos example
 		feeMarketS,
 	)
 	app.FeeMarketKeeper = &feeMarketKeeper
@@ -427,13 +432,13 @@ func New(
 	evmS := app.GetSubspace(evmtypes.ModuleName)
 	app.EvmKeeper = evmkeeper.NewKeeper(
 		app.appCodec,
-		app.GetKey(evmtypes.StoreKey),
-		app.GetTransientKey(evmtypes.TransientKey),
-		authtypes.NewModuleAddress(govtypes.ModuleName),
-		app.AccountKeeper, app.BankKeeper, app.StakingKeeper,
-		app.FeeMarketKeeper,
+		app.GetKey(evmtypes.StoreKey), app.GetTransientKey(evmtypes.TransientKey), authtypes.NewModuleAddress(govtypes.ModuleName),
+		app.AccountKeeper, app.BankKeeper, app.StakingKeeper, app.FeeMarketKeeper,
+		tracer,
+		evmS,
+		[]evmkeeper.CustomContractFn{},
 		// TODO: precompiled contract could be added here
-		nil, nil, tracer, evmS, // TODO: здесь другой конструктор
+		// nil, nil, tracer, evmS, // TODO: здесь другой конструктор
 	)
 
 	evmModule := evm.NewAppModule(app.EvmKeeper, app.AccountKeeper, evmS)
@@ -638,7 +643,7 @@ func (app *App) setAnteHandler(txConfig client.TxConfig, maxGasWanted uint64) {
 		FeeMarketKeeper:        app.FeeMarketKeeper,
 		MaxTxGasWanted:         maxGasWanted,
 		ExtensionOptionChecker: ethermint.HasDynamicFeeExtensionOption,
-		TxFeeChecker:           ante.NewDynamicFeeChecker(app.EvmKeeper),
+		// TxFeeChecker:           ante.NewDynamicFeeChecker(app.EvmKeeper),
 		DisabledAuthzMsgs: []string{
 			sdk.MsgTypeURL(&evmtypes.MsgEthereumTx{}),
 			sdk.MsgTypeURL(&vestingtypes.MsgCreateVestingAccount{}),
