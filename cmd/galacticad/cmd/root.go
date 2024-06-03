@@ -59,6 +59,7 @@ import (
 	ethermintclient "github.com/evmos/ethermint/client"
 	"github.com/evmos/ethermint/ethereum/eip712"
 	ethertypes "github.com/evmos/ethermint/types"
+	srvflags "github.com/evmos/ethermint/server/flags"
 
 	"github.com/Galactica-corp/galactica/app"
 	appparams "github.com/Galactica-corp/galactica/app/params"
@@ -176,10 +177,10 @@ func initRootCmd(
 		ethkeys.KeyCommands(rootCmd.Context()),
 	)
 
-	flags.AddTxFlagsToCmd(rootCmd)
-	// if err != nil {
-	// 	panic(err)
-	// }
+	rootCmd, err := srvflags.AddGlobalFlags(rootCmd)
+	if err != nil {
+		panic(err)
+	}
 
 	// add rosetta
 	rootCmd.AddCommand(rosettaCmd.RosettaCommand(
