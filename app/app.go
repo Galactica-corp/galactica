@@ -285,6 +285,7 @@ func New(
 			depinject.Supply(
 				// supply the application options
 				appOpts,
+				logger,
 				// supply ibc keeper getter for the IBC modules
 				app.GetIBCeKeeper,
 
