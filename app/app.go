@@ -16,6 +16,7 @@ package app
 
 import (
 	_ "embed"
+	"encoding/json"
 	"fmt"
 	"io"
 	"os"
@@ -40,7 +41,6 @@ import (
 	"cosmossdk.io/log"
 	upgradekeeper "cosmossdk.io/x/upgrade/keeper"
 	abci "github.com/cometbft/cometbft/abci/types"
-	tmjson "github.com/cometbft/cometbft/libs/json"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -626,10 +626,12 @@ func BlockedAddresses() map[string]bool {
 // InitChainer application update at chain initialization
 func (app *App) InitChainer(ctx sdk.Context, req *abci.RequestInitChain) (*abci.ResponseInitChain, error) {
 	var genesisState GenesisState
-	if err := tmjson.Unmarshal(req.AppStateBytes, &genesisState); err != nil {
+	if err := json.Unmarshal(req.AppStateBytes, &genesisState); err != nil {
 		panic(err)
 	}
-	app.UpgradeKeeper.SetModuleVersionMap(ctx, app.ModuleManager.GetVersionMap())
+	if err := app.UpgradeKeeper.SetModuleVersionMap(ctx, app.ModuleManager.GetVersionMap()); err != nil {
+		return nil, err
+	}
 	return app.ModuleManager.InitGenesis(ctx, app.appCodec, genesisState)
 }
 
