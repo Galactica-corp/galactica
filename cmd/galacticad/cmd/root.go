@@ -58,8 +58,8 @@ import (
 
 	ethermintclient "github.com/evmos/ethermint/client"
 	"github.com/evmos/ethermint/ethereum/eip712"
-	ethertypes "github.com/evmos/ethermint/types"
 	srvflags "github.com/evmos/ethermint/server/flags"
+	ethertypes "github.com/evmos/ethermint/types"
 
 	"github.com/Galactica-corp/galactica/app"
 	appparams "github.com/Galactica-corp/galactica/app/params"
@@ -143,14 +143,16 @@ func initRootCmd(
 		ethermintclient.ValidateChainID(
 			WrapInitCmd(app.DefaultNodeHome),
 		),
-		genutilcli.CollectGenTxsCmd(banktypes.GenesisBalancesIterator{}, app.DefaultNodeHome, gentxModule.GenTxValidator, nil), // TODO: Validator addr codec
+		genutilcli.CollectGenTxsCmd(banktypes.GenesisBalancesIterator{},
+			app.DefaultNodeHome, gentxModule.GenTxValidator,
+			encodingConfig.TxConfig.SigningContext().ValidatorAddressCodec()),
 		genutilcli.MigrateGenesisCmd(nil), // TODO: add migrations map
 		genutilcli.GenTxCmd(
 			app.ModuleBasics,
 			encodingConfig.TxConfig,
 			banktypes.GenesisBalancesIterator{},
 			app.DefaultNodeHome,
-			nil), // TODO: validator addr codec
+			encodingConfig.TxConfig.SigningContext().ValidatorAddressCodec()),
 		genutilcli.ValidateGenesisCmd(app.ModuleBasics),
 		AddGenesisAccountCmd(app.DefaultNodeHome),
 		tmcli.NewCompletionCmd(rootCmd, true),
