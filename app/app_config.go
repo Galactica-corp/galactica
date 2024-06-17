@@ -255,7 +255,10 @@ var (
 			},
 			{
 				Name:   stakingtypes.ModuleName,
-				Config: appconfig.WrapAny(&stakingmodulev1.Module{}),
+				Config: appconfig.WrapAny(&stakingmodulev1.Module{
+					Bech32PrefixValidator: "galavaloper",
+					Bech32PrefixConsensus: "galavalcons",
+				}),
 			},
 			{
 				Name:   slashingtypes.ModuleName,

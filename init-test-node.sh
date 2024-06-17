@@ -43,13 +43,13 @@ HOME_DIR=${HOME}/.galactica/
 rm -rf ~/.galactica*
 
 # Import keys from mnemonics
-echo $VAL_MNEMONIC   | galacticad keys add $VAL_KEY   --recover --keyring-backend test --algo "eth_secp256k1"
-echo $USER1_MNEMONIC | galacticad keys add $USER1_KEY --recover --keyring-backend test --algo "eth_secp256k1"
-echo $USER2_MNEMONIC | galacticad keys add $USER2_KEY --recover --keyring-backend test --algo "eth_secp256k1"
-echo $USER3_MNEMONIC | galacticad keys add $USER3_KEY --recover --keyring-backend test --algo "eth_secp256k1"
-echo $USER4_MNEMONIC | galacticad keys add $USER4_KEY --recover --keyring-backend test --algo "eth_secp256k1"
+echo $VAL_MNEMONIC   | ./galacticad keys add $VAL_KEY   --recover --keyring-backend test --algo "eth_secp256k1"
+echo $USER1_MNEMONIC | ./galacticad keys add $USER1_KEY --recover --keyring-backend test --algo "eth_secp256k1"
+echo $USER2_MNEMONIC | ./galacticad keys add $USER2_KEY --recover --keyring-backend test --algo "eth_secp256k1"
+echo $USER3_MNEMONIC | ./galacticad keys add $USER3_KEY --recover --keyring-backend test --algo "eth_secp256k1"
+echo $USER4_MNEMONIC | ./galacticad keys add $USER4_KEY --recover --keyring-backend test --algo "eth_secp256k1"
 
-galacticad init $MONIKER --chain-id $CHAINID
+./galacticad init $MONIKER --chain-id $CHAINID
 
 # Set gas limit in genesis
 cat ${HOME_DIR}/config/genesis.json | jq '.consensus_params["block"]["max_gas"]="10000000"' > ${HOME_DIR}/config/tmp_genesis.json && mv ${HOME_DIR}/config/tmp_genesis.json ${HOME_DIR}/config/genesis.json
@@ -70,21 +70,22 @@ else
 fi
 
 # Allocate genesis accounts (cosmos formatted addresses)
-galacticad add-genesis-account "$(galacticad keys show $VAL_KEY   -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
-galacticad add-genesis-account "$(galacticad keys show $USER1_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
-galacticad add-genesis-account "$(galacticad keys show $USER2_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
-galacticad add-genesis-account "$(galacticad keys show $USER3_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
-galacticad add-genesis-account "$(galacticad keys show $USER4_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
+./galacticad add-genesis-account "$(./galacticad keys show $VAL_KEY   -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
+./galacticad add-genesis-account "$(./galacticad keys show $USER1_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
+./galacticad add-genesis-account "$(./galacticad keys show $USER2_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
+./galacticad add-genesis-account "$(./galacticad keys show $USER3_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
+./galacticad add-genesis-account "$(./galacticad keys show $USER4_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
 
 # Sign genesis transaction
-galacticad gentx $VAL_KEY 1000000000000000000stake --amount=1000000000000000000000aphoton --chain-id $CHAINID --keyring-backend test
+echo "gentx command"
+./galacticad gentx $VAL_KEY 1000000000000000000stake --amount=1000000000000000000000aphoton --chain-id $CHAINID --keyring-backend test
 
 # Collect genesis tx
-galacticad collect-gentxs
+./galacticad collect-gentxs
 
 # Run this to ensure everything worked and that the genesis file is setup correctly
-galacticad validate-genesis
+./galacticad validate-genesis
 
 # Start the node (remove the --pruning=nothing flag if historical queries are not needed)
-# galacticad start --keyring-backend test
+# ./galacticad start --keyring-backend test
 # --rpc.unsafe --log_level info --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable

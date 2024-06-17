@@ -211,7 +211,8 @@ type App struct {
 	interfaceRegistry codectypes.InterfaceRegistry
 
 	// non depinject support modules store keys
-	keys map[string]*storetypes.KVStoreKey
+	keys  map[string]*storetypes.KVStoreKey
+	okeys map[string]*storetypes.ObjectStoreKey
 
 	// keepers
 	AccountKeeper         authkeeper.AccountKeeper
@@ -383,8 +384,11 @@ func New(
 
 	initParamsKeeper(app.ParamsKeeper)
 
+	app.okeys = storetypes.NewObjectStoreKeys(evmtypes.ObjectStoreKey)
+
 	if err := app.RegisterStores(
 		storetypes.NewKVStoreKey(evmtypes.StoreKey),
+		app.okeys[evmtypes.ObjectStoreKey],
 		storetypes.NewKVStoreKey(feemarkettypes.StoreKey),
 
 		storetypes.NewTransientStoreKey(paramstypes.TStoreKey),
@@ -412,7 +416,7 @@ func New(
 		runtime.NewKVStoreService(app.GetKey(authtypes.StoreKey)),
 		ethermint.ProtoAccount,
 		maccPerms,
-		authcodec.NewBech32Codec(sdk.GetConfig().GetBech32AccountAddrPrefix()),
+		authcodec.NewBech32Codec("gala"),
 		authAddr,
 		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
 	)
@@ -435,13 +439,12 @@ func New(
 	evmS := app.GetSubspace(evmtypes.ModuleName)
 	app.EvmKeeper = evmkeeper.NewKeeper(
 		app.appCodec,
-		app.GetKey(evmtypes.StoreKey), app.GetKey(evmtypes.ObjectStoreKey), authtypes.NewModuleAddress(govtypes.ModuleName),
+		app.GetKey(evmtypes.StoreKey), app.okeys[evmtypes.ObjectStoreKey],
+		authtypes.NewModuleAddress(govtypes.ModuleName),
 		app.AccountKeeper, app.BankKeeper, app.StakingKeeper, app.FeeMarketKeeper,
 		tracer,
 		evmS,
 		[]evmkeeper.CustomContractFn{},
-		// TODO: precompiled contract could be added here
-		// nil, nil, tracer, evmS, // TODO: здесь другой конструктор
 	)
 
 	evmModule := evm.NewAppModule(app.EvmKeeper, app.AccountKeeper, evmS)
