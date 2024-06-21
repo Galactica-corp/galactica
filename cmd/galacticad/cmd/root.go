@@ -147,7 +147,7 @@ func initRootCmd(
 		genutilcli.CollectGenTxsCmd(banktypes.GenesisBalancesIterator{},
 			app.DefaultNodeHome, gentxModule.GenTxValidator,
 			address.NewBech32Codec("galavaloper")),
-		genutilcli.MigrateGenesisCmd(nil), // TODO: add migrations map
+		genutilcli.MigrateGenesisCmd(genutilcli.MigrationMap),
 		genutilcli.GenTxCmd(
 			app.ModuleBasics,
 			encodingConfig.TxConfig,
