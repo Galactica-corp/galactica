@@ -204,16 +204,14 @@ func queryCommand() *cobra.Command {
 	}
 
 	cmd.AddCommand(
-		// authcmd.GetAccountCmd(), // command not fount
+		// authcmd.GetAccountCmd(), // TODO: command not fount
 		rpc.ValidatorCommand(),
 		server.QueryBlockCmd(),
 		authcmd.QueryTxsByEventsCmd(),
 		authcmd.QueryTxCmd(),
 	)
 
-	// The AppModuleBasic interface has been simplified.
-	// Defining GetTxCmd() *cobra.Command and GetQueryCmd() *cobra.Command is no longer required.
-	// app.ModuleBasics.AddQueryCommands(cmd)
+	app.ModuleBasics.AddQueryCommands(cmd)
 
 	cmd.PersistentFlags().String(flags.FlagChainID, "", "The network chain ID")
 
@@ -241,9 +239,7 @@ func txCommand() *cobra.Command {
 		authcmd.GetDecodeCommand(),
 	)
 
-	// The AppModuleBasic interface has been simplified.
-	// Defining GetTxCmd() *cobra.Command and GetQueryCmd() *cobra.Command is no longer required.
-	// app.ModuleBasics.AddTxCommands(cmd)
+	app.ModuleBasics.AddTxCommands(cmd)
 	cmd.PersistentFlags().String(flags.FlagChainID, "", "The network chain ID")
 
 	return cmd
