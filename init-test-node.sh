@@ -52,7 +52,7 @@ echo $USER4_MNEMONIC | ./galacticad keys add $USER4_KEY --recover --keyring-back
 ./galacticad init $MONIKER --chain-id $CHAINID
 
 # Set gas limit in genesis
-cat ${HOME_DIR}/config/genesis.json | jq '.consensus_params["block"]["max_gas"]="10000000"' > ${HOME_DIR}/config/tmp_genesis.json && mv ${HOME_DIR}/config/tmp_genesis.json ${HOME_DIR}/config/genesis.json
+cat ${HOME_DIR}/config/genesis.json | jq '.consensus["params"]["block"]["max_gas"]="10000000"' > ${HOME_DIR}/config/tmp_genesis.json && mv ${HOME_DIR}/config/tmp_genesis.json ${HOME_DIR}/config/genesis.json
 
 # modified default configs
 if [[ "$OSTYPE" == "darwin"* ]]; then
