@@ -125,6 +125,9 @@ import (
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	"github.com/Galactica-corp/galactica/docs"
+	"cosmossdk.io/client/v2/autocli"
+	runtimeservices "github.com/cosmos/cosmos-sdk/runtime/services"
+	"cosmossdk.io/core/appmodule"
 )
 
 const (
@@ -347,7 +350,7 @@ func New(
 	); err != nil {
 		panic(err)
 	}
-
+	
 	// Below we could construct and set an application specific mempool and
 	// ABCI 1.0 PrepareProposal and ProcessProposal handlers. These defaults are
 	// already set in the SDK's BaseApp, this shows an example of how to override
@@ -676,4 +679,24 @@ func initParamsKeeper(
 
 func (app *App) applyUpgrades() {
 	app.applyUpgrade_v0_1_2()
+}
+
+// AutoCliOpts returns the autocli options for the app.
+func (app *App) AutoCliOpts() autocli.AppOptions {
+	modules := make(map[string]appmodule.AppModule, 0)
+	for _, m := range app.ModuleManager.Modules {
+		if moduleWithName, ok := m.(module.HasName); ok {
+			moduleName := moduleWithName.Name()
+			if appModule, ok := moduleWithName.(appmodule.AppModule); ok {
+				modules[moduleName] = appModule
+			}
+		}
+	}
+	return autocli.AppOptions{
+		Modules:               modules,
+		ModuleOptions:         runtimeservices.ExtractAutoCLIOptions(app.ModuleManager.Modules),
+		AddressCodec:          authcodec.NewBech32Codec(sdk.GetConfig().GetBech32AccountAddrPrefix()),
+		ValidatorAddressCodec: authcodec.NewBech32Codec(sdk.GetConfig().GetBech32ValidatorAddrPrefix()),
+		ConsensusAddressCodec: authcodec.NewBech32Codec(sdk.GetConfig().GetBech32ConsensusAddrPrefix()),
+	}
 }
