@@ -61,7 +61,7 @@ import (
 	ethermintclient "github.com/evmos/ethermint/client"
 	"github.com/evmos/ethermint/ethereum/eip712"
 	srvflags "github.com/evmos/ethermint/server/flags"
-	ethertypes "github.com/evmos/ethermint/types"
+	// ethertypes "github.com/evmos/ethermint/types"
 
 	"github.com/Galactica-corp/galactica/app"
 	appparams "github.com/Galactica-corp/galactica/app/params"
@@ -69,6 +69,7 @@ import (
 	dbm "github.com/cosmos/cosmos-db"
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
 	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
+	evmenc "github.com/evmos/ethermint/encoding"
 )
 
 // NewRootCmd creates a new root command for a Cosmos SDK application
@@ -98,12 +99,7 @@ func NewRootCmd() (*cobra.Command, appparams.EncodingConfig) {
 		panic(err)
 	}
 
-	eip712.SetEncodingConfig(ethertypes.EncodingConfig{
-		InterfaceRegistry: encodingConfig.InterfaceRegistry,
-		Codec:             encodingConfig.Marshaler,
-		TxConfig:          encodingConfig.TxConfig,
-		Amino:             encodingConfig.Amino,
-	})
+	eip712.SetEncodingConfig(evmenc.MakeConfig())
 
 	rootCmd := &cobra.Command{
 		Use:   app.Name + "d",
