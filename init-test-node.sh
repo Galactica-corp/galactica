@@ -70,11 +70,11 @@ else
 fi
 
 # Allocate genesis accounts (cosmos formatted addresses)
-./galacticad add-genesis-account "$(./galacticad keys show $VAL_KEY   -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
-./galacticad add-genesis-account "$(./galacticad keys show $USER1_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
-./galacticad add-genesis-account "$(./galacticad keys show $USER2_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
-./galacticad add-genesis-account "$(./galacticad keys show $USER3_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
-./galacticad add-genesis-account "$(./galacticad keys show $USER4_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000stake --keyring-backend test
+./galacticad add-genesis-account "$(./galacticad keys show $VAL_KEY   -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000000agnet,1000000000000000000stake --keyring-backend test
+./galacticad add-genesis-account "$(./galacticad keys show $USER1_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000000agnet,1000000000000000000stake --keyring-backend test
+./galacticad add-genesis-account "$(./galacticad keys show $USER2_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000000agnet,1000000000000000000stake --keyring-backend test
+./galacticad add-genesis-account "$(./galacticad keys show $USER3_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000000agnet,1000000000000000000stake --keyring-backend test
+./galacticad add-genesis-account "$(./galacticad keys show $USER4_KEY -a --keyring-backend test)" 1000000000000000000000aphoton,1000000000000000000000agnet,1000000000000000000stake --keyring-backend test
 
 # Sign genesis transaction
 echo "gentx command"
