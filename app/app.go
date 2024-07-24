@@ -447,7 +447,7 @@ func New(
 		app.AccountKeeper, app.BankKeeper, app.StakingKeeper, app.FeeMarketKeeper,
 		tracer,
 		evmS,
-		[]evmkeeper.CustomContractFn{},
+		nil,
 	)
 
 	evmModule := evm.NewAppModule(app.EvmKeeper, app.AccountKeeper, evmS)
