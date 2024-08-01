@@ -41,6 +41,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/debug"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/rpc"
+	"github.com/cosmos/cosmos-sdk/client/snapshot"
 	"github.com/cosmos/cosmos-sdk/codec/address"
 	"github.com/cosmos/cosmos-sdk/server"
 	serverconfig "github.com/cosmos/cosmos-sdk/server/config"
@@ -61,6 +62,7 @@ import (
 	ethermintclient "github.com/evmos/ethermint/client"
 	"github.com/evmos/ethermint/ethereum/eip712"
 	srvflags "github.com/evmos/ethermint/server/flags"
+
 	// ethertypes "github.com/evmos/ethermint/types"
 
 	"github.com/Galactica-corp/galactica/app"
@@ -197,6 +199,10 @@ func initRootCmd(
 		queryCommand(),
 		txCommand(),
 		ethkeys.KeyCommands(rootCmd.Context()),
+	)
+
+	rootCmd.AddCommand(
+		snapshot.Cmd(a.newApp),
 	)
 
 	rootCmd, err := srvflags.AddGlobalFlags(rootCmd)
