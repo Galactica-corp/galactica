@@ -124,10 +124,12 @@ import (
 
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
-	"github.com/Galactica-corp/galactica/docs"
 	"cosmossdk.io/client/v2/autocli"
-	runtimeservices "github.com/cosmos/cosmos-sdk/runtime/services"
 	"cosmossdk.io/core/appmodule"
+	"github.com/Galactica-corp/galactica/docs"
+	runtimeservices "github.com/cosmos/cosmos-sdk/runtime/services"
+
+	capabilitytypes "github.com/cosmos/ibc-go/modules/capability/types"
 )
 
 const (
@@ -350,7 +352,7 @@ func New(
 	); err != nil {
 		panic(err)
 	}
-	
+
 	// Below we could construct and set an application specific mempool and
 	// ABCI 1.0 PrepareProposal and ProcessProposal handlers. These defaults are
 	// already set in the SDK's BaseApp, this shows an example of how to override
@@ -389,10 +391,15 @@ func New(
 
 	app.okeys = storetypes.NewObjectStoreKeys(evmtypes.ObjectStoreKey)
 
+	capKVStoreKey := storetypes.NewKVStoreKey(capabilitytypes.StoreKey)
+	capKVMemKey := storetypes.NewMemoryStoreKey(capabilitytypes.MemStoreKey)
+
 	if err := app.RegisterStores(
 		storetypes.NewKVStoreKey(evmtypes.StoreKey),
 		app.okeys[evmtypes.ObjectStoreKey],
 		storetypes.NewKVStoreKey(feemarkettypes.StoreKey),
+
+		capKVStoreKey, capKVMemKey,
 
 		storetypes.NewTransientStoreKey(paramstypes.TStoreKey),
 		// storetypes.NewTransientStoreKey(evmtypes.TransientKey),
@@ -450,9 +457,13 @@ func New(
 		nil,
 	)
 
+	app.CapabilityKeeper = capabilitykeeper.NewKeeper(app.appCodec, capKVStoreKey, capKVMemKey)
+
 	evmModule := evm.NewAppModule(app.EvmKeeper, app.AccountKeeper, evmS)
 	feemarketModule := feemarket.NewAppModule(*app.FeeMarketKeeper, feeMarketS)
-	if err := app.RegisterModules(evmModule, feemarketModule); err != nil {
+	capabilityModule := capability.NewAppModule(app.AppCodec(), *app.CapabilityKeeper, false)
+
+	if err := app.RegisterModules(evmModule, feemarketModule, capabilityModule); err != nil {
 		panic(fmt.Errorf("failed to register custom modules: %w", err))
 	}
 
