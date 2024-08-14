@@ -426,9 +426,9 @@ func New(
 		runtime.NewKVStoreService(app.GetKey(authtypes.StoreKey)),
 		ethermint.ProtoAccount,
 		maccPerms,
-		authcodec.NewBech32Codec("gala"),
+		authcodec.NewBech32Codec(sdk.GetConfig().GetBech32AccountAddrPrefix()),
+		sdk.GetConfig().GetBech32AccountAddrPrefix(),
 		authAddr,
-		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
 	)
 
 	// Create Ethermint keepers
