@@ -280,7 +280,7 @@ replace (
 	github.com/cockroachdb/pebble => github.com/cockroachdb/pebble v0.0.0-20230209160836-829675f94811
 	// use cometbft
 	github.com/cometbft/cometbft-db => github.com/crypto-org-chain/cometbft-db v0.0.0-20231011055109-57922ac52a63
-	github.com/cosmos/cosmos-sdk => github.com/crypto-org-chain/cosmos-sdk v0.0.0-20240415105151-0108877a3201
+	github.com/cosmos/cosmos-sdk => github.com/valli0x/cosmos-sdk v0.0.0-20240815141308-8b6b1d01446f
 	github.com/ethereum/go-ethereum => github.com/crypto-org-chain/go-ethereum v1.10.20-0.20240425065928-ebb09502e7a7
 	github.com/evmos/ethermint => github.com/crypto-org-chain/ethermint v0.6.1-0.20240502052908-179e436703b3
 	// replace broken goleveldb

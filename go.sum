@@ -422,8 +422,6 @@ github.com/crypto-org-chain/btree v0.0.0-20240406140148-2687063b042c h1:MOgfS4+F
 github.com/crypto-org-chain/btree v0.0.0-20240406140148-2687063b042c/go.mod h1:twD9XRA5jj9VUQGELzDO4HPQTNJsoWWfYEL+EUQ2cKY=
 github.com/crypto-org-chain/cometbft-db v0.0.0-20231011055109-57922ac52a63 h1:R1QJ9a3XdYMSKo+1RdFifxb/g3lNypC52L/rpYrWoKo=
 github.com/crypto-org-chain/cometbft-db v0.0.0-20231011055109-57922ac52a63/go.mod h1:rocwIfnS+kA060x64gkSIRvWB9StSppIkJuo5MWzL24=
-github.com/crypto-org-chain/cosmos-sdk v0.0.0-20240415105151-0108877a3201 h1:3R54xSBI4geLX3H5Ljk0FSVDMPRpywq5L5K//aHwo8s=
-github.com/crypto-org-chain/cosmos-sdk v0.0.0-20240415105151-0108877a3201/go.mod h1:DkCxCPi3veciROiq36PbpXDhboMjqHAS0Xyv2dEEW04=
 github.com/crypto-org-chain/cosmos-sdk/store v0.0.0-20240415105151-0108877a3201 h1:0T8U5tgQLfD8k8kxisez5ks9s7yxU2JSRhi5MUQ0Cp0=
 github.com/crypto-org-chain/cosmos-sdk/store v0.0.0-20240415105151-0108877a3201/go.mod h1:lfuLI1f4o+0SGtlHQS4x5qsjRcZZfYqG8bp3k8hM0M8=
 github.com/crypto-org-chain/cosmos-sdk/x/tx v0.0.0-20240415105151-0108877a3201 h1:DbCOM19ywdL5K+bOy4h+0MppzcPgI2guHnYCfDNnAcM=
@@ -1179,6 +1177,8 @@ github.com/urfave/cli v1.22.12 h1:igJgVw1JdKH+trcLWLeLwZjU9fEfPesQ+9/e4MQ44S8=
 github.com/urfave/cli v1.22.12/go.mod h1:sSBEIC79qR6OvcmsD4U3KABeOTxDqQtdDnaFuUN30b8=
 github.com/urfave/cli/v2 v2.17.2-0.20221006022127-8f469abc00aa h1:5SqCsI/2Qya2bCzK15ozrqo2sZxkh0FHynJZOTVoV6Q=
 github.com/urfave/cli/v2 v2.17.2-0.20221006022127-8f469abc00aa/go.mod h1:1CNUng3PtjQMtRzJO4FMXBQvkGtuYRxxiR9xMa7jMwI=
+github.com/valli0x/cosmos-sdk v0.0.0-20240815141308-8b6b1d01446f h1:0FxyWJPGAq+JR02LL2ob8S6QQmVMS/YosrW+H3zTuLc=
+github.com/valli0x/cosmos-sdk v0.0.0-20240815141308-8b6b1d01446f/go.mod h1:DkCxCPi3veciROiq36PbpXDhboMjqHAS0Xyv2dEEW04=
 github.com/vbatts/tar-split v0.11.3 h1:hLFqsOLQ1SsppQNTMpkpPXClLDfC2A3Zgy9OUU+RVck=
 github.com/vbatts/tar-split v0.11.3/go.mod h1:9QlHN18E+fEH7RdG+QAJJcuya3rqT7eXSTY7wGrAokY=
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=
