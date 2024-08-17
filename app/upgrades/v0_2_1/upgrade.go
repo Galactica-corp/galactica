@@ -6,7 +6,8 @@ import (
 
 const (
 	UpgradeName        = "0.2.1"
-	UpgradeBlockHeight = 4_183_890
+	// UpgradeBlockHeight = 4_183_890
+	UpgradeBlockHeight = 100
 )
 
 // Plan defines the upgrade plan for addressing the staking PowerReduction issue.
