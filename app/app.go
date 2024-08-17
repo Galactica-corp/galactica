@@ -690,6 +690,7 @@ func initParamsKeeper(
 
 func (app *App) applyUpgrades() {
 	app.applyUpgrade_v0_1_2()
+	app.applyUpgrade_v0_2_1()
 }
 
 // AutoCliOpts returns the autocli options for the app.
