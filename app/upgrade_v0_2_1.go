@@ -20,16 +20,19 @@ func (app *App) applyUpgrade_v0_2_1() {
 
 	plan, err := app.UpgradeKeeper.ReadUpgradeInfoFromDisk()
 	if err != nil {
-		logger.Error("Error reading an upgrade plan err:", err)
+		logger.Error("Failed read upgrade info", "error", err)
 	}
-	
-	if err != nil || plan.Height < v0_2_1.UpgradeBlockHeight {
-		logger.Info("Applying upgrade plan", "info", plan.Info)
+	if err != nil || plan.Height <= v0_2_1.UpgradeBlockHeight {
+		logger.Info("Applying upgrade plan", "info", v0_2_1.Plan.Info)
 
 		app.UpgradeKeeper.SetUpgradeHandler(v0_2_1.UpgradeName, app.upgradeHandler_v0_2_1())
-		app.UpgradeKeeper.ApplyUpgrade(ctx, v0_2_1.Plan)
+		if err := app.UpgradeKeeper.ApplyUpgrade(ctx, v0_2_1.Plan); err != nil {
+			logger.Error("Failed apply upgrade", "error", err)
+			return
+		}
 
-		if err := app.UpgradeKeeper.DumpUpgradeInfoToDisk(plan.Height, plan); err != nil {
+		logger.Info("Dump upgrade info to disk")
+		if err := app.UpgradeKeeper.DumpUpgradeInfoToDisk(v0_2_1.Plan.Height, v0_2_1.Plan); err != nil {
 			logger.Error("Failed to dump upgrade info to disk", "error", err)
 		}
 	}
