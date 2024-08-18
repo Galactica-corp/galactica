@@ -22,7 +22,7 @@ func (app *App) applyUpgrade_v0_2_1() {
 	if err != nil {
 		logger.Error("Failed read upgrade info", "error", err)
 	}
-	if err != nil || plan.Height <= v0_2_1.UpgradeBlockHeight {
+	if err != nil || plan.Height < v0_2_1.UpgradeBlockHeight {
 		logger.Info("Applying upgrade plan", "info", v0_2_1.Plan.Info)
 
 		app.UpgradeKeeper.SetUpgradeHandler(v0_2_1.UpgradeName, app.upgradeHandler_v0_2_1())
