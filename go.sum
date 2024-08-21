@@ -426,8 +426,6 @@ github.com/crypto-org-chain/cosmos-sdk/store v0.0.0-20240415105151-0108877a3201 
 github.com/crypto-org-chain/cosmos-sdk/store v0.0.0-20240415105151-0108877a3201/go.mod h1:lfuLI1f4o+0SGtlHQS4x5qsjRcZZfYqG8bp3k8hM0M8=
 github.com/crypto-org-chain/cosmos-sdk/x/tx v0.0.0-20240415105151-0108877a3201 h1:DbCOM19ywdL5K+bOy4h+0MppzcPgI2guHnYCfDNnAcM=
 github.com/crypto-org-chain/cosmos-sdk/x/tx v0.0.0-20240415105151-0108877a3201/go.mod h1:CBCU6fsRVz23QGFIQBb1DNX2DztJCf3jWyEkHY2nJQ0=
-github.com/crypto-org-chain/ethermint v0.6.1-0.20240502052908-179e436703b3 h1:YYmMJowZyiyioNHYnps5hw3XkV1zcXSC3jy/xzqK2Rg=
-github.com/crypto-org-chain/ethermint v0.6.1-0.20240502052908-179e436703b3/go.mod h1:9MVSajfKloRP8h2chP78LhCKx5u9O2pCMBvxrmx6+0s=
 github.com/crypto-org-chain/go-block-stm v0.0.0-20240408011717-9f11af197bde h1:sQIHTJfVt5VTrF7po9eZiFkZiPjlHbFvnXtGCOoBjNM=
 github.com/crypto-org-chain/go-block-stm v0.0.0-20240408011717-9f11af197bde/go.mod h1:iwQTX9xMX8NV9k3o2BiWXA0SswpsZrDk5q3gA7nWYiE=
 github.com/crypto-org-chain/go-ethereum v1.10.20-0.20240425065928-ebb09502e7a7 h1:V43F3JFcqG4MUThf9W/DytnPblpR6CcaLBw2Wx6zTgE=
@@ -1179,6 +1177,8 @@ github.com/urfave/cli/v2 v2.17.2-0.20221006022127-8f469abc00aa h1:5SqCsI/2Qya2bC
 github.com/urfave/cli/v2 v2.17.2-0.20221006022127-8f469abc00aa/go.mod h1:1CNUng3PtjQMtRzJO4FMXBQvkGtuYRxxiR9xMa7jMwI=
 github.com/valli0x/cosmos-sdk v0.0.0-20240817184518-47062f27530c h1:1BjyYtLkcMt8z4AUx3f5l2bfN5+mnP3EvPm/WukIRmg=
 github.com/valli0x/cosmos-sdk v0.0.0-20240817184518-47062f27530c/go.mod h1:DkCxCPi3veciROiq36PbpXDhboMjqHAS0Xyv2dEEW04=
+github.com/valli0x/ethermint v0.0.0-20240821095312-531157969408 h1:34xxOIZyeR3DU3meszq0cTt1INhWLCxYyKTXOW8rpeE=
+github.com/valli0x/ethermint v0.0.0-20240821095312-531157969408/go.mod h1:PHGDGqs7W39sRUvr37rExxgN8Gow1Ul55zyl8BBKKMg=
 github.com/vbatts/tar-split v0.11.3 h1:hLFqsOLQ1SsppQNTMpkpPXClLDfC2A3Zgy9OUU+RVck=
 github.com/vbatts/tar-split v0.11.3/go.mod h1:9QlHN18E+fEH7RdG+QAJJcuya3rqT7eXSTY7wGrAokY=
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=
