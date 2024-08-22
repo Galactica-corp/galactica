@@ -280,9 +280,9 @@ replace (
 	github.com/cockroachdb/pebble => github.com/cockroachdb/pebble v0.0.0-20230209160836-829675f94811
 	// use cometbft
 	github.com/cometbft/cometbft-db => github.com/crypto-org-chain/cometbft-db v0.0.0-20231011055109-57922ac52a63
-	github.com/cosmos/cosmos-sdk => github.com/valli0x/cosmos-sdk v0.0.0-20240817184518-47062f27530c
+	github.com/cosmos/cosmos-sdk => github.com/valli0x/cosmos-sdk v0.0.0-20240822101320-5311164d1de3
 	github.com/ethereum/go-ethereum => github.com/crypto-org-chain/go-ethereum v1.10.20-0.20240425065928-ebb09502e7a7
-	github.com/evmos/ethermint => github.com/valli0x/ethermint v0.0.0-20240821095312-531157969408
+	github.com/evmos/ethermint => github.com/valli0x/ethermint v0.0.0-20240822101710-4baebf403c9f
 	// replace broken goleveldb
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
 	github.com/tidwall/btree => github.com/crypto-org-chain/btree v0.0.0-20240406140148-2687063b042c
