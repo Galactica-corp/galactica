@@ -5,6 +5,7 @@ import (
 
 	upgradetypes "cosmossdk.io/x/upgrade/types"
 	"github.com/Galactica-corp/galactica/app/upgrades/v0_2_1"
+
 	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
@@ -13,23 +14,26 @@ import (
 func (app *App) applyUpgrade_v0_2_1() {
 	logger := app.Logger().With("upgrade", v0_2_1.UpgradeName)
 
-	blockHeader := tmproto.Header{Height: app.LastBlockHeight()}
-	commitStore := app.CommitMultiStore()
-	isCheckTx := false
+	planName := v0_2_1.UpgradeName
+	app.UpgradeKeeper.SetUpgradeHandler(planName, app.upgradeHandler_v0_2_1())
+	
+	ctx := app.NewContext(true).WithBlockHeader(tmproto.Header{Height: app.LastBlockHeight()}).
+		WithMultiStore(app.CommitMultiStore())
 
-	ctx := app.NewContext(isCheckTx).
-		WithBlockHeader(blockHeader).
-		WithMultiStore(commitStore)
+	doneHeight, err := app.UpgradeKeeper.GetDoneHeight(ctx, v0_2_1.Plan.Name)
+	if err != nil {
+		logger.Error("Error with GetDoneHeight", "error", err)
+	}
 
-	if v0_2_1.Plan.Height == app.LastBlockHeight() {
-		logger.Info("Schedule upgrade plan", "info", v0_2_1.Plan.Info)
+	if doneHeight != 0 {
+		logger.Info("upgrade v0.2.1 done")
+		return
+	}
 
-		if err := app.UpgradeKeeper.ScheduleUpgrade(ctx, v0_2_1.Plan); err != nil {
-			panic(err)
-		}
+	logger.Info("Schedule upgrade plan", "info", v0_2_1.Plan.Info)
 
-		planName := v0_2_1.UpgradeName
-		app.UpgradeKeeper.SetUpgradeHandler(planName, app.upgradeHandler_v0_2_1())
+	if err := app.UpgradeKeeper.ScheduleUpgrade(ctx, v0_2_1.Plan); err != nil {
+		panic(err)
 	}
 }
 
