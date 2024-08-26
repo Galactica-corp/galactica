@@ -74,6 +74,10 @@ import (
 )
 
 var (
+	PreBlockers = []string{
+		upgradetypes.ModuleName,
+	}
+
 	// NOTE: The genutils module must occur after staking so that pools are
 	// properly initialized with tokens from genesis accounts.
 	// NOTE: The genutils module must also occur after auth so that it can access the params from auth.
@@ -119,7 +123,7 @@ var (
 	// NOTE: staking module is required if HistoricalEntries param > 0
 	// NOTE: capability module's beginblocker must come before any modules using capabilities (e.g. IBC)
 	beginBlockers = []string{
-		upgradetypes.ModuleName,
+		// upgradetypes.ModuleName,
 		capabilitytypes.ModuleName,
 		// Note: epochs' begin should be "real" start of epochs, we keep epochs beginblock at the beginning
 		epochsmoduletypes.ModuleName,
@@ -219,6 +223,7 @@ var (
 					AppName:       Name,
 					BeginBlockers: beginBlockers,
 					EndBlockers:   endBlockers,
+					PreBlockers:   PreBlockers,
 					OverrideStoreKeys: []*runtimev1alpha1.StoreKeyConfig{
 						{
 							ModuleName: authtypes.ModuleName,
@@ -254,7 +259,7 @@ var (
 				}),
 			},
 			{
-				Name:   stakingtypes.ModuleName,
+				Name: stakingtypes.ModuleName,
 				Config: appconfig.WrapAny(&stakingmodulev1.Module{
 					Bech32PrefixValidator: "galavaloper",
 					Bech32PrefixConsensus: "galavalcons",

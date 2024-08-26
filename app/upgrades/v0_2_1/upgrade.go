@@ -6,12 +6,12 @@ import (
 
 const (
 	UpgradeName        = "0.2.1"
-	UpgradeBlockHeight = 4_183_890
+	UpgradeBlockHeight = 4_325_221
 )
 
 // Plan defines the upgrade plan for addressing the staking PowerReduction issue.
 var Plan = upgradetypes.Plan{
 	Name:   UpgradeName,
 	Height: UpgradeBlockHeight,
-	Info:   "gov module migration",
+	Info:   "migration " + UpgradeName,
 }
