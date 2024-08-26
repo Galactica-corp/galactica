@@ -11,7 +11,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 )
 
-func (app *App) applyUpgrade_v0_2_1() {
+func (app *App) applyUpgrade_v0_2_2() {
 	logger := app.Logger().With("upgrade", v0_2_1.UpgradeName)
 
 	planName := v0_2_1.UpgradeName
@@ -23,6 +23,7 @@ func (app *App) applyUpgrade_v0_2_1() {
 	doneHeight, err := app.UpgradeKeeper.GetDoneHeight(ctx, v0_2_1.Plan.Name)
 	if err != nil {
 		logger.Error("Error with GetDoneHeight", "error", err)
+		return
 	}
 
 	if doneHeight != 0 {

@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	UpgradeName        = "0.2.1"
+	UpgradeName        = "0.2.2"
 	UpgradeBlockHeight = 10
 )
 
