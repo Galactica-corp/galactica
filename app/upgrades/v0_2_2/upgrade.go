@@ -1,4 +1,4 @@
-package v0_2_1
+package v0_2_2
 
 import (
 	upgradetypes "cosmossdk.io/x/upgrade/types"
