@@ -102,6 +102,7 @@ import (
 	v0evmtypes "github.com/evmos/ethermint/x/evm/migrations/v0/types"
 
 	// ibcclientclient "github.com/cosmos/ibc-go/v8/modules/core/02-client/client" // TODO: разобраться в клиенте gov
+
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 	solomachine "github.com/cosmos/ibc-go/v8/modules/light-clients/06-solomachine"
 	ibctm "github.com/cosmos/ibc-go/v8/modules/light-clients/07-tendermint"
@@ -485,7 +486,7 @@ func New(
 		panic(fmt.Errorf("failed to register custom modules: %w", err))
 	}
 
-	app.registerIBCModules()
+	// app.registerIBCModules()
 
 	app.EpochsKeeper = app.EpochsKeeper.SetHooks(
 		epochsmodulekeeper.NewMultiEpochHooks(
@@ -522,6 +523,17 @@ func New(
 	app.sm = module.NewSimulationManagerFromAppModules(app.ModuleManager.Modules, overrideModules)
 
 	app.sm.RegisterStoreDecoders()
+
+	// TODO
+	// app.SetStoreLoader(upgradetypes.UpgradeStoreLoader(1, &storetypes.StoreUpgrades{
+	// 	Added: []string{
+	// 		ibcexported.StoreKey,
+	// 		ibctransfertypes.StoreKey,
+	// 		ibcfeetypes.StoreKey,
+	// 		icahosttypes.StoreKey,
+	// 		icacontrollertypes.StoreKey,
+	// 	},
+	// }))
 
 	if err := app.Load(loadLatest); err != nil {
 		panic(err)
