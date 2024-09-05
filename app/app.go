@@ -38,7 +38,7 @@ import (
 	authcodec "github.com/cosmos/cosmos-sdk/x/auth/codec"
 
 	// upgradeclient "cosmossdk.io/x/upgrade/client" // TODO: gov модуль
-	upgradetypes "cosmossdk.io/x/upgrade/types"
+
 	"cosmossdk.io/log"
 	upgradekeeper "cosmossdk.io/x/upgrade/keeper"
 	abci "github.com/cometbft/cometbft/abci/types"
@@ -94,11 +94,8 @@ import (
 	capabilitykeeper "github.com/cosmos/ibc-go/modules/capability/keeper"
 	ica "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts"
 	icacontrollerkeeper "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts/controller/keeper"
-	icacontrollertypes "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts/controller/types"
 	icahostkeeper "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts/host/keeper"
-	icahosttypes "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts/host/types"
 	ibcfeekeeper "github.com/cosmos/ibc-go/v8/modules/apps/29-fee/keeper"
-	ibcfeetypes "github.com/cosmos/ibc-go/v8/modules/apps/29-fee/types"
 	ibctransfer "github.com/cosmos/ibc-go/v8/modules/apps/transfer"
 	ibctransferkeeper "github.com/cosmos/ibc-go/v8/modules/apps/transfer/keeper"
 	ibctransfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
@@ -107,7 +104,6 @@ import (
 
 	// ibcclientclient "github.com/cosmos/ibc-go/v8/modules/core/02-client/client" // TODO: разобраться в клиенте gov
 
-	ibcexported "github.com/cosmos/ibc-go/v8/modules/core/exported"
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 	solomachine "github.com/cosmos/ibc-go/v8/modules/light-clients/06-solomachine"
 	ibctm "github.com/cosmos/ibc-go/v8/modules/light-clients/07-tendermint"
@@ -491,6 +487,17 @@ func New(
 		panic(fmt.Errorf("failed to register custom modules: %w", err))
 	}
 
+	// height := app.LastCommitID().Version+1
+	// app.SetStoreLoader(upgradetypes.UpgradeStoreLoader(height , &storetypes.StoreUpgrades{
+	// 	Added: []string{
+	// 		ibcexported.StoreKey,
+	// 		ibctransfertypes.StoreKey,
+	// 		ibcfeetypes.StoreKey,
+	// 		icahosttypes.StoreKey,
+	// 		icacontrollertypes.StoreKey,
+	// 	},
+	// }))
+
 	// app.registerIBCModules()
 
 	app.EpochsKeeper = app.EpochsKeeper.SetHooks(
@@ -529,22 +536,11 @@ func New(
 
 	app.sm.RegisterStoreDecoders()
 
-	// TODO
-	app.SetStoreLoader(upgradetypes.UpgradeStoreLoader(1, &storetypes.StoreUpgrades{
-		Deleted: []string{
-			ibcexported.StoreKey,
-			ibctransfertypes.StoreKey,
-			ibcfeetypes.StoreKey,
-			icahosttypes.StoreKey,
-			icacontrollertypes.StoreKey,
-		},
-	}))
-
 	if err := app.Load(loadLatest); err != nil {
 		panic(err)
 	}
 
-	app.applyUpgrades()
+	// app.applyUpgrades()
 
 	return app
 }
@@ -726,8 +722,8 @@ func initParamsKeeper(
 }
 
 func (app *App) applyUpgrades() {
-	app.applyUpgrade_v0_1_2()
-	app.applyUpgrade_v0_2_2()
+	// app.applyUpgrade_v0_1_2()
+	// app.applyUpgrade_v0_2_2()
 }
 
 // AutoCliOpts returns the autocli options for the app.

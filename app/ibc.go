@@ -46,14 +46,15 @@ import (
 
 func (app *App) registerIBCModules() {
 	// set up non depinject support modules store keys
-	app.keys = storetypes.NewKVStoreKeys(
-		ibcexported.StoreKey,
-		ibctransfertypes.StoreKey,
-		ibcfeetypes.StoreKey,
-		icahosttypes.StoreKey,
-		icacontrollertypes.StoreKey,
-	)
-	app.MountKVStores(app.keys)
+	if err := app.RegisterStores(
+		storetypes.NewKVStoreKey(ibcexported.StoreKey),
+		storetypes.NewKVStoreKey(ibctransfertypes.StoreKey),
+		storetypes.NewKVStoreKey(ibcfeetypes.StoreKey),
+		storetypes.NewKVStoreKey(icahosttypes.StoreKey),
+		storetypes.NewKVStoreKey(icacontrollertypes.StoreKey),
+	); err != nil {
+		panic(err)
+	}
 
 	// set params subspaces
 	for _, m := range []string{ibctransfertypes.ModuleName, ibcexported.ModuleName, icahosttypes.SubModuleName, icacontrollertypes.SubModuleName} {
@@ -162,13 +163,6 @@ func (app *App) registerIBCModules() {
 	if err := app.RegisterModules(legacyModules...); err != nil {
 		panic(err)
 	}
-
-	// cfg := app.Configurator()
-	// for _, m := range legacyModules {
-	// 	if s, ok := m.(module.HasServices); ok {
-	// 		s.RegisterServices(cfg)
-	// 	}
-	// }
 
 	// register additional types
 	ibctm.AppModuleBasic{}.RegisterInterfaces(app.interfaceRegistry)
