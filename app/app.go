@@ -104,14 +104,12 @@ import (
 
 	// ibcclientclient "github.com/cosmos/ibc-go/v8/modules/core/02-client/client" // TODO: разобраться в клиенте gov
 
-	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
-	solomachine "github.com/cosmos/ibc-go/v8/modules/light-clients/06-solomachine"
-	ibctm "github.com/cosmos/ibc-go/v8/modules/light-clients/07-tendermint"
-	"github.com/spf13/cast"
-
 	cosmosdb "github.com/cosmos/cosmos-db"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramstypes "github.com/cosmos/cosmos-sdk/x/params/types"
+	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
+	solomachine "github.com/cosmos/ibc-go/v8/modules/light-clients/06-solomachine"
+	ibctm "github.com/cosmos/ibc-go/v8/modules/light-clients/07-tendermint"
 	srvflags "github.com/evmos/ethermint/server/flags"
 	ethermint "github.com/evmos/ethermint/types"
 	"github.com/evmos/ethermint/x/evm"
@@ -120,6 +118,7 @@ import (
 	"github.com/evmos/ethermint/x/feemarket"
 	feemarketkeeper "github.com/evmos/ethermint/x/feemarket/keeper"
 	feemarkettypes "github.com/evmos/ethermint/x/feemarket/types"
+	"github.com/spf13/cast"
 
 	epochsmodule "github.com/Galactica-corp/galactica/x/epochs"
 	epochsmodulekeeper "github.com/Galactica-corp/galactica/x/epochs/keeper"
@@ -351,7 +350,6 @@ func New(
 		&app.interfaceRegistry,
 		&app.AccountKeeper,
 		&app.BankKeeper,
-		// &app.CapabilityKeeper,
 		&app.StakingKeeper,
 		&app.SlashingKeeper,
 		&app.MintKeeper,
@@ -487,8 +485,9 @@ func New(
 		panic(fmt.Errorf("failed to register custom modules: %w", err))
 	}
 
-	// height := app.LastCommitID().Version+1
-	// app.SetStoreLoader(upgradetypes.UpgradeStoreLoader(height , &storetypes.StoreUpgrades{
+	// TODO: I dont know why ms.LastCommitID().Version+1
+	// height := app.LastCommitID().Version + 1
+	// app.SetStoreLoader(upgradetypes.UpgradeStoreLoader(height, &storetypes.StoreUpgrades{
 	// 	Added: []string{
 	// 		ibcexported.StoreKey,
 	// 		ibctransfertypes.StoreKey,
@@ -498,7 +497,9 @@ func New(
 	// 	},
 	// }))
 
-	// app.registerIBCModules()
+	if err := app.registerIBCModules(); err != nil {
+		logger.Error("error with register ibc module", "error", err)
+	}
 
 	app.EpochsKeeper = app.EpochsKeeper.SetHooks(
 		epochsmodulekeeper.NewMultiEpochHooks(
@@ -540,7 +541,7 @@ func New(
 		panic(err)
 	}
 
-	// app.applyUpgrades()
+	app.applyUpgrades()
 
 	return app
 }
@@ -722,8 +723,9 @@ func initParamsKeeper(
 }
 
 func (app *App) applyUpgrades() {
-	// app.applyUpgrade_v0_1_2()
-	// app.applyUpgrade_v0_2_2()
+	app.applyUpgrade_v0_1_2()
+	app.applyUpgrade_v0_2_2()
+	app.applyUpgrade_v0_2_3()
 }
 
 // AutoCliOpts returns the autocli options for the app.

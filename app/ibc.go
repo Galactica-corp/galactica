@@ -44,7 +44,7 @@ import (
 	// this line is used by starport scaffolding # ibc/app/import
 )
 
-func (app *App) registerIBCModules() {
+func (app *App) registerIBCModules() error {
 	// set up non depinject support modules store keys
 	if err := app.RegisterStores(
 		storetypes.NewKVStoreKey(ibcexported.StoreKey),
@@ -161,7 +161,7 @@ func (app *App) registerIBCModules() {
 		ica.NewAppModule(&app.ICAControllerKeeper, &app.ICAHostKeeper),
 	}
 	if err := app.RegisterModules(legacyModules...); err != nil {
-		panic(err)
+		return err
 	}
 
 	// register additional types
@@ -172,4 +172,6 @@ func (app *App) registerIBCModules() {
 	app.ScopedIBCTransferKeeper = scopedIBCTransferKeeper
 	app.ScopedICAHostKeeper = scopedICAHostKeeper
 	app.ScopedICAControllerKeeper = scopedICAControllerKeeper
+
+	return nil
 }
