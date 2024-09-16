@@ -497,9 +497,9 @@ func New(
 	// 	},
 	// }))
 
-	if err := app.registerIBCModules(); err != nil {
-		logger.Error("error with register ibc module", "error", err)
-	}
+	// if err := app.registerIBCModules(); err != nil {
+	// 	logger.Error("error with register ibc module", "error", err)
+	// }
 
 	app.EpochsKeeper = app.EpochsKeeper.SetHooks(
 		epochsmodulekeeper.NewMultiEpochHooks(
@@ -725,7 +725,7 @@ func initParamsKeeper(
 func (app *App) applyUpgrades() {
 	app.applyUpgrade_v0_1_2()
 	app.applyUpgrade_v0_2_2()
-	app.applyUpgrade_v0_2_3()
+	// app.applyUpgrade_v0_2_3()
 }
 
 // AutoCliOpts returns the autocli options for the app.
