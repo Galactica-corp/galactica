@@ -4,39 +4,17 @@ import (
 	"context"
 
 	upgradetypes "cosmossdk.io/x/upgrade/types"
-	"github.com/Galactica-corp/galactica/app/upgrades/v0_2_4"
 
-	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 )
 
+const (
+	planName = "0.2.4"
+)
+
 func (app *App) applyUpgrade_v0_2_4() {
-	planName := v0_2_4.UpgradeName
-
-	logger := app.Logger().With("upgrade", planName)
-
 	app.UpgradeKeeper.SetUpgradeHandler(planName, app.upgradeHandler_v0_2_4())
-
-	ctx := app.NewContext(true).WithBlockHeader(tmproto.Header{Height: app.LastBlockHeight()}).
-		WithMultiStore(app.CommitMultiStore())
-
-	doneHeight, err := app.UpgradeKeeper.GetDoneHeight(ctx, planName)
-	if err != nil {
-		logger.Error("Error with GetDoneHeight", "error", err)
-		return
-	}
-
-	if doneHeight != 0 {
-		logger.Info("upgrade v0.2.4 done")
-		return
-	}
-
-	logger.Info("Schedule upgrade plan", "name", planName)
-
-	if err := app.UpgradeKeeper.ScheduleUpgrade(ctx, v0_2_4.Plan); err != nil {
-		panic(err)
-	}
 }
 
 func (app *App) upgradeHandler_v0_2_4() func(ctx context.Context, _ upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
