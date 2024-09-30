@@ -105,7 +105,7 @@ function configure_genesis() {
     local staking_min_deposit="$1"
     local total_supply="$2"
     local faucet_address="$3"
-    local voting_period="600s"
+    local voting_period="60s"
     local unbonding_time="30s"
     local max_deposit_period="600s"
     local block_max_bytes="22020096"
@@ -274,7 +274,7 @@ function main() {
     # $1 = staking min deposit
     # $2 = total supply
     # $3 = faucet eth address
-    configure_genesis "5000000000000000000000" "1000000000000000000000000" $faucet_address_bech32
+    configure_genesis "5000000000" "1000000000000000000000000" $faucet_address_bech32
 
     # Add genesis accounts
     add_genesis_account "validator01" "10000000000000000000000$BASE_DENOM"
