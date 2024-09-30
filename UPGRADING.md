@@ -1,5 +1,7 @@
 # Updating a Node with a New Version of Cosmos SDK
 
+The update is performed at a specific block height, up to this height, it is not necessary to stop and restart the node. It will stop itself at the block height specified in the proposal.
+
 ## Stopping Nodes
 
 To stop the node, run:
