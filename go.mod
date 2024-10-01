@@ -1,6 +1,6 @@
 module github.com/Galactica-corp/galactica
 
-go 1.22.2
+go 1.22.7
 
 require (
 	cosmossdk.io/api v0.7.5
