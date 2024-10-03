@@ -72,6 +72,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
 	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
 	evmenc "github.com/evmos/ethermint/encoding"
+	confixcmd "cosmossdk.io/tools/confix/cmd"
 )
 
 // NewRootCmd creates a new root command for a Cosmos SDK application
@@ -179,7 +180,7 @@ func initRootCmd(
 		AddGenesisAccountCmd(app.DefaultNodeHome),
 		tmcli.NewCompletionCmd(rootCmd, true),
 		debug.Cmd(),
-		// config.Cmd(), // TODO: config cmd
+		confixcmd.ConfigCommand(),
 	)
 
 	a := appCreator{

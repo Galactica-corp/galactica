@@ -11,6 +11,7 @@ require (
 	cosmossdk.io/log v1.3.1
 	cosmossdk.io/math v1.3.0
 	cosmossdk.io/store v1.1.1-0.20240418092142-896cdf1971bc
+	cosmossdk.io/tools/confix v0.1.1
 	cosmossdk.io/x/evidence v0.1.0
 	cosmossdk.io/x/feegrant v0.1.0
 	cosmossdk.io/x/nft v0.1.0
@@ -90,6 +91,8 @@ require (
 	github.com/cosmos/ledger-cosmos-go v0.13.3 // indirect
 	github.com/cosmos/rosetta-sdk-go v0.10.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.3 // indirect
+	github.com/creachadair/atomicfile v0.3.1 // indirect
+	github.com/creachadair/tomledit v0.0.24 // indirect
 	github.com/crypto-org-chain/go-block-stm v0.0.0-20240408011717-9f11af197bde // indirect
 	github.com/danieljoos/wincred v1.2.1 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
