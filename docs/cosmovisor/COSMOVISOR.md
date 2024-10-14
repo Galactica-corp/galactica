@@ -6,15 +6,18 @@ Cosmovisor is necessary for automatic node updates. Cosmovisor [docs](https://do
 
 ```bash
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
+```
+
+```bash
 cosmovisor version
 ```
 
 Set the required environment variables:
 
-1. export DAEMON_NAME=galacticad
-2. export DAEMON_HOME=$HOME/.galactica
-3. export DAEMON_ALLOW_DOWNLOAD_BINARIES=true
-4. export UNSAFE_SKIP_BACKUP=true
+* export DAEMON_NAME=galacticad (the name of the galactica binary)
+* export DAEMON_HOME=$HOME/.galactica (home directory)
+* export DAEMON_ALLOW_DOWNLOAD_BINARIES=true (enable auto-downloading of new binaries)
+* export UNSAFE_SKIP_BACKUP=true (upgrades directly without performing a backup)
 
 ## Initialization cosmosvisor:
 
