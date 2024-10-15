@@ -66,6 +66,10 @@ import (
 	// ethertypes "github.com/evmos/ethermint/types"
 
 	"github.com/Galactica-corp/galactica/app"
+	authtxconfig "github.com/cosmos/cosmos-sdk/x/auth/tx/config"
+	txsign "github.com/cosmos/cosmos-sdk/types/tx/signing"
+	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
+	"slices"
 	appparams "github.com/Galactica-corp/galactica/app/params"
 	"github.com/Galactica-corp/galactica/cmd/galacticad/cmd/ethkeys"
 	dbm "github.com/cosmos/cosmos-db"
@@ -118,6 +122,27 @@ func NewRootCmd() (*cobra.Command, appparams.EncodingConfig) {
 			initClientCtx, err = config.ReadFromClientConfig(initClientCtx)
 			if err != nil {
 				return err
+			}
+
+			// This needs to go after ReadFromClientConfig, as that function
+			// sets the RPC client needed for SIGN_MODE_TEXTUAL. This sign mode
+			// is only available if the client is online.
+			if !initClientCtx.Offline {
+				enabledSignModes := slices.Clone(authtx.DefaultSignModes)
+				enabledSignModes = append(enabledSignModes, txsign.SignMode_SIGN_MODE_TEXTUAL)
+				txConfigOpts := authtx.ConfigOptions{
+					EnabledSignModes:           enabledSignModes,
+					TextualCoinMetadataQueryFn: authtxconfig.NewGRPCCoinMetadataQueryFn(initClientCtx),
+				}
+				txConfig, err := authtx.NewTxConfigWithOptions(
+					initClientCtx.Codec,
+					txConfigOpts,
+				)
+				if err != nil {
+					return err
+				}
+
+				initClientCtx = initClientCtx.WithTxConfig(txConfig)
 			}
 
 			if err := client.SetCmdClientContextHandler(initClientCtx, cmd); err != nil {
