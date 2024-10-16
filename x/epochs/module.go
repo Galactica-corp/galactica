@@ -45,15 +45,15 @@ import (
 
 var (
 	_ module.AppModule = AppModule{}
-	// _ module.BeginBlockAppModule = &AppModule{}
-	// _ module.EndBlockAppModule   = &AppModule{}
 	_ module.AppModuleBasic      = AppModuleBasic{}
 	_ module.AppModuleSimulation = AppModule{}
+
+	_ appmodule.HasBeginBlocker  = (*AppModule)(nil)
 
 	_ appmodule.AppModule = (*AppModule)(nil)
 )
 
-// ----------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 // AppModuleBasic
 // ----------------------------------------------------------------------------
 
@@ -179,7 +179,7 @@ func (am AppModule) ExportGenesis(ctx sdk.Context, cdc codec.JSONCodec) json.Raw
 func (AppModule) ConsensusVersion() uint64 { return 1 }
 
 // BeginBlock contains the logic that is automatically triggered at the beginning of each block
-func (am *AppModule) BeginBlock(ctx sdk.Context) error {
+func (am *AppModule) BeginBlock(ctx context.Context) error {
 	am.keeper.BeginBlocker(ctx)
 	return nil
 }
