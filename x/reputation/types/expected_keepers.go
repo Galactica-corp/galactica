@@ -15,23 +15,26 @@
 package types
 
 import (
+	context "context"
+
 	"cosmossdk.io/math"
+	"cosmossdk.io/x/feegrant"
+	"cosmossdk.io/x/nft"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth/types"
+
+	// "github.com/cosmos/cosmos-sdk/x/auth/types" // type.AccountI is depreciated
 	"github.com/cosmos/cosmos-sdk/x/authz"
-	"github.com/cosmos/cosmos-sdk/x/feegrant"
-	"github.com/cosmos/cosmos-sdk/x/nft"
 )
 
 // AccountKeeper defines the expected interface for the Account module.
 type AccountKeeper interface {
-	GetAccount(sdk.Context, sdk.AccAddress) types.AccountI
+	GetAccount(context.Context, sdk.AccAddress) sdk.AccountI
 	// Methods imported from account should be defined here
 }
 
 // BankKeeper defines the expected interface for the Bank module.
 type BankKeeper interface {
-	SpendableCoins(sdk.Context, sdk.AccAddress) sdk.Coins
+	SpendableCoins(context.Context, sdk.AccAddress) sdk.Coins
 	// Methods imported from bank should be defined here
 }
 
@@ -43,7 +46,7 @@ type StakingKeeper interface {
 
 // SlashingKeeper defines the expected interface for the Slashing module.
 type SlashingKeeper interface {
-	Slash(ctx sdk.Context, consAddr sdk.ConsAddress, fraction sdk.Dec, power, distributionHeight int64)
+	Slash(ctx sdk.Context, consAddr sdk.ConsAddress, fraction math.LegacyDec, power, distributionHeight int64)
 	// Methods imported from account should be defined here
 }
 

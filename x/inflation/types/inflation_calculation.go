@@ -18,6 +18,7 @@ package types
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"cosmossdk.io/math"
 )
 
 // CalculateEpochMintProvision returns mint provision per epoch
@@ -25,13 +26,13 @@ func CalculateEpochMintProvision(
 	periodMintProvisions sdk.DecCoins,
 	period uint64,
 	epochsPerPeriod int64,
-) sdk.Dec {
+) math.LegacyDec {
 	if period > uint64(len(periodMintProvisions)) {
-		return sdk.ZeroDec()
+		return math.LegacyZeroDec()
 	}
 
 	periodProvision := periodMintProvisions[period]
-	epochsPerPeriodDec := sdk.NewDec(epochsPerPeriod)
+	epochsPerPeriodDec := math.LegacyNewDec(epochsPerPeriod)
 	epochProvision := periodProvision.Amount.Quo(epochsPerPeriodDec)
 
 	// Multiply epochProvision with power reduction (10^18 for gnet) as the calculation

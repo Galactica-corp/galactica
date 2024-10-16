@@ -1,6 +1,7 @@
 vue/node_modules
 vue/dist
 release/
+vendor/
 .vscode/
 .DS_Store
 build/

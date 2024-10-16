@@ -18,6 +18,7 @@ import (
 	"math/big"
 
 	"cosmossdk.io/errors"
+	"cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
@@ -75,7 +76,7 @@ func initSDKConfig() {
 
 	RegisterDenoms()
 
-	sdk.DefaultPowerReduction = sdk.NewIntFromBigInt(
+	sdk.DefaultPowerReduction = math.NewIntFromBigInt(
 		new(big.Int).Exp(big.NewInt(10), big.NewInt(BaseDenomUnit), nil),
 	)
 
@@ -91,15 +92,15 @@ func SetBip44CoinType(config *sdk.Config) {
 
 // RegisterDenoms registers the base and display denominations to the SDK.
 func RegisterDenoms() {
-	if err := sdk.RegisterDenom(DisplayDenom, sdk.OneDec()); err != nil {
+	if err := sdk.RegisterDenom(DisplayDenom, math.LegacyOneDec()); err != nil {
 		panic(err)
 	}
 
-	if err := sdk.RegisterDenom(AttoGnet, sdk.NewDecWithPrec(1, BaseDenomUnit)); err != nil {
+	if err := sdk.RegisterDenom(AttoGnet, math.LegacyNewDecWithPrec(1, BaseDenomUnit)); err != nil {
 		panic(err)
 	}
 
-	if err := sdk.RegisterDenom(MicroGnet, sdk.NewDecWithPrec(1, MicroDenomUnit)); err != nil {
+	if err := sdk.RegisterDenom(MicroGnet, math.LegacyNewDecWithPrec(1, MicroDenomUnit)); err != nil {
 		panic(err)
 	}
 }

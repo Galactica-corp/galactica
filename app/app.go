@@ -16,6 +16,7 @@ package app
 
 import (
 	_ "embed"
+	"encoding/json"
 	"fmt"
 	"io"
 	"os"
@@ -24,13 +25,23 @@ import (
 	vestingtypes "github.com/cosmos/cosmos-sdk/x/auth/vesting/types"
 	"github.com/evmos/ethermint/app/ante"
 	enccodec "github.com/evmos/ethermint/encoding/codec"
-	"github.com/evmos/ethermint/x/evm/vm/geth"
+
+	// "github.com/evmos/ethermint/x/evm/vm/geth"
 
 	"cosmossdk.io/depinject"
-	dbm "github.com/cometbft/cometbft-db"
+	storetypes "cosmossdk.io/store/types"
+	"cosmossdk.io/x/evidence"
+	evidencekeeper "cosmossdk.io/x/evidence/keeper"
+	feegrantkeeper "cosmossdk.io/x/feegrant/keeper"
+	feegrantmodule "cosmossdk.io/x/feegrant/module"
+	"cosmossdk.io/x/upgrade"
+	authcodec "github.com/cosmos/cosmos-sdk/x/auth/codec"
+
+	// upgradeclient "cosmossdk.io/x/upgrade/client" // TODO: gov модуль
+
+	"cosmossdk.io/log"
+	upgradekeeper "cosmossdk.io/x/upgrade/keeper"
 	abci "github.com/cometbft/cometbft/abci/types"
-	tmjson "github.com/cometbft/cometbft/libs/json"
-	"github.com/cometbft/cometbft/libs/log"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -40,8 +51,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/server/api"
 	"github.com/cosmos/cosmos-sdk/server/config"
 	servertypes "github.com/cosmos/cosmos-sdk/server/types"
-	"github.com/cosmos/cosmos-sdk/store/streaming"
-	storetypes "github.com/cosmos/cosmos-sdk/store/types"
 	testdata_pulsar "github.com/cosmos/cosmos-sdk/testutil/testdata/testpb"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/x/auth"
@@ -54,18 +63,13 @@ import (
 	authzmodule "github.com/cosmos/cosmos-sdk/x/authz/module"
 	"github.com/cosmos/cosmos-sdk/x/bank"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
-	"github.com/cosmos/cosmos-sdk/x/capability"
-	capabilitykeeper "github.com/cosmos/cosmos-sdk/x/capability/keeper"
 	"github.com/cosmos/cosmos-sdk/x/consensus"
 	consensuskeeper "github.com/cosmos/cosmos-sdk/x/consensus/keeper"
 	"github.com/cosmos/cosmos-sdk/x/crisis"
 	crisiskeeper "github.com/cosmos/cosmos-sdk/x/crisis/keeper"
 	distr "github.com/cosmos/cosmos-sdk/x/distribution"
 	distrkeeper "github.com/cosmos/cosmos-sdk/x/distribution/keeper"
-	"github.com/cosmos/cosmos-sdk/x/evidence"
-	evidencekeeper "github.com/cosmos/cosmos-sdk/x/evidence/keeper"
-	feegrantkeeper "github.com/cosmos/cosmos-sdk/x/feegrant/keeper"
-	feegrantmodule "github.com/cosmos/cosmos-sdk/x/feegrant/module"
+	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 	"github.com/cosmos/cosmos-sdk/x/genutil"
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	"github.com/cosmos/cosmos-sdk/x/gov"
@@ -76,31 +80,36 @@ import (
 	groupmodule "github.com/cosmos/cosmos-sdk/x/group/module"
 	"github.com/cosmos/cosmos-sdk/x/mint"
 	mintkeeper "github.com/cosmos/cosmos-sdk/x/mint/keeper"
+	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 	"github.com/cosmos/cosmos-sdk/x/params"
 	paramsclient "github.com/cosmos/cosmos-sdk/x/params/client"
 	paramskeeper "github.com/cosmos/cosmos-sdk/x/params/keeper"
-	paramstypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	"github.com/cosmos/cosmos-sdk/x/slashing"
 	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
+
 	"github.com/cosmos/cosmos-sdk/x/staking"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
-	"github.com/cosmos/cosmos-sdk/x/upgrade"
-	upgradeclient "github.com/cosmos/cosmos-sdk/x/upgrade/client"
-	upgradekeeper "github.com/cosmos/cosmos-sdk/x/upgrade/keeper"
-	ica "github.com/cosmos/ibc-go/v7/modules/apps/27-interchain-accounts"
-	icacontrollerkeeper "github.com/cosmos/ibc-go/v7/modules/apps/27-interchain-accounts/controller/keeper"
-	icahostkeeper "github.com/cosmos/ibc-go/v7/modules/apps/27-interchain-accounts/host/keeper"
-	ibcfeekeeper "github.com/cosmos/ibc-go/v7/modules/apps/29-fee/keeper"
-	ibctransfer "github.com/cosmos/ibc-go/v7/modules/apps/transfer"
-	ibctransferkeeper "github.com/cosmos/ibc-go/v7/modules/apps/transfer/keeper"
-	ibc "github.com/cosmos/ibc-go/v7/modules/core"
-	ibcclientclient "github.com/cosmos/ibc-go/v7/modules/core/02-client/client"
-	ibckeeper "github.com/cosmos/ibc-go/v7/modules/core/keeper"
-	solomachine "github.com/cosmos/ibc-go/v7/modules/light-clients/06-solomachine"
-	ibctm "github.com/cosmos/ibc-go/v7/modules/light-clients/07-tendermint"
-	"github.com/spf13/cast"
+	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
+	"github.com/cosmos/ibc-go/modules/capability"
+	capabilitykeeper "github.com/cosmos/ibc-go/modules/capability/keeper"
+	ica "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts"
+	icacontrollerkeeper "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts/controller/keeper"
+	icahostkeeper "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts/host/keeper"
+	ibcfeekeeper "github.com/cosmos/ibc-go/v8/modules/apps/29-fee/keeper"
+	ibctransfer "github.com/cosmos/ibc-go/v8/modules/apps/transfer"
+	ibctransferkeeper "github.com/cosmos/ibc-go/v8/modules/apps/transfer/keeper"
+	ibctransfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
+	ibc "github.com/cosmos/ibc-go/v8/modules/core"
+	v0evmtypes "github.com/evmos/ethermint/x/evm/migrations/v0/types"
 
+	// ibcclientclient "github.com/cosmos/ibc-go/v8/modules/core/02-client/client" // TODO: разобраться в клиенте gov
+
+	cosmosdb "github.com/cosmos/cosmos-db"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	paramstypes "github.com/cosmos/cosmos-sdk/x/params/types"
+	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
+	solomachine "github.com/cosmos/ibc-go/v8/modules/light-clients/06-solomachine"
+	ibctm "github.com/cosmos/ibc-go/v8/modules/light-clients/07-tendermint"
 	srvflags "github.com/evmos/ethermint/server/flags"
 	ethermint "github.com/evmos/ethermint/types"
 	"github.com/evmos/ethermint/x/evm"
@@ -109,6 +118,7 @@ import (
 	"github.com/evmos/ethermint/x/feemarket"
 	feemarketkeeper "github.com/evmos/ethermint/x/feemarket/keeper"
 	feemarkettypes "github.com/evmos/ethermint/x/feemarket/types"
+	"github.com/spf13/cast"
 
 	epochsmodule "github.com/Galactica-corp/galactica/x/epochs"
 	epochsmodulekeeper "github.com/Galactica-corp/galactica/x/epochs/keeper"
@@ -119,7 +129,13 @@ import (
 
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
+	"cosmossdk.io/client/v2/autocli"
+	"cosmossdk.io/core/appmodule"
 	"github.com/Galactica-corp/galactica/docs"
+	runtimeservices "github.com/cosmos/cosmos-sdk/runtime/services"
+
+	capabilitytypes "github.com/cosmos/ibc-go/modules/capability/types"
+	icatypes "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts/types"
 )
 
 const (
@@ -133,10 +149,10 @@ func getGovProposalHandlers() []govclient.ProposalHandler {
 
 	govProposalHandlers = append(govProposalHandlers,
 		paramsclient.ProposalHandler,
-		upgradeclient.LegacyProposalHandler,
-		upgradeclient.LegacyCancelProposalHandler,
-		ibcclientclient.UpdateClientProposalHandler,
-		ibcclientclient.UpgradeProposalHandler,
+		// upgradeclient.LegacyProposalHandler,
+		// upgradeclient.LegacyCancelProposalHandler,
+		// ibcclientclient.UpdateClientProposalHandler,
+		// ibcclientclient.UpgradeProposalHandler,
 		// this line is used by starport scaffolding # stargate/app/govProposalHandler
 	)
 
@@ -188,6 +204,19 @@ var (
 		govtypes.ModuleName:        {authtypes.Burner},
 		evmtypes.ModuleName:        {authtypes.Minter, authtypes.Burner}, // used for secure addition and subtraction of balance using module account
 	}
+
+	// module account permissions
+	maccPerms2 = map[string][]string{
+		authtypes.FeeCollectorName:     nil,
+		distrtypes.ModuleName:          nil,
+		minttypes.ModuleName:           {authtypes.Minter},
+		stakingtypes.BondedPoolName:    {authtypes.Burner, authtypes.Staking},
+		stakingtypes.NotBondedPoolName: {authtypes.Burner, authtypes.Staking},
+		govtypes.ModuleName:            {authtypes.Burner},
+		ibctransfertypes.ModuleName:    {authtypes.Minter, authtypes.Burner},
+		evmtypes.ModuleName:            {authtypes.Minter, authtypes.Burner}, // used for secure addition and subtraction of balance using module account
+		icatypes.ModuleName:            nil,
+	}
 )
 
 var (
@@ -206,7 +235,8 @@ type App struct {
 	interfaceRegistry codectypes.InterfaceRegistry
 
 	// non depinject support modules store keys
-	keys map[string]*storetypes.KVStoreKey
+	keys  map[string]*storetypes.KVStoreKey
+	okeys map[string]*storetypes.ObjectStoreKey
 
 	// keepers
 	AccountKeeper         authkeeper.AccountKeeper
@@ -264,7 +294,7 @@ func init() {
 // New returns a reference to an initialized App.
 func New(
 	logger log.Logger,
-	db dbm.DB,
+	db cosmosdb.DB,
 	traceStore io.Writer,
 	loadLatest bool,
 	appOpts servertypes.AppOptions,
@@ -280,6 +310,7 @@ func New(
 			depinject.Supply(
 				// supply the application options
 				appOpts,
+				logger,
 				// supply ibc keeper getter for the IBC modules
 				app.GetIBCeKeeper,
 
@@ -319,7 +350,6 @@ func New(
 		&app.interfaceRegistry,
 		&app.AccountKeeper,
 		&app.BankKeeper,
-		&app.CapabilityKeeper,
 		&app.StakingKeeper,
 		&app.SlashingKeeper,
 		&app.MintKeeper,
@@ -367,7 +397,7 @@ func New(
 	// }
 	// baseAppOptions = append(baseAppOptions, prepareOpt)
 
-	app.App = appBuilder.Build(logger, db, traceStore, baseAppOptions...)
+	app.App = appBuilder.Build(db, traceStore, baseAppOptions...)
 
 	encConfig := MakeEncodingConfig()
 	app.appCodec = encConfig.Marshaler
@@ -377,12 +407,21 @@ func New(
 
 	initParamsKeeper(app.ParamsKeeper)
 
-	if err := app.RegisterStores(
-		sdk.NewKVStoreKey(evmtypes.StoreKey),
-		sdk.NewKVStoreKey(feemarkettypes.StoreKey),
+	app.okeys = storetypes.NewObjectStoreKeys(evmtypes.ObjectStoreKey)
 
-		sdk.NewTransientStoreKey(evmtypes.TransientKey),
-		sdk.NewTransientStoreKey(feemarkettypes.TransientKey),
+	capKVStoreKey := storetypes.NewKVStoreKey(capabilitytypes.StoreKey)
+	capKVMemKey := storetypes.NewMemoryStoreKey(capabilitytypes.MemStoreKey)
+
+	if err := app.RegisterStores(
+		storetypes.NewKVStoreKey(evmtypes.StoreKey),
+		app.okeys[evmtypes.ObjectStoreKey],
+		storetypes.NewKVStoreKey(feemarkettypes.StoreKey),
+
+		capKVStoreKey, capKVMemKey,
+
+		storetypes.NewTransientStoreKey(paramstypes.TStoreKey),
+		// storetypes.NewTransientStoreKey(evmtypes.TransientKey),
+		// storetypes.NewTransientStoreKey(feemarkettypes.TransientKey),
 	); err != nil {
 		panic(err)
 	}
@@ -401,8 +440,13 @@ func New(
 	authAddr := authtypes.NewModuleAddress(govtypes.ModuleName).String()
 
 	app.AccountKeeper = authkeeper.NewAccountKeeper(
-		app.appCodec, app.GetKey(authtypes.StoreKey), ethermint.ProtoAccount,
-		maccPerms, sdk.GetConfig().GetBech32AccountAddrPrefix(), authAddr,
+		app.appCodec,
+		runtime.NewKVStoreService(app.GetKey(authtypes.StoreKey)),
+		ethermint.ProtoAccount,
+		maccPerms2,
+		authcodec.NewBech32Codec(sdk.GetConfig().GetBech32AccountAddrPrefix()),
+		sdk.GetConfig().GetBech32AccountAddrPrefix(),
+		authAddr,
 	)
 
 	// Create Ethermint keepers
@@ -414,7 +458,7 @@ func New(
 		app.appCodec,
 		authtypes.NewModuleAddress(govtypes.ModuleName),
 		app.GetKey(feemarkettypes.StoreKey),
-		app.GetTransientKey(feemarkettypes.TransientKey),
+		// app.GetTransientKey(feemarkettypes.TransientKey), // cronos example
 		feeMarketS,
 	)
 	app.FeeMarketKeeper = &feeMarketKeeper
@@ -423,20 +467,39 @@ func New(
 	evmS := app.GetSubspace(evmtypes.ModuleName)
 	app.EvmKeeper = evmkeeper.NewKeeper(
 		app.appCodec,
-		app.GetKey(evmtypes.StoreKey),
-		app.GetTransientKey(evmtypes.TransientKey),
+		app.GetKey(evmtypes.StoreKey), app.okeys[evmtypes.ObjectStoreKey],
 		authtypes.NewModuleAddress(govtypes.ModuleName),
-		app.AccountKeeper, app.BankKeeper, app.StakingKeeper,
-		app.FeeMarketKeeper,
-		// TODO: precompiled contract could be added here
-		nil, geth.NewEVM, tracer, evmS,
+		app.AccountKeeper, app.BankKeeper, app.StakingKeeper, app.FeeMarketKeeper,
+		tracer,
+		evmS,
+		nil,
 	)
+
+	app.CapabilityKeeper = capabilitykeeper.NewKeeper(app.appCodec, capKVStoreKey, capKVMemKey)
 
 	evmModule := evm.NewAppModule(app.EvmKeeper, app.AccountKeeper, evmS)
 	feemarketModule := feemarket.NewAppModule(*app.FeeMarketKeeper, feeMarketS)
-	if err := app.RegisterModules(evmModule, feemarketModule); err != nil {
+	capabilityModule := capability.NewAppModule(app.AppCodec(), *app.CapabilityKeeper, false)
+
+	if err := app.RegisterModules(evmModule, feemarketModule, capabilityModule); err != nil {
 		panic(fmt.Errorf("failed to register custom modules: %w", err))
 	}
+
+	// TODO: I dont know why ms.LastCommitID().Version+1
+	// height := app.LastCommitID().Version + 1
+	// app.SetStoreLoader(upgradetypes.UpgradeStoreLoader(height, &storetypes.StoreUpgrades{
+	// 	Added: []string{
+	// 		ibcexported.StoreKey,
+	// 		ibctransfertypes.StoreKey,
+	// 		ibcfeetypes.StoreKey,
+	// 		icahosttypes.StoreKey,
+	// 		icacontrollertypes.StoreKey,
+	// 	},
+	// }))
+
+	// if err := app.registerIBCModules(); err != nil {
+	// 	logger.Error("error with register ibc module", "error", err)
+	// }
 
 	app.EpochsKeeper = app.EpochsKeeper.SetHooks(
 		epochsmodulekeeper.NewMultiEpochHooks(
@@ -450,9 +513,8 @@ func New(
 	)
 
 	// load state streaming if enabled
-	if _, _, err := streaming.LoadStreamingServices(app.App.BaseApp, appOpts, app.appCodec, logger, app.kvStoreKeys()); err != nil {
-		logger.Error("failed to load state streaming", "err", err)
-		os.Exit(1)
+	if err := app.RegisterStreamingServices(appOpts, app.kvStoreKeys()); err != nil {
+		panic(err)
 	}
 
 	/****  Module Options ****/
@@ -613,12 +675,14 @@ func BlockedAddresses() map[string]bool {
 }
 
 // InitChainer application update at chain initialization
-func (app *App) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
+func (app *App) InitChainer(ctx sdk.Context, req *abci.RequestInitChain) (*abci.ResponseInitChain, error) {
 	var genesisState GenesisState
-	if err := tmjson.Unmarshal(req.AppStateBytes, &genesisState); err != nil {
+	if err := json.Unmarshal(req.AppStateBytes, &genesisState); err != nil {
 		panic(err)
 	}
-	app.UpgradeKeeper.SetModuleVersionMap(ctx, app.ModuleManager.GetVersionMap())
+	if err := app.UpgradeKeeper.SetModuleVersionMap(ctx, app.ModuleManager.GetVersionMap()); err != nil {
+		return nil, err
+	}
 	return app.ModuleManager.InitGenesis(ctx, app.appCodec, genesisState)
 }
 
@@ -634,7 +698,7 @@ func (app *App) setAnteHandler(txConfig client.TxConfig, maxGasWanted uint64) {
 		FeeMarketKeeper:        app.FeeMarketKeeper,
 		MaxTxGasWanted:         maxGasWanted,
 		ExtensionOptionChecker: ethermint.HasDynamicFeeExtensionOption,
-		TxFeeChecker:           ante.NewDynamicFeeChecker(app.EvmKeeper),
+		// TxFeeChecker:           ante.NewDynamicFeeChecker(app.EvmKeeper),
 		DisabledAuthzMsgs: []string{
 			sdk.MsgTypeURL(&evmtypes.MsgEthereumTx{}),
 			sdk.MsgTypeURL(&vestingtypes.MsgCreateVestingAccount{}),
@@ -652,7 +716,7 @@ func initParamsKeeper(
 	paramsKeeper paramskeeper.Keeper,
 ) paramskeeper.Keeper {
 	// ethermint subspaces
-	paramsKeeper.Subspace(evmtypes.ModuleName).WithKeyTable(evmtypes.ParamKeyTable()) // nolint: staticcheck
+	paramsKeeper.Subspace(evmtypes.ModuleName).WithKeyTable(v0evmtypes.ParamKeyTable())
 	paramsKeeper.Subspace(feemarkettypes.ModuleName).WithKeyTable(feemarkettypes.ParamKeyTable())
 
 	return paramsKeeper
@@ -660,4 +724,26 @@ func initParamsKeeper(
 
 func (app *App) applyUpgrades() {
 	app.applyUpgrade_v0_1_2()
+	app.applyUpgrade_v0_2_4()
+	// app.applyUpgrade_v0_2_3()
+}
+
+// AutoCliOpts returns the autocli options for the app.
+func (app *App) AutoCliOpts() autocli.AppOptions {
+	modules := make(map[string]appmodule.AppModule, 0)
+	for _, m := range app.ModuleManager.Modules {
+		if moduleWithName, ok := m.(module.HasName); ok {
+			moduleName := moduleWithName.Name()
+			if appModule, ok := moduleWithName.(appmodule.AppModule); ok {
+				modules[moduleName] = appModule
+			}
+		}
+	}
+	return autocli.AppOptions{
+		Modules:               modules,
+		ModuleOptions:         runtimeservices.ExtractAutoCLIOptions(app.ModuleManager.Modules),
+		AddressCodec:          authcodec.NewBech32Codec(sdk.GetConfig().GetBech32AccountAddrPrefix()),
+		ValidatorAddressCodec: authcodec.NewBech32Codec(sdk.GetConfig().GetBech32ValidatorAddrPrefix()),
+		ConsensusAddressCodec: authcodec.NewBech32Codec(sdk.GetConfig().GetBech32ConsensusAddrPrefix()),
+	}
 }
