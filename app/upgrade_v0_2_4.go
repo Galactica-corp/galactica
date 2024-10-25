@@ -59,3 +59,20 @@ func (app *App) upgradeHandler_v0_2_2() func(ctx context.Context, _ upgradetypes
 		return vm, err
 	}
 }
+
+
+// solve 0.1.2 update problem on andromeda
+const (
+	planName_0_2_7 = "0.2.7"
+)
+
+func (app *App) applyUpgrade_v0_2_7() {
+	app.UpgradeKeeper.SetUpgradeHandler(planName_0_2_7, app.upgradeHandler_v0_2_7())
+}
+
+func (app *App) upgradeHandler_v0_2_7() func(ctx context.Context, _ upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+	return func(ctx context.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+		sdk.UnwrapSDKContext(ctx).Logger().Info("Upgrade " + plan.Name + " complete")
+		return fromVM, nil
+	}
+}
