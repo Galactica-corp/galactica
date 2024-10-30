@@ -17,7 +17,7 @@
 MAIN_PATH_HOME=${1:-"./.galactica"}
 MAIN_PATH_CONFIG=$MAIN_PATH_HOME/config
 # {identifier}_{EIP155}-{version}
-CHAIN_ID=${2:-"galactica_9000-1"}
+CHAIN_ID=${2:-"galactica_9302-1"}
 KEYRING_BACKEND=${3:-"test"}
 BASE_DENOM=${4:-"agnet"}
 DISPLAY_DENOM=${5:-"gnet"}
@@ -64,34 +64,34 @@ function init_localtestnet() {
 
 function configure_app() {
     # Configure app settings
-    sed -i  '/\[api\]/,+3 s/enable = false/enable = true/' $MAIN_PATH_CONFIG/app.toml
-    sed -i  's/address = "tcp:\/\/localhost:1317"/address = "tcp:\/\/0.0.0.0:1317"/' $MAIN_PATH_CONFIG/app.toml
-    # sed -i  's/enabled-unsafe-cors = false/enabled-unsafe-cors = true/' $MAIN_PATH_CONFIG/app.toml
-    sed -i  's/address = "localhost:9090"/address = "0.0.0.0:9090"/' $MAIN_PATH_CONFIG/app.toml
-    sed -i  '/\[grpc-web\]/,+7 s/address = "localhost:9091"/address = "0.0.0.0:9091"/' $MAIN_PATH_CONFIG/app.toml
-    sed -i  's/pruning = "default"/pruning = "nothing"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i  's/minimum-gas-prices = "0stake"/minimum-gas-prices = "10'$BASE_DENOM'"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i  '/\[telemetry\]/,+8 s/enabled = false/enabled = true/' $MAIN_PATH_CONFIG/app.toml
-    sed -i  '/\[telemetry\]/,+20 s/prometheus-retention-time = 0/prometheus-retention-time = 60/' $MAIN_PATH_CONFIG/app.toml
-    sed -i  '/global-labels = \[/a\
+    sed -i.backup '/\[api\]/,+3 s/enable = false/enable = true/' $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup 's/address = "tcp:\/\/localhost:1317"/address = "tcp:\/\/0.0.0.0:1317"/' $MAIN_PATH_CONFIG/app.toml
+    # sed -i.backup 's/enabled-unsafe-cors = false/enabled-unsafe-cors = true/' $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup 's/address = "localhost:9090"/address = "0.0.0.0:9090"/' $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup '/\[grpc-web\]/,+7 s/address = "localhost:9091"/address = "0.0.0.0:9091"/' $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup 's/pruning = "default"/pruning = "nothing"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup 's/minimum-gas-prices = "0stake"/minimum-gas-prices = "10'$BASE_DENOM'"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup '/\[telemetry\]/,+8 s/enabled = false/enabled = true/' $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup '/\[telemetry\]/,+20 s/prometheus-retention-time = 0/prometheus-retention-time = 60/' $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup '/global-labels = \[/a\
   \["chain_id", "'$CHAIN_ID'"\],
 ' $MAIN_PATH_CONFIG/app.toml
 
-    sed -i  's/timeout_propose = ".*"/timeout_propose = "3s"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i  's/timeout_propose_delta = ".*"/timeout_propose_delta = "500ms"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i  's/timeout_prevote = ".*"/timeout_prevote = "1s"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i  's/timeout_prevote_delta = ".*"/timeout_prevote_delta = "500ms"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i  's/timeout_precommit = ".*"/timeout_precommit = "1s"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i  's/timeout_precommit_delta = ".*"/timeout_precommit_delta = "500ms"/g'  $MAIN_PATH_CONFIG/app.toml
-    sed -i  's/timeout_commit = ".*"/timeout_commit = "5s"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup 's/timeout_propose = ".*"/timeout_propose = "3s"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup 's/timeout_propose_delta = ".*"/timeout_propose_delta = "500ms"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup 's/timeout_prevote = ".*"/timeout_prevote = "1s"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup 's/timeout_prevote_delta = ".*"/timeout_prevote_delta = "500ms"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup 's/timeout_precommit = ".*"/timeout_precommit = "1s"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup 's/timeout_precommit_delta = ".*"/timeout_precommit_delta = "500ms"/g'  $MAIN_PATH_CONFIG/app.toml
+    sed -i.backup 's/timeout_commit = ".*"/timeout_commit = "5s"/g'  $MAIN_PATH_CONFIG/app.toml
 
 
     # configure config settings
-    sed -i  's/laddr = "tcp:\/\/127.0.0.1:26657"/laddr = "tcp:\/\/0.0.0.0:26657"/g'  $MAIN_PATH_CONFIG/config.toml
-    sed -i  's/proxy_app = "tcp:\/\/127.0.0.1:26658"/proxy_app = "tcp:\/\/127.0.0.1:26658"/g'  $MAIN_PATH_CONFIG/config.toml
-    sed -i  's/cors_allowed_origins = \[\]/cors_allowed_origins = \["*"\]/g'  $MAIN_PATH_CONFIG/config.toml
-    sed -i  's/max_num_inbound_peers = 40/max_num_inbound_peers = 120/g'  $MAIN_PATH_CONFIG/config.toml
-    sed -i  's/max_num_outbound_peers = 10/max_num_outbound_peers = 60/g'  $MAIN_PATH_CONFIG/config.toml
+    sed -i.backup 's/laddr = "tcp:\/\/127.0.0.1:26657"/laddr = "tcp:\/\/0.0.0.0:26657"/g'  $MAIN_PATH_CONFIG/config.toml
+    sed -i.backup 's/proxy_app = "tcp:\/\/127.0.0.1:26658"/proxy_app = "tcp:\/\/127.0.0.1:26658"/g'  $MAIN_PATH_CONFIG/config.toml
+    sed -i.backup 's/cors_allowed_origins = \[\]/cors_allowed_origins = \["*"\]/g'  $MAIN_PATH_CONFIG/config.toml
+    sed -i.backup 's/max_num_inbound_peers = 40/max_num_inbound_peers = 120/g'  $MAIN_PATH_CONFIG/config.toml
+    sed -i.backup 's/max_num_outbound_peers = 10/max_num_outbound_peers = 60/g'  $MAIN_PATH_CONFIG/config.toml
 }
 
 function update_genesis_json() {
@@ -144,7 +144,7 @@ function configure_genesis() {
         "uri_hash": ""
     }'
     update_genesis_json '.app_state.bank.send_enabled[0] = {"denom": "'$BASE_DENOM'", "enabled": true}'
-    update_genesis_json '.app_state.bank.supply[0] = {"denom": "'$BASE_DENOM'", "amount": "'$total_supply'"}'
+#    update_genesis_json '.app_state.bank.supply[0] = {"denom": "'$BASE_DENOM'", "amount": "'$total_supply'"}'
 
     # EVM params
     update_genesis_json '.app_state.evm.params.evm_denom = "'$BASE_DENOM'"'
@@ -235,8 +235,8 @@ function configure_validator() {
     local new_persistent_peers=$(IFS=','; echo "${filtered_parts[*]}")
 
     echo "Validator $moniker persistent_peers: $new_persistent_peers"
-    sed -i  "s/\(persistent_peers *= *\"\).*\(\" *\)/\1$new_persistent_peers\2/" $validator_home/config/config.toml
-    sed -i  's/moniker = "localtestnet"/moniker = "'$moniker'"/g'  $validator_home/config/config.toml
+    sed -i.backup "s/\(persistent_peers *= *\"\).*\(\" *\)/\1$new_persistent_peers\2/" $validator_home/config/config.toml
+    sed -i.backup 's/moniker = "localtestnet"/moniker = "'$moniker'"/g'  $validator_home/config/config.toml
 
     local key=$(gala keys unsafe-export-eth-key --keyring-backend test --keyring-dir ./$MAIN_PATH_HOME $moniker)
     yes '00000000' | gala keys unsafe-import-eth-key --keyring-backend test --keyring-dir ./$MAIN_PATH_HOME/validators/$moniker $moniker $key --chain-id $CHAIN_ID
@@ -259,9 +259,10 @@ function main() {
     configure_gala
 
     # Add keys
-    add_key "validator01"
-    add_key "validator02"
-    add_key "validator03"
+    add_key "reticulum01"
+    add_key "reticulum02"
+    add_key "reticulum03"
+    add_key "vlval"
     add_key "treasury"
     add_key "faucet"
     add_key_predefined
@@ -274,27 +275,28 @@ function main() {
     # $1 = staking min deposit
     # $2 = total supply
     # $3 = faucet eth address
-    configure_genesis "5000000000" "1000000000000000000000000" $faucet_address_bech32
+    configure_genesis "5000000000000000000000" "1000000000000000000000000" $faucet_address_bech32
 
     # Add genesis accounts
-    add_genesis_account "validator01" "10000000000000000000000$BASE_DENOM"
-    add_genesis_account "validator02" "10000000000000000000000$BASE_DENOM"
-    add_genesis_account "validator03" "10000000000000000000000$BASE_DENOM"
+    add_genesis_account "reticulum01" "10000000000000000000000$BASE_DENOM"
+    add_genesis_account "reticulum02" "10000000000000000000000$BASE_DENOM"
     add_genesis_account "faucet" "10000000000000000000000$BASE_DENOM"
     add_genesis_account "localkey" "10000000000000000000000$BASE_DENOM"
     add_genesis_account "treasury" "950000000000000000000000$BASE_DENOM"
+    add_genesis_account "vlval" "10000000000000000000000$BASE_DENOM"
+
 
     # Initialize validators
-    initialize_validator "validator01" "192.168.20.2" 26656 "9000000000000000000000$BASE_DENOM"
-    initialize_validator "validator02" "192.168.20.3" 26656 "9000000000000000000000$BASE_DENOM"
-    initialize_validator "validator03" "192.168.20.4" 26656 "9000000000000000000000$BASE_DENOM"
+    initialize_validator "reticulum01" "127.0.1.1" 26656 "9000000000000000000000$BASE_DENOM"
+    initialize_validator "reticulum02" "127.0.1.2" 26656 "9000000000000000000000$BASE_DENOM"
+    initialize_validator "vlval" "95.154.64.137" 26656 "9000000000000000000000$BASE_DENOM"
 
     collect_gentxs
     validate_genesis
 
-    configure_validator "validator01" "192.168.20.2"
-    configure_validator "validator02" "192.168.20.3"
-    configure_validator "validator03" "192.168.20.4"
+    configure_validator "reticulum01" "127.0.1.1"
+    configure_validator "reticulum02" "127.0.1.2"
+    configure_validator "vlval" "95.154.64.137"
 
     configure_faucet
 }
