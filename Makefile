@@ -85,7 +85,6 @@ ifeq (boltdb,$(findstring boltdb,$(COSMOS_BUILD_OPTIONS)))
   BUILD_TAGS += boltdb
 endif
 
-
 ifeq (,$(findstring nostrip,$(COSMOS_BUILD_OPTIONS)))
   ldflags += -w -s
 endif
@@ -112,6 +111,7 @@ endif
 ###############################################################################
 
 BUILD_TARGETS := build install
+
 
 build: BUILD_ARGS=-o $(BUILDDIR)/
 build-linux:
