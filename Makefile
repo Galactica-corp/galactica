@@ -85,6 +85,7 @@ ifeq (boltdb,$(findstring boltdb,$(COSMOS_BUILD_OPTIONS)))
   BUILD_TAGS += boltdb
 endif
 
+
 ifeq (,$(findstring nostrip,$(COSMOS_BUILD_OPTIONS)))
   ldflags += -w -s
 endif
@@ -114,7 +115,7 @@ BUILD_TARGETS := build install
 
 build: BUILD_ARGS=-o $(BUILDDIR)/
 build-linux:
-	GOOS=linux GOARCH=amd64 LEDGER_ENABLED=false $(MAKE) build
+	GOOS=linux GOARCH=amd64  CGO_ENABLED=1 LEDGER_ENABLED=false $(MAKE) build
 
 $(BUILD_TARGETS): go.sum $(BUILDDIR)/
 	go $@ $(BUILD_FLAGS) $(BUILD_ARGS) ./...
