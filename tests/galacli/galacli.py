@@ -492,6 +492,7 @@ class GalaCLI:
 
 class GalaNodeCLI(GalaCLI):
     "Class to control started node of galacticad"
+
     def __init__(
         self,
         cmd=DEFAULT_CHAIN_BINARY,
@@ -573,13 +574,15 @@ async def main():
     moniker = "test-node01"
     g_client = GalaClientConfig("/dev/null")
 
-    g_client.config.update(dict(
-        chain_id = "test_41239-41239",
-        keyring_backend = "test",
-        output = "json",
-        node = "tcp://127.0.0.2:26657",
-        broadcast_mode = "sync"
-    ))
+    g_client.config.update(
+        dict(
+            chain_id="test_41239-41239",
+            keyring_backend="test",
+            output="json",
+            node="tcp://127.0.0.2:26657",
+            broadcast_mode="sync",
+        )
+    )
     gn1 = GalaNodeCLI(
         data_dir="node01",
         chain_id=chain_id,
@@ -755,7 +758,7 @@ async def main():
     gn1.wait_for_block(5)
     # await gn1.terminate()
     # await asyncio.sleep(10)
-    if await gn1.terminate() == 0 :
+    if await gn1.terminate() == 0:
         print("Success")
 
 
