@@ -1,8 +1,8 @@
 #!/usr/bin/make -f
 
-VERSION ?= $(shell echo $(shell git describe --tags `git rev-list --tags="v*" --max-count=1`) | sed 's/^v//')
+VERSION ?= $(shell echo $(shell git describe --tags `git rev-list --tags="v*" --max-count=1 2>/dev/null`) 2>/dev/null | sed 's/^v//')
 TMVERSION := $(shell go list -m github.com/cometbft/cometbft | sed 's:.* ::')
-COMMIT := $(shell git log -1 --format='%H')
+COMMIT ?= $(shell git log -1 --format='%H' 2>/dev/null )
 LEDGER_ENABLED ?= true
 GALACTICA_BINARY = galacticad
 BUILDDIR ?= $(CURDIR)/build
