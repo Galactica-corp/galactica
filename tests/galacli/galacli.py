@@ -629,10 +629,6 @@ async def main():
             }
         }
     )
-    ## just check diff between andromeda
-    # andr_app_config = GalaToml(
-    #     "/Users/booger/occamfi/galactica/ansible-node/gala-andr-root/galaandr_41238-41238/config/app.toml"
-    # )
     # d = andr_app_config.diff(app_config)
     print("config created")
     print("configure genesis")
