@@ -27,6 +27,12 @@ import (
 	"github.com/Galactica-corp/galactica/app/upgrades/v0_1_2"
 )
 
+const (
+	planName_0_2_2 = "0.2.2" // for andromeda
+	planName_0_2_4 = "0.2.4"
+	planName_0_2_7 = "0.2.7" // solve 0.1.2 update problem on andromeda
+)
+
 // applyUpgrade_v0_1_2 checks and applies the upgrade plan if necessary.
 func (app *App) applyUpgrade_v0_1_2() {
 	latestBlock := app.LastBlockHeight()
@@ -100,4 +106,46 @@ func (app *App) updateValidatorPowerIndex(ctx context.Context, validator staking
 	}
 
 	return nil
+}
+
+func (app *App) applyUpgrade_v0_2_4() {
+	app.UpgradeKeeper.SetUpgradeHandler(planName_0_2_4, func(ctx context.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+		logger := sdk.UnwrapSDKContext(ctx).Logger()
+
+		logger.Info("Starting module migrations...")
+
+		vm, err := app.ModuleManager.RunMigrations(ctx, app.Configurator(), fromVM)
+		if err != nil {
+			return vm, err
+		}
+
+		logger.Info("Upgrade " + plan.Name + " complete")
+
+		return vm, err
+	})
+}
+
+// for andromeda
+func (app *App) applyUpgrade_v0_2_2() {
+	app.UpgradeKeeper.SetUpgradeHandler(planName_0_2_2, func(ctx context.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+		logger := sdk.UnwrapSDKContext(ctx).Logger()
+
+		logger.Info("Starting module migrations...")
+
+		vm, err := app.ModuleManager.RunMigrations(ctx, app.Configurator(), fromVM)
+		if err != nil {
+			return vm, err
+		}
+
+		logger.Info("Upgrade " + plan.Name + " complete")
+
+		return vm, err
+	})
+}
+
+func (app *App) applyUpgrade_v0_2_7() {
+	app.UpgradeKeeper.SetUpgradeHandler(planName_0_2_7, func(ctx context.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+		sdk.UnwrapSDKContext(ctx).Logger().Info("Upgrade " + plan.Name + " complete")
+		return fromVM, nil
+	})
 }
