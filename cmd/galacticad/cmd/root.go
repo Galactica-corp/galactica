@@ -72,6 +72,7 @@ import (
 	appparams "github.com/Galactica-corp/galactica/app/params"
 	"github.com/Galactica-corp/galactica/cmd/galacticad/cmd/ethkeys"
 	dbm "github.com/cosmos/cosmos-db"
+	"github.com/cosmos/cosmos-sdk/client/pruning"
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
 	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
 	txsign "github.com/cosmos/cosmos-sdk/types/tx/signing"
@@ -231,6 +232,7 @@ func initRootCmd(
 
 	rootCmd.AddCommand(
 		snapshot.Cmd(a.newApp),
+		pruning.Cmd(a.newApp, app.DefaultNodeHome),
 	)
 
 	rootCmd, err := srvflags.AddGlobalFlags(rootCmd)
