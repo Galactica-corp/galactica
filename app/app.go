@@ -319,31 +319,6 @@ func New(
 				logger,
 				// supply ibc keeper getter for the IBC modules
 				app.GetIBCeKeeper,
-
-				// supply the evm keeper getter for the EVM module
-				// app.GetEVMKeeper,
-
-				// ADVANCED CONFIGURATION
-				//
-				// AUTH
-				//
-				// For providing a custom function required in auth to generate custom account types
-				// add it below. By default the auth module uses simulation.RandomGenesisAccounts.
-				//
-				// authtypes.RandomGenesisAccountsFn(simulation.RandomGenesisAccounts),
-
-				// For providing a custom a base account type add it below.
-				// By default the auth module uses authtypes.ProtoBaseAccount().
-				//
-				// func() authtypes.AccountI { return authtypes.ProtoBaseAccount() },
-
-				//
-				// MINT
-				//
-
-				// For providing a custom inflation function for x/mint add here your
-				// custom function that implements the minttypes.InflationCalculationFn
-				// interface.
 			),
 		)
 	)
@@ -377,34 +352,8 @@ func New(
 		panic(err)
 	}
 
-	// Below we could construct and set an application specific mempool and
-	// ABCI 1.0 PrepareProposal and ProcessProposal handlers. These defaults are
-	// already set in the SDK's BaseApp, this shows an example of how to override
-	// them.
-	//
-	// Example:
-	//
-	// app.App = appBuilder.Build(...)
-	// nonceMempool := mempool.NewSenderNonceMempool()
-	// abciPropHandler := NewDefaultProposalHandler(nonceMempool, app.App.BaseApp)
-	//
-	// app.App.BaseApp.SetMempool(nonceMempool)
-	// app.App.BaseApp.SetPrepareProposal(abciPropHandler.PrepareProposalHandler())
-	// app.App.BaseApp.SetProcessProposal(abciPropHandler.ProcessProposalHandler())
-	//
-	// Alternatively, you can construct BaseApp options, append those to
-	// baseAppOptions and pass them to the appBuilder.
-	//
-	// Example:
-	//
-	// prepareOpt = func(app *baseapp.BaseApp) {
-	// 	abciPropHandler := baseapp.NewDefaultProposalHandler(nonceMempool, app)
-	// 	app.SetPrepareProposal(abciPropHandler.PrepareProposalHandler())
-	// }
-	// baseAppOptions = append(baseAppOptions, prepareOpt)
-
 	homePath := cast.ToString(appOpts.Get(flags.FlagHome))
-	baseAppOptions = memiavlstore.SetupMemIAVL(logger, homePath, appOpts, false, false, 0, baseAppOptions)
+	baseAppOptions = memiavlstore.SetupMemIAVL(logger, homePath, appOpts, false, false, baseAppOptions)
 
 	app.App = appBuilder.Build(db, traceStore, baseAppOptions...)
 

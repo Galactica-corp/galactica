@@ -26,7 +26,7 @@ require (
 	github.com/cosmos/ibc-go/modules/capability v1.0.0
 	github.com/cosmos/ibc-go/v8 v8.2.1
 	github.com/cosmos/rosetta v0.50.3-1
-	github.com/crypto-org-chain/cronos/store v0.0.0-00010101000000-000000000000
+	github.com/crypto-org-chain/cronos/store v0.0.5-0.20240722062311-8384cad72737
 	github.com/ethereum/go-ethereum v1.10.26
 	github.com/evmos/ethermint v0.0.0-00010101000000-000000000000
 	github.com/golang/protobuf v1.5.4
@@ -95,7 +95,7 @@ require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.3 // indirect
 	github.com/creachadair/atomicfile v0.3.1 // indirect
 	github.com/creachadair/tomledit v0.0.24 // indirect
-	github.com/crypto-org-chain/cronos/memiavl v0.0.4 // indirect
+	github.com/crypto-org-chain/cronos/memiavl v0.0.5-0.20240722062311-8384cad72737 // indirect
 	github.com/crypto-org-chain/go-block-stm v0.0.0-20240912024944-1cd89976aa5e // indirect
 	github.com/danieljoos/wincred v1.2.1 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
@@ -185,7 +185,7 @@ require (
 	github.com/kr/text v0.2.0 // indirect
 	github.com/ledgerwatch/erigon-lib v0.0.0-20230210071639-db0e7ed11263 // indirect
 	github.com/lib/pq v1.10.9 // indirect
-	github.com/linxGnu/grocksdb v1.9.1 // indirect
+	github.com/linxGnu/grocksdb v1.9.2 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/manifoldco/promptui v0.9.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
@@ -287,12 +287,6 @@ replace (
 	cosmossdk.io/store => github.com/crypto-org-chain/cosmos-sdk/store v0.0.0-20240911084450-6870ba130be2
 	cosmossdk.io/x/tx => github.com/crypto-org-chain/cosmos-sdk/x/tx v0.0.0-20240911084450-6870ba130be2
 	github.com/cosmos/cosmos-sdk => github.com/crypto-org-chain/cosmos-sdk v0.50.6-0.20240911084450-6870ba130be2
-)
-
-replace (
-	github.com/crypto-org-chain/cronos/memiavl => ./memiavl
-	github.com/crypto-org-chain/cronos/store => ./store
-	github.com/crypto-org-chain/cronos/versiondb => ./versiondb
 )
 
 replace (
