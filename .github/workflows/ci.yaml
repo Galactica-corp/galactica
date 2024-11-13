@@ -1,0 +1,74 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    types: [opened, synchronize]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to run tests on"
+        required: true
+        default: "main"
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: Build binary
+        run: make build
+
+      - name: Upload binary artifact
+        if: github.event_name == 'release'
+        uses: actions/upload-artifact@v2
+        with:
+          name: galacticad
+          path: build/galacticad
+
+  test:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Run tests
+        run: make test
+
+      - name: Test status check
+        if: failure()
+        run: exit 1
+
+    permissions:
+      pull-requests: write
+
+  manual-tests:
+    runs-on: self-hosted
+    needs: test
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: "1.17"
+
+      - name: Run manual tests
+        run: go test ./...

@@ -144,3 +144,11 @@ install: build
 	mkdir -p $(BINDIR)
 	cp -f $(BUILDDIR)/$(GALACTICA_BINARY) $(BINDIR)/$(GALACTICA_BINARY)
 	@echo "Galactica has been installed to $(BINDIR)"
+
+help: ## Show this help
+	@printf "\033[33m%s:\033[0m\n" 'Available commands'
+	@awk 'BEGIN {FS = ":.*?## "} /^[[:alpha:][:punct:]]+:.*?## / {printf "  \033[32m%-18s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+
+ifeq ($(CI),true)
+include tests/Makefile
+endif
