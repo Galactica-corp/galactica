@@ -22,10 +22,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set GO_VERSION
+        run: echo "GO_VERSION=$(cat go.mod | grep '^go ' | cut -f2 -d' ')" >> $GITHUB_ENV
+
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: "1.22"
+          go-version: ${{ env.GO_VERSION }}
 
       - name: Build binary
         run: make build
@@ -43,7 +46,15 @@ jobs:
       - build
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Set GO_VERSION
+        run: echo "GO_VERSION=$(cat go.mod | grep '^go ' | cut -f2 -d' ')" >> $GITHUB_ENV
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
 
       - uses: astral-sh/setup-uv@v3
         with:
@@ -61,7 +72,7 @@ jobs:
 
   manual-tests:
     runs-on: self-hosted
-    needs: test
+    needs: build
     if: github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout code
