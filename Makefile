@@ -127,7 +127,7 @@ build-alpine:
 	@GOOS=linux CGO_ENABLED=1 go build -ldflags="-w -s" -o $(BUILDDIR)/$(GALACTICA_BINARY) ./cmd/galacticad
 
 localnet-build:
-	@make build
+	@$(MAKE) build
 	@echo "Build docker image for localnet..."
 	@./localnet/build-docker.sh
 

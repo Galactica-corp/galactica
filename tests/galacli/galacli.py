@@ -10,15 +10,11 @@ import json
 import time
 import socket
 import re
-
-
-# import os
 import sys
 from pathlib import Path
 import tempfile
 import requests
 import toml
-from pprint import pprint
 import urllib.parse
 
 DEBUG = True
@@ -561,7 +557,7 @@ class GalaCLI:
 
     def query_base_fee(self, **kwargs):
         default_kwargs = {"home": self.data_dir}
-
+        ## evmos tests comment
         # TODO: is this assumption correct? Having the base fee turned off has caused some test failures
         # because it was returning `null` and not an `int(...)` -> we'll return 0 here.
         params = json.loads(
@@ -936,22 +932,6 @@ class GalaNetwork:
     def configure_network(self):
         """
         ### func for configuring gala network
-
-        - [X] Init first node to get blank genesis.json
-        - [X] Edit config files via first node to set common config
-        - [X] Configure genesis to needed state
-            - [X] edit genesis.json
-            - [X] add some gentx
-            - [X] collect gentx
-            - [X] validate genesis
-        - [ ] Get tendermint node-id of each node
-            - [X] Put node folder
-            - [X] configure node
-            - [X] put key into node
-            - [X] put genesis.json to node config
-            - [ ] get tendermint node-id
-        - [ ] Edit individual configs to set some parameters throgh network
-            - [ ] Persistent peers
         """
 
         self.command_node.init_node(

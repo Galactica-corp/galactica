@@ -47,7 +47,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Download binary artifact
         uses: actions/download-artifact@v4
         with:
@@ -59,11 +59,22 @@ jobs:
           version: "latest"
 
       - name: Run tests
-        run: make test
+        run: |
+          make test
+          if [ -f "tests/galacli/report.md" ]; then
+            echo "<details><summary>Test Report</summary>" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            cat tests/galacli/report.md >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "</details>" >> $GITHUB_STEP_SUMMARY
+          fi
 
-      - name: Test status check
-        if: failure()
-        run: exit 1
+      - name: Render the report to the PR when tests fail
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: test-report
+          recreate: true
+          path: tests/galacli/report.md
 
     permissions:
       pull-requests: write

@@ -19,7 +19,7 @@ dependencies = [
 [tool.pytest.ini_options]
 md_report_output = "report.md"
 md_report = true
-md_report_verbose = 0
+md_report_verbose = 1
 md_report_color = "never"
 
 # asyncio_mode = "auto"
