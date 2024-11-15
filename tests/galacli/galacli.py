@@ -1,7 +1,9 @@
 from collections import defaultdict
 import os
 import shutil
+import signal
 import subprocess
+import threading
 from typing import Dict, List
 from dateutil.parser import isoparse
 import json
@@ -18,7 +20,6 @@ import requests
 import toml
 from pprint import pprint
 import urllib.parse
-import asyncio
 
 DEBUG = True
 DEFAULT_DENOM = "agnet"
@@ -420,7 +421,9 @@ class GalaCLI:
         return "http" + self.node_rpc.removeprefix("tcp")
 
     def status(self):
-        return json.loads(self.raw("status", node=self.node_rpc))
+        return json.loads(
+            self.raw("status", node=self.node_rpc, chain_id=self.chain_id)
+        )
 
     def block_height(self):
         return int(self.status()["sync_info"]["latest_block_height"])
@@ -622,7 +625,7 @@ class GalaNodeCLI(GalaCLI):
         self.node_addr = node_addr
         self.account = None
         self.node_rpc = f"tcp://{self.node_addr}:26657"
-        self.process = None
+        self.process: subprocess.Popen = None
 
     def initial_configure_node(self):
         self.raw("config", "set", "client", "keyring-backend", "test")
@@ -661,8 +664,8 @@ class GalaNodeCLI(GalaCLI):
             }
         )
 
-    async def start(self):
-        await self.run("start", home=self.data_dir, chain_id=self.chain_id)
+    def start(self):
+        self.run("start", home=self.data_dir, chain_id=self.chain_id)
 
     def node_info(self):
         return requests.get(
@@ -679,46 +682,75 @@ class GalaNodeCLI(GalaCLI):
             home=self.data_dir,
         )
 
-    async def run(self, cmd, *args, **kwargs):
-        cmd_args = build_cli_args_safe(cmd, *args, **kwargs)
-        with open(self.data_dir / "stdout.log", "a") as out, open(
-            self.data_dir / "stderr.log", "a"
-        ) as err:
-            self.process = await asyncio.create_subprocess_exec(
-                self.cmd,
-                *cmd_args,
-                stdout=out,
-                stderr=err,
-            )
-            return self
+    def set_address_in_configs(self, addr: str):
+        for c in (self.client_config, self.app_config, self.config):
+            if c:
+                c.apply_addr(addr)
 
-    async def get_output(self):
-        stdout, stderr = await self.process.communicate()
+    def run(self, cmd, *args, **kwargs):
+        cmd_args = build_cli_args_safe(cmd, *args, **kwargs)
+
+        def start_process():
+            with (self.data_dir / "stdout.log").open("a") as out, (
+                self.data_dir / "stderr.log"
+            ).open("a") as err:
+                self.process = subprocess.Popen(
+                    [self.cmd] + cmd_args,
+                    stdout=out,
+                    stderr=err,
+                )
+                try:
+                    self.process.wait()
+                finally:
+                    if self.process.poll() is None:
+                        os.killpg(os.getpgid(self.process.pid), signal.SIGTERM)
+                        self.process.wait()
+
+        thread = threading.Thread(target=start_process)
+        thread.start()
+        return self
+
+    def get_output(self):
+        stdout, stderr = self.process.communicate()
         return stdout.decode(), stderr.decode(), self.process.returncode
 
     def is_running(self):
         return self.process and self.process.returncode is None
 
-    async def terminate(self, timeout=30):
-        if self.is_running():
-            self.process.terminate()
-            try:
-                await asyncio.wait_for(self.process.wait(), timeout=timeout)
-                exit_code = self.process.returncode
-                print(f"Instance {self.moniker} exited with code {exit_code}")
-                return exit_code
-            except asyncio.TimeoutError:
-                print(
-                    f"Process exceeded timeout of {timeout} seconds. Killing the process."
-                )
-                self.process.kill()
-                await self.process.wait()
-                return self.process.returncode
+    def terminate(self, timeout=30):
+        if not self.is_running():
+            print(f"Instance {self.moniker} is already terminated.")
+            return 0
 
-    def set_address_in_configs(self, addr: str):
-        for c in (self.client_config, self.app_config, self.config):
-            if c:
-                c.apply_addr(addr)
+        self.process.terminate()
+        start_time = time.perf_counter()
+
+        def wait_for_process():
+            try:
+                return_code = self.process.wait(timeout=timeout)
+                print(f"Instance {self.moniker} exited with code {return_code}")
+                return return_code
+            except subprocess.TimeoutExpired:
+                if time.perf_counter() - start_time >= timeout:
+                    print(
+                        f"Process exceeded timeout of {timeout} seconds. Killing the process."
+                    )
+                    self.process.kill()
+                    return self.process.wait()
+                return None
+
+        wait_thread = threading.Thread(target=wait_for_process)
+        wait_thread.start()
+
+        # Ожидаем завершения потока, чтобы гарантировать корректное завершение процесса
+        wait_thread.join()
+
+        if self.is_running():
+            print(f"Instance {self.moniker} failed to terminate.")
+            return -1
+
+        print(f"Instance {self.moniker} successfully terminated.")
+        return self.process.returncode
 
 
 class GalaNetwork:
@@ -743,21 +775,25 @@ class GalaNetwork:
                 )
             )
 
-    async def initial_configure_network(self):
+    def initial_configure_network(self):
         for n in self.nodes:
-            await n.initial_configure_node()
+            n.initial_configure_node()
 
-    async def start(self):
+    def start_network(self):
         "### Start every node in network"
-        for node in self.nodes:
-            await node.start()
+        return all([node.start() for node in self.nodes])
 
-    async def stop(self):
+    def stop_network(self):
         "### Stop every node in network"
-        for node in self.nodes:
-            await node.terminate()
+        return all([node.terminate() for node in self.nodes])
 
-    async def check_live(self):
+    def clean(self):
+        shutil.rmtree(self.command_node.data_dir, ignore_errors=True)
+
+        for node in self.nodes:
+            shutil.rmtree(node.data_dir, ignore_errors=True)
+
+    def check_live(self):
         "### Check that node is running"
         ...
 
@@ -1008,30 +1044,21 @@ class GalaNetwork:
         combine_seeds = self.combine_seeds()
         for node in self.nodes:
             node.config.edit({"p2p": {"persistent_peers": combine_seeds[node.moniker]}})
+        return self
 
 
-async def main():
+def main():
     chain_id = DEFAULT_TEST_CHAINID
     g_network = GalaNetwork(3, chain_id=chain_id)
     g_network.configure_network()
 
     print("start node...")
-    await g_network.start()
-    await asyncio.sleep(5)
+    g_network.start_network()
+    time.sleep(5)
 
     g_network.nodes[0].wait_for_block(5)
-    await g_network.stop()
-
-    # await asyncio.sleep(1)
-    # await gn1.start()
-    # await asyncio.sleep(1)
-    # print(gn1.is_running())
-    # gn1.wait_for_block(5, timeout=30)
-    # # await gn1.terminate()
-    # # await asyncio.sleep(10)
-    # if await gn1.terminate() == 0:
-    #     print("Success")
+    g_network.stop_network()
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
