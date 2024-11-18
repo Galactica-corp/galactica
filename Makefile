@@ -1,8 +1,8 @@
 #!/usr/bin/make -f
 
-VERSION ?= $(shell echo $(shell git describe --tags `git rev-list --tags="v*" --max-count=1`) | sed 's/^v//')
+VERSION ?= $(shell echo $(shell git describe --tags `git rev-list --tags="v*" --max-count=1 2>/dev/null`) 2>/dev/null | sed 's/^v//')
 TMVERSION := $(shell go list -m github.com/cometbft/cometbft | sed 's:.* ::')
-COMMIT := $(shell git log -1 --format='%H')
+COMMIT ?= $(shell git log -1 --format='%H' 2>/dev/null )
 LEDGER_ENABLED ?= true
 GALACTICA_BINARY = galacticad
 BUILDDIR ?= $(CURDIR)/build
@@ -19,7 +19,7 @@ default_target: all
 
 # process build tags
 
-build_tags = netgo
+build_tags = netgo objstore
 ifeq ($(LEDGER_ENABLED),true)
   ifeq ($(OS),Windows_NT)
     GCCEXE = $(shell where gcc.exe 2> NUL)
@@ -127,7 +127,7 @@ build-alpine:
 	@GOOS=linux CGO_ENABLED=1 go build -ldflags="-w -s" -o $(BUILDDIR)/$(GALACTICA_BINARY) ./cmd/galacticad
 
 localnet-build:
-	@make build
+	@$(MAKE) build
 	@echo "Build docker image for localnet..."
 	@./localnet/build-docker.sh
 
@@ -144,3 +144,11 @@ install: build
 	mkdir -p $(BINDIR)
 	cp -f $(BUILDDIR)/$(GALACTICA_BINARY) $(BINDIR)/$(GALACTICA_BINARY)
 	@echo "Galactica has been installed to $(BINDIR)"
+
+help: ## Show this help
+	@printf "\033[33m%s:\033[0m\n" 'Available commands'
+	@awk 'BEGIN {FS = ":.*?## "} /^[[:alpha:][:punct:]]+:.*?## / {printf "  \033[32m%-18s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+
+ifeq ($(CI),true)
+include tests/Makefile
+endif
