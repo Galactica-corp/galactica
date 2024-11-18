@@ -414,6 +414,7 @@ class GalaCLI:
         self.chain_id: str = chain_id
         self.keyring_backend: str = keyring_backend
         self.node_rpc: str = node_rpc
+
         self.cmd = cmd
         self.raw = BinaryCommand(cmd)
         self.output = None
@@ -434,6 +435,7 @@ class GalaCLI:
             "chain-id": self.chain_id,
         }
 
+
     def load_config(self):
         if Path(self.data_dir / "config/config.toml").exists():
             self.config = GalaToml(self.data_dir / "config/config.toml")
@@ -451,6 +453,7 @@ class GalaCLI:
 
     def status(self, **kwargs):
         return json.loads(self.raw("status", **(self.default_kwargs() | kwargs)))
+
 
     def block_height(self):
         return int(self.status()["sync_info"]["latest_block_height"])
