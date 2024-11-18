@@ -91,6 +91,10 @@ endif
 ldflags += $(LDFLAGS)
 ldflags := $(strip $(ldflags))
 
+ifeq (staticlink,$(findstring staticlink,$(COSMOS_BUILD_OPTIONS)))
+  ldflags += -linkmode external -extldflags '-static'
+endif
+
 build_tags += $(BUILD_TAGS)
 build_tags := $(strip $(build_tags))
 
