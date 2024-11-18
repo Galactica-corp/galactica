@@ -58,8 +58,8 @@ ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=galactica \
 		  -X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
 		  -X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) \
 		  -X "github.com/cosmos/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)" \
-		  -X github.com/evmos/ethermint/version.TMCoreSemVer=$(TMVERSION)
-
+		  -X github.com/evmos/ethermint/version.TMCoreSemVer=$(TMVERSION) 
+      
 ifeq ($(ENABLE_ROCKSDB),true)
   BUILD_TAGS += rocksdb_build
   test_tags += rocksdb_build
@@ -90,6 +90,10 @@ ifeq (,$(findstring nostrip,$(COSMOS_BUILD_OPTIONS)))
 endif
 ldflags += $(LDFLAGS)
 ldflags := $(strip $(ldflags))
+
+ifeq (staticlink,$(findstring staticlink,$(COSMOS_BUILD_OPTIONS)))
+  ldflags += -linkmode external -extldflags '-static'
+endif
 
 build_tags += $(BUILD_TAGS)
 build_tags := $(strip $(build_tags))
