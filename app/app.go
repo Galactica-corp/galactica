@@ -136,6 +136,8 @@ import (
 
 	capabilitytypes "github.com/cosmos/ibc-go/modules/capability/types"
 	icatypes "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts/types"
+	memiavlstore "github.com/crypto-org-chain/cronos/store"
+	"github.com/cosmos/cosmos-sdk/client/flags"
 )
 
 const (
@@ -396,6 +398,9 @@ func New(
 	// 	app.SetPrepareProposal(abciPropHandler.PrepareProposalHandler())
 	// }
 	// baseAppOptions = append(baseAppOptions, prepareOpt)
+
+	homePath := cast.ToString(appOpts.Get(flags.FlagHome))
+	baseAppOptions = memiavlstore.SetupMemIAVL(logger, homePath, appOpts, false, false, 0, baseAppOptions)
 
 	app.App = appBuilder.Build(db, traceStore, baseAppOptions...)
 
