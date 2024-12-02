@@ -38,18 +38,8 @@ const (
 	// ErrAuthzNotAccepted is raised when the authorization is not accepted.
 	ErrAuthzNotAccepted = "authorization to %s for address %s is not accepted"
 
-	// DelegateMethod defines the ABI method name for the staking Delegate
-	// transaction.
 	DelegateMethod = "delegate"
-	// UndelegateMethod defines the ABI method name for the staking Undelegate
-	// transaction.
 	UndelegateMethod = "undelegate"
-	// RedelegateMethod defines the ABI method name for the staking Redelegate
-	// transaction.
-	RedelegateMethod = "redelegate"
-	// CancelUnbondingDelegationMethod defines the ABI method name for the staking
-	// CancelUnbondingDelegation transaction.
-	CancelUnbondingDelegationMethod = "cancelUnbondingDelegation"
 
 	// DelegateAuthz defines the authorization type for the staking Delegate
 	DelegateAuthz = stakingtypes.AuthorizationType_AUTHORIZATION_TYPE_DELEGATE
@@ -62,14 +52,8 @@ const (
 )
 
 var (
-	// DelegateMsg defines the authorization type for MsgDelegate
 	DelegateMsg = sdk.MsgTypeURL(&stakingtypes.MsgDelegate{})
-	// UndelegateMsg defines the authorization type for MsgUndelegate
 	UndelegateMsg = sdk.MsgTypeURL(&stakingtypes.MsgUndelegate{})
-	// RedelegateMsg defines the authorization type for MsgRedelegate
-	RedelegateMsg = sdk.MsgTypeURL(&stakingtypes.MsgBeginRedelegate{})
-	// CancelUnbondingDelegationMsg defines the authorization type for MsgCancelUnbondingDelegation
-	CancelUnbondingDelegationMsg = sdk.MsgTypeURL(&stakingtypes.MsgCancelUnbondingDelegation{})
 )
 
 func (p Precompile) Delegate(
