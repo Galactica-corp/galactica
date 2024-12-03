@@ -12,7 +12,8 @@ go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
 cosmovisor version
 ```
 
-Set the required environment variables
+#### Set the required environment variables.
+
 In case that you you systemd to run galalacticad service make changes in unit file(example: Environment=DAEMON_NAME=galacticad)
 
 * export DAEMON_NAME=galacticad (the name of the galactica binary)
