@@ -111,6 +111,7 @@ import (
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 	solomachine "github.com/cosmos/ibc-go/v8/modules/light-clients/06-solomachine"
 	ibctm "github.com/cosmos/ibc-go/v8/modules/light-clients/07-tendermint"
+	ethparams "github.com/ethereum/go-ethereum/params"
 	srvflags "github.com/evmos/ethermint/server/flags"
 	ethermint "github.com/evmos/ethermint/types"
 	"github.com/evmos/ethermint/x/evm"
@@ -135,11 +136,14 @@ import (
 	"github.com/Galactica-corp/galactica/docs"
 	runtimeservices "github.com/cosmos/cosmos-sdk/runtime/services"
 
+	stakingprecompile "github.com/Galactica-corp/galactica/precompiles/staking"
 	capabilitytypes "github.com/cosmos/ibc-go/modules/capability/types"
 	icatypes "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts/types"
 	memiavlstore "github.com/crypto-org-chain/cronos/store"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	evmante "github.com/evmos/ethermint/app/ante"
+
+	"github.com/ethereum/go-ethereum/core/vm"
 )
 
 const (
@@ -421,6 +425,11 @@ func New(
 	)
 	app.FeeMarketKeeper = &feeMarketKeeper
 
+	stakingPrecompile, err := stakingprecompile.NewPrecompile(*app.StakingKeeper, app.AuthzKeeper)
+	if err != nil {
+		panic(fmt.Errorf("failed to load staking precompile: %w", err))
+	}
+
 	// Set authority to x/gov module account to only expect the module account to update params
 	evmS := app.GetSubspace(evmtypes.ModuleName)
 	app.EvmKeeper = evmkeeper.NewKeeper(
@@ -430,7 +439,11 @@ func New(
 		app.AccountKeeper, app.BankKeeper, app.StakingKeeper, app.FeeMarketKeeper,
 		tracer,
 		evmS,
-		nil,
+		[]evmkeeper.CustomContractFn{
+			func(_ sdk.Context, rules ethparams.Rules) vm.PrecompiledContract {
+				return stakingPrecompile
+			},
+		},
 	)
 
 	app.CapabilityKeeper = capabilitykeeper.NewKeeper(app.appCodec, capKVStoreKey, capKVMemKey)
