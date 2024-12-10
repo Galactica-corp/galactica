@@ -35,21 +35,7 @@ const (
 
 // applyUpgrade_v0_1_2 checks and applies the upgrade plan if necessary.
 func (app *App) applyUpgrade_v0_1_2() {
-	latestBlock := app.LastBlockHeight()
-	logger := app.Logger().With("upgrade", v0_1_2.UpgradeName)
-
-	ctx, err := app.CreateQueryContext(latestBlock, false)
-	if err != nil {
-		logger.Error("Failed to create query context with block", "error", err, "block", latestBlock)
-		return
-	}
-
-	plan, err := app.UpgradeKeeper.ReadUpgradeInfoFromDisk()
-	if err != nil || plan.Height < v0_1_2.UpgradeBlockHeight {
-		logger.Info("Applying upgrade plan", "info", plan.Info)
-		app.UpgradeKeeper.SetUpgradeHandler(v0_1_2.UpgradeName, app.upgradeHandler_v0_1_2())
-		app.UpgradeKeeper.ApplyUpgrade(ctx, v0_1_2.Plan)
-	}
+	app.UpgradeKeeper.SetUpgradeHandler(v0_1_2.UpgradeName, app.upgradeHandler_v0_1_2())
 }
 
 // upgradeHandler_v0_1_2 returns a handler function for processing the upgrade.
