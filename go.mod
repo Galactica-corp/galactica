@@ -283,10 +283,10 @@ require (
 
 // release/v0.50.x
 replace (
-	cosmossdk.io/client/v2 => github.com/crypto-org-chain/cosmos-sdk/client/v2 v2.0.0-20240911084450-6870ba130be2
-	cosmossdk.io/store => github.com/crypto-org-chain/cosmos-sdk/store v0.0.0-20240911084450-6870ba130be2
-	cosmossdk.io/x/tx => github.com/crypto-org-chain/cosmos-sdk/x/tx v0.0.0-20240911084450-6870ba130be2
-	github.com/cosmos/cosmos-sdk => github.com/crypto-org-chain/cosmos-sdk v0.50.6-0.20240911084450-6870ba130be2
+	cosmossdk.io/client/v2 => github.com/valli0x/cosmos-sdk/client/v2 v2.0.0-20250129091356-e493b01ea545
+	cosmossdk.io/store => github.com/valli0x/cosmos-sdk/store v0.0.0-20250129091356-e493b01ea545
+	cosmossdk.io/x/tx => github.com/valli0x/cosmos-sdk/x/tx v0.0.0-20250129091356-e493b01ea545
+	github.com/cosmos/cosmos-sdk => github.com/valli0x/cosmos-sdk v0.50.6-0.20250129091356-e493b01ea545
 )
 
 replace (
@@ -296,6 +296,8 @@ replace (
 	// for go-ethereum
 	github.com/cockroachdb/pebble => github.com/cockroachdb/pebble v0.0.0-20230209160836-829675f94811
 	github.com/cometbft/cometbft-db => github.com/crypto-org-chain/cometbft-db v0.0.0-20231011055109-57922ac52a63
+	// github.com/cosmos/iavl/issues/956 app hash problem
+	github.com/cosmos/iavl => github.com/valli0x/iavl v1.1.2-gala
 	// dgrijalva/jwt-go is deprecated and doesn't receive security updates.
 	// TODO: remove it: https://github.com/cosmos/cosmos-sdk/issues/13134
 	github.com/dgrijalva/jwt-go => github.com/golang-jwt/jwt/v4 v4.4.2
