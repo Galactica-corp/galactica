@@ -283,10 +283,10 @@ require (
 
 // release/v0.50.x
 replace (
-	cosmossdk.io/client/v2 => github.com/valli0x/cosmos-sdk/client/v2 v2.0.0-20250129091356-e493b01ea545
-	cosmossdk.io/store => github.com/valli0x/cosmos-sdk/store v0.0.0-20250129091356-e493b01ea545
-	cosmossdk.io/x/tx => github.com/valli0x/cosmos-sdk/x/tx v0.0.0-20250129091356-e493b01ea545
-	github.com/cosmos/cosmos-sdk => github.com/valli0x/cosmos-sdk v0.50.6-0.20250129091356-e493b01ea545
+	cosmossdk.io/client/v2 => github.com/valli0x/cosmos-sdk/client/v2 v2.0.0-20250130085816-665c30b39429
+	cosmossdk.io/store => github.com/valli0x/cosmos-sdk/store v0.0.0-20250130085816-665c30b39429
+	cosmossdk.io/x/tx => github.com/valli0x/cosmos-sdk/x/tx v0.0.0-20250130085816-665c30b39429
+	github.com/cosmos/cosmos-sdk => github.com/valli0x/cosmos-sdk v0.50.6-0.20250130085816-665c30b39429
 )
 
 replace (
