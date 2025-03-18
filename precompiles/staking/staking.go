@@ -51,7 +51,12 @@ type Precompile struct {
 
 // TODO
 func (p Precompile) RequiredGas(input []byte) uint64 {
-	return 0
+	if len(input) < 4 {
+		return 0
+	}
+
+	// minimum
+	return 21000
 }
 
 func NewPrecompile(
@@ -98,13 +103,11 @@ func (p Precompile) Run(evm *vm.EVM, contract *vm.Contract, readOnly bool) (bz [
 	case UndelegateMethod:
 		bz, err = p.Undelegate(ctx, evm.Origin, contract, stateDB, method, args)
 	}
-
 	if err != nil {
 		return nil, err
 	}
 
 	cost := ctx.GasMeter().GasConsumed() - initialGas
-
 	if !contract.UseGas(cost) {
 		return nil, vm.ErrOutOfGas
 	}

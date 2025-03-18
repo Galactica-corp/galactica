@@ -81,6 +81,7 @@ func (p Precompile) Delegate(
 	}
 
 	msgSrv := stakingkeeper.NewMsgServerImpl(&p.stakingKeeper)
+
 	if _, err = msgSrv.Delegate(sdk.WrapSDKContext(ctx), msg); err != nil {
 		return nil, err
 	}

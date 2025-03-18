@@ -669,7 +669,7 @@ func (app *App) setAnteHandler(txConfig client.TxConfig, maxGasWanted uint64) {
 		FeeMarketKeeper:        app.FeeMarketKeeper,
 		MaxTxGasWanted:         maxGasWanted,
 		ExtensionOptionChecker: ethermint.HasDynamicFeeExtensionOption,
-		// TxFeeChecker:           ante.NewDynamicFeeChecker(app.EvmKeeper),
+		DynamicFeeChecker:      true,
 		DisabledAuthzMsgs: []string{
 			sdk.MsgTypeURL(&evmtypes.MsgEthereumTx{}),
 			sdk.MsgTypeURL(&vestingtypes.MsgCreateVestingAccount{}),
