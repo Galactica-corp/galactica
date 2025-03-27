@@ -6,6 +6,8 @@ vendor/
 .DS_Store
 build/
 .galactica/
+go.work
+go.work.sum
 
 # Make sure that each team member have the same LICENSING/COPYRIGHT settings.
 .idea/*
