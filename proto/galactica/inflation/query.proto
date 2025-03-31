@@ -19,9 +19,12 @@ service Query {
     option (google.api.http).get = "/Galactica-corp/galactica/inflation/params";
   }
 
-  // CurrentPeriodDistribution queries amount of tokens to be distributed in the current period.
-  rpc CurrentPeriodDistribution(QueryCurrentPeriodDistributionRequest) returns (QueryCurrentPeriodDistributionResponse) {
-    option (google.api.http).get = "/Galactica-corp/galactica/inflation/current-period-distribution";
+  // CurrentPeriodDistribution queries amount of tokens to be distributed in the
+  // current period.
+  rpc CurrentPeriodDistribution(QueryCurrentPeriodDistributionRequest)
+      returns (QueryCurrentPeriodDistributionResponse) {
+    option (google.api.http).get =
+        "/Galactica-corp/galactica/inflation/current-period-distribution";
   }
 }
 
@@ -31,16 +34,16 @@ message QueryParamsRequest {}
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
   // params holds all the parameters of this module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 1
+  [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
 }
 
-// QueryCurrentPeriodDistributionRequest is request type for Query/CurrentPeriodDistribution RPC method.
+// QueryCurrentPeriodDistributionRequest is request type for
+// Query/CurrentPeriodDistribution RPC method.
 message QueryCurrentPeriodDistributionRequest {}
 
-// QueryCurrentPeriodDistributionResponse is response type for Query/CurrentPeriodDistribution RPC method.
+// QueryCurrentPeriodDistributionResponse is response type for
+// Query/CurrentPeriodDistribution RPC method.
 message QueryCurrentPeriodDistributionResponse {
   // amount of coins provisioned to distribute in the current period.
   cosmos.base.v1beta1.DecCoin amount = 1;

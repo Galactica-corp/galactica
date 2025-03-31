@@ -17,13 +17,18 @@ message GenesisState {
   uint64 period = 2;
   // epoch_identifier for inflation
   string epoch_identifier = 3;
-  // epochs_per_period is the number of epochs after which inflation is recalculated
+  // epochs_per_period is the number of epochs after which inflation is
+  // recalculated
   int64 epochs_per_period = 4;
-  // skipped_epochs is the number of epochs that have passed while inflation is disabled
+  // skipped_epochs is the number of epochs that have passed while inflation is
+  // disabled
   uint64 skipped_epochs = 5;
 
-  repeated cosmos.base.v1beta1.DecCoin period_mint_provisions = 6
-    [(gogoproto.nullable) = false, (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.DecCoins"];
+  repeated cosmos.base.v1beta1.DecCoin period_mint_provisions = 6 [
+    (gogoproto.nullable) = false,
+    (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.DecCoins"
+  ];
   // inflation_distribution defines the initial distribution of inflation
-  InflationDistribution inflation_distribution = 7 [(gogoproto.nullable) = false];
+  InflationDistribution inflation_distribution = 7
+  [(gogoproto.nullable) = false];
 }

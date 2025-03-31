@@ -4,7 +4,7 @@ release/
 vendor/
 .vscode/
 .DS_Store
-build/
+/build/
 .galactica/
 go.work
 go.work.sum

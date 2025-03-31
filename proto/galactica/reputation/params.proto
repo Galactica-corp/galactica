@@ -10,6 +10,4 @@ option go_package = "github.com/Galactica-corp/galactica/x/reputation/types";
 message Params {
   option (amino.name) = "galactica/x/reputation/Params";
   option (gogoproto.equal) = true;
-
-  
 }

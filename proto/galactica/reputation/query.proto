@@ -13,7 +13,8 @@ option go_package = "github.com/Galactica-corp/galactica/x/reputation/types";
 service Query {
   // Parameters queries the parameters of the module.
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
-    option (google.api.http).get = "/Galactica-corp/galactica/reputation/params";
+    option (google.api.http).get =
+        "/Galactica-corp/galactica/reputation/params";
   }
 }
 
@@ -23,8 +24,6 @@ message QueryParamsRequest {}
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
   // params holds all the parameters of this module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 1
+  [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
 }
