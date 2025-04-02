@@ -207,6 +207,7 @@ type InflationInputs struct {
 	AccountKeeper types.AccountKeeper
 	BankKeeper    types.BankKeeper
 	DistrKeeper   types.DistrKeeper
+	EpochsKeeper  types.EpochsKeeper
 }
 
 type InflationOutputs struct {
@@ -230,6 +231,7 @@ func ProvideModule(in InflationInputs) InflationOutputs {
 		authority.String(),
 		in.BankKeeper,
 		in.DistrKeeper,
+		in.EpochsKeeper,
 	)
 	m := NewAppModule(
 		in.Cdc,

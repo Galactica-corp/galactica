@@ -1,5 +1,5 @@
 // Galactica is a Layer 1 protocol with zero-knowledge and privacy features.
-// Copyright (C) 2024 Galactica Network
+// Copyright (C) 2025 Galactica Network
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,13 +17,15 @@
 package types
 
 import (
-	context "context"
+	"context"
 
 	"cosmossdk.io/math"
 	"cosmossdk.io/x/feegrant"
 	"cosmossdk.io/x/nft"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/authz"
+
+	epochstypes "github.com/Galactica-corp/galactica/x/epochs/types"
 )
 
 type DistrKeeper interface {
@@ -98,6 +100,11 @@ type GroupKeeper interface {
 type NftKeeper interface {
 	Mint(context.Context, nft.NFT, sdk.AccAddress) error
 	// Methods imported from account should be defined here
+}
+
+// EpochsKeeper defines the expected interface for the Epochs module.
+type EpochsKeeper interface {
+	GetEpochInfo(ctx sdk.Context, identifier string) (epochstypes.EpochInfo, bool)
 }
 
 // ParamSubspace defines the expected Subspace interface for parameters.

@@ -16,7 +16,7 @@ message Params {
   string mint_denom = 1;
   // inflation_distribution of the minted denom
   InflationDistribution inflation_distribution = 2
-  [(gogoproto.nullable) = false];
+  [ (gogoproto.nullable) = false ];
   // enable_inflation is the parameter that enables inflation and halts
   // increasing the skipped_epochs
   bool enable_inflation = 3;

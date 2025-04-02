@@ -29,6 +29,7 @@ import (
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	io "io"
 	reflect "reflect"
+	sort "sort"
 	sync "sync"
 )
 
@@ -824,23 +825,23 @@ func (x *fastReflection_QueryParamsResponse) ProtoMethods() *protoiface.Methods 
 }
 
 var (
-	md_QueryCurrentPeriodDistributionRequest protoreflect.MessageDescriptor
+	md_QueryCurrentEpochDistributionRequest protoreflect.MessageDescriptor
 )
 
 func init() {
 	file_galactica_inflation_query_proto_init()
-	md_QueryCurrentPeriodDistributionRequest = File_galactica_inflation_query_proto.Messages().ByName("QueryCurrentPeriodDistributionRequest")
+	md_QueryCurrentEpochDistributionRequest = File_galactica_inflation_query_proto.Messages().ByName("QueryCurrentEpochDistributionRequest")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryCurrentPeriodDistributionRequest)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryCurrentEpochDistributionRequest)(nil)
 
-type fastReflection_QueryCurrentPeriodDistributionRequest QueryCurrentPeriodDistributionRequest
+type fastReflection_QueryCurrentEpochDistributionRequest QueryCurrentEpochDistributionRequest
 
-func (x *QueryCurrentPeriodDistributionRequest) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryCurrentPeriodDistributionRequest)(x)
+func (x *QueryCurrentEpochDistributionRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryCurrentEpochDistributionRequest)(x)
 }
 
-func (x *QueryCurrentPeriodDistributionRequest) slowProtoReflect() protoreflect.Message {
+func (x *QueryCurrentEpochDistributionRequest) slowProtoReflect() protoreflect.Message {
 	mi := &file_galactica_inflation_query_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -852,43 +853,43 @@ func (x *QueryCurrentPeriodDistributionRequest) slowProtoReflect() protoreflect.
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryCurrentPeriodDistributionRequest_messageType fastReflection_QueryCurrentPeriodDistributionRequest_messageType
-var _ protoreflect.MessageType = fastReflection_QueryCurrentPeriodDistributionRequest_messageType{}
+var _fastReflection_QueryCurrentEpochDistributionRequest_messageType fastReflection_QueryCurrentEpochDistributionRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryCurrentEpochDistributionRequest_messageType{}
 
-type fastReflection_QueryCurrentPeriodDistributionRequest_messageType struct{}
+type fastReflection_QueryCurrentEpochDistributionRequest_messageType struct{}
 
-func (x fastReflection_QueryCurrentPeriodDistributionRequest_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryCurrentPeriodDistributionRequest)(nil)
+func (x fastReflection_QueryCurrentEpochDistributionRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryCurrentEpochDistributionRequest)(nil)
 }
-func (x fastReflection_QueryCurrentPeriodDistributionRequest_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryCurrentPeriodDistributionRequest)
+func (x fastReflection_QueryCurrentEpochDistributionRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryCurrentEpochDistributionRequest)
 }
-func (x fastReflection_QueryCurrentPeriodDistributionRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryCurrentPeriodDistributionRequest
+func (x fastReflection_QueryCurrentEpochDistributionRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryCurrentEpochDistributionRequest
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryCurrentPeriodDistributionRequest
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryCurrentEpochDistributionRequest
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Type() protoreflect.MessageType {
-	return _fastReflection_QueryCurrentPeriodDistributionRequest_messageType
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryCurrentEpochDistributionRequest_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) New() protoreflect.Message {
-	return new(fastReflection_QueryCurrentPeriodDistributionRequest)
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryCurrentEpochDistributionRequest)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Interface() protoreflect.ProtoMessage {
-	return (*QueryCurrentPeriodDistributionRequest)(x)
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryCurrentEpochDistributionRequest)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -896,7 +897,7 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Interface() proto
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 }
 
 // Has reports whether a field is populated.
@@ -910,13 +911,13 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Range(f func(prot
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentPeriodDistributionRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentEpochDistributionRequest"))
 		}
-		panic(fmt.Errorf("message galactica.inflation.QueryCurrentPeriodDistributionRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message galactica.inflation.QueryCurrentEpochDistributionRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -926,13 +927,13 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Has(fd protorefle
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentPeriodDistributionRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentEpochDistributionRequest"))
 		}
-		panic(fmt.Errorf("message galactica.inflation.QueryCurrentPeriodDistributionRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message galactica.inflation.QueryCurrentEpochDistributionRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -942,13 +943,13 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Clear(fd protoref
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentPeriodDistributionRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentEpochDistributionRequest"))
 		}
-		panic(fmt.Errorf("message galactica.inflation.QueryCurrentPeriodDistributionRequest does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message galactica.inflation.QueryCurrentEpochDistributionRequest does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -962,13 +963,13 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Get(descriptor pr
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentPeriodDistributionRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentEpochDistributionRequest"))
 		}
-		panic(fmt.Errorf("message galactica.inflation.QueryCurrentPeriodDistributionRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message galactica.inflation.QueryCurrentEpochDistributionRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -982,36 +983,36 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Set(fd protorefle
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentPeriodDistributionRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentEpochDistributionRequest"))
 		}
-		panic(fmt.Errorf("message galactica.inflation.QueryCurrentPeriodDistributionRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message galactica.inflation.QueryCurrentEpochDistributionRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentPeriodDistributionRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentEpochDistributionRequest"))
 		}
-		panic(fmt.Errorf("message galactica.inflation.QueryCurrentPeriodDistributionRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message galactica.inflation.QueryCurrentEpochDistributionRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in galactica.inflation.QueryCurrentPeriodDistributionRequest", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in galactica.inflation.QueryCurrentEpochDistributionRequest", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1019,7 +1020,7 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) WhichOneof(d prot
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1030,7 +1031,7 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) GetUnknown() prot
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1042,7 +1043,7 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) SetUnknown(fields
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) IsValid() bool {
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) IsValid() bool {
 	return x != nil
 }
 
@@ -1052,9 +1053,9 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryCurrentPeriodDistributionRequest) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryCurrentEpochDistributionRequest) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryCurrentPeriodDistributionRequest)
+		x := input.Message.Interface().(*QueryCurrentEpochDistributionRequest)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1076,7 +1077,7 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) ProtoMethods() *p
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryCurrentPeriodDistributionRequest)
+		x := input.Message.Interface().(*QueryCurrentEpochDistributionRequest)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1106,7 +1107,7 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) ProtoMethods() *p
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryCurrentPeriodDistributionRequest)
+		x := input.Message.Interface().(*QueryCurrentEpochDistributionRequest)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1138,10 +1139,10 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) ProtoMethods() *p
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryCurrentPeriodDistributionRequest: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryCurrentEpochDistributionRequest: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryCurrentPeriodDistributionRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryCurrentEpochDistributionRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			default:
@@ -1180,29 +1181,27 @@ func (x *fastReflection_QueryCurrentPeriodDistributionRequest) ProtoMethods() *p
 }
 
 var (
-	md_QueryCurrentPeriodDistributionResponse                   protoreflect.MessageDescriptor
-	fd_QueryCurrentPeriodDistributionResponse_amount            protoreflect.FieldDescriptor
-	fd_QueryCurrentPeriodDistributionResponse_epochs_per_period protoreflect.FieldDescriptor
-	fd_QueryCurrentPeriodDistributionResponse_epoch_duration    protoreflect.FieldDescriptor
+	md_QueryCurrentEpochDistributionResponse                protoreflect.MessageDescriptor
+	fd_QueryCurrentEpochDistributionResponse_distribution   protoreflect.FieldDescriptor
+	fd_QueryCurrentEpochDistributionResponse_epoch_duration protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_galactica_inflation_query_proto_init()
-	md_QueryCurrentPeriodDistributionResponse = File_galactica_inflation_query_proto.Messages().ByName("QueryCurrentPeriodDistributionResponse")
-	fd_QueryCurrentPeriodDistributionResponse_amount = md_QueryCurrentPeriodDistributionResponse.Fields().ByName("amount")
-	fd_QueryCurrentPeriodDistributionResponse_epochs_per_period = md_QueryCurrentPeriodDistributionResponse.Fields().ByName("epochs_per_period")
-	fd_QueryCurrentPeriodDistributionResponse_epoch_duration = md_QueryCurrentPeriodDistributionResponse.Fields().ByName("epoch_duration")
+	md_QueryCurrentEpochDistributionResponse = File_galactica_inflation_query_proto.Messages().ByName("QueryCurrentEpochDistributionResponse")
+	fd_QueryCurrentEpochDistributionResponse_distribution = md_QueryCurrentEpochDistributionResponse.Fields().ByName("distribution")
+	fd_QueryCurrentEpochDistributionResponse_epoch_duration = md_QueryCurrentEpochDistributionResponse.Fields().ByName("epoch_duration")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryCurrentPeriodDistributionResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryCurrentEpochDistributionResponse)(nil)
 
-type fastReflection_QueryCurrentPeriodDistributionResponse QueryCurrentPeriodDistributionResponse
+type fastReflection_QueryCurrentEpochDistributionResponse QueryCurrentEpochDistributionResponse
 
-func (x *QueryCurrentPeriodDistributionResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryCurrentPeriodDistributionResponse)(x)
+func (x *QueryCurrentEpochDistributionResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryCurrentEpochDistributionResponse)(x)
 }
 
-func (x *QueryCurrentPeriodDistributionResponse) slowProtoReflect() protoreflect.Message {
+func (x *QueryCurrentEpochDistributionResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_galactica_inflation_query_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1214,43 +1213,43 @@ func (x *QueryCurrentPeriodDistributionResponse) slowProtoReflect() protoreflect
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryCurrentPeriodDistributionResponse_messageType fastReflection_QueryCurrentPeriodDistributionResponse_messageType
-var _ protoreflect.MessageType = fastReflection_QueryCurrentPeriodDistributionResponse_messageType{}
+var _fastReflection_QueryCurrentEpochDistributionResponse_messageType fastReflection_QueryCurrentEpochDistributionResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryCurrentEpochDistributionResponse_messageType{}
 
-type fastReflection_QueryCurrentPeriodDistributionResponse_messageType struct{}
+type fastReflection_QueryCurrentEpochDistributionResponse_messageType struct{}
 
-func (x fastReflection_QueryCurrentPeriodDistributionResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryCurrentPeriodDistributionResponse)(nil)
+func (x fastReflection_QueryCurrentEpochDistributionResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryCurrentEpochDistributionResponse)(nil)
 }
-func (x fastReflection_QueryCurrentPeriodDistributionResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryCurrentPeriodDistributionResponse)
+func (x fastReflection_QueryCurrentEpochDistributionResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryCurrentEpochDistributionResponse)
 }
-func (x fastReflection_QueryCurrentPeriodDistributionResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryCurrentPeriodDistributionResponse
+func (x fastReflection_QueryCurrentEpochDistributionResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryCurrentEpochDistributionResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryCurrentPeriodDistributionResponse
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryCurrentEpochDistributionResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Type() protoreflect.MessageType {
-	return _fastReflection_QueryCurrentPeriodDistributionResponse_messageType
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryCurrentEpochDistributionResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) New() protoreflect.Message {
-	return new(fastReflection_QueryCurrentPeriodDistributionResponse)
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryCurrentEpochDistributionResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Interface() protoreflect.ProtoMessage {
-	return (*QueryCurrentPeriodDistributionResponse)(x)
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryCurrentEpochDistributionResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -1258,22 +1257,16 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Interface() prot
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Amount != nil {
-		value := protoreflect.ValueOfMessage(x.Amount.ProtoReflect())
-		if !f(fd_QueryCurrentPeriodDistributionResponse_amount, value) {
-			return
-		}
-	}
-	if x.EpochsPerPeriod != int64(0) {
-		value := protoreflect.ValueOfInt64(x.EpochsPerPeriod)
-		if !f(fd_QueryCurrentPeriodDistributionResponse_epochs_per_period, value) {
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Distribution != nil {
+		value := protoreflect.ValueOfMessage(x.Distribution.ProtoReflect())
+		if !f(fd_QueryCurrentEpochDistributionResponse_distribution, value) {
 			return
 		}
 	}
 	if x.EpochDuration != nil {
 		value := protoreflect.ValueOfMessage(x.EpochDuration.ProtoReflect())
-		if !f(fd_QueryCurrentPeriodDistributionResponse_epoch_duration, value) {
+		if !f(fd_QueryCurrentEpochDistributionResponse_epoch_duration, value) {
 			return
 		}
 	}
@@ -1290,19 +1283,17 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Range(f func(pro
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.amount":
-		return x.Amount != nil
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.epochs_per_period":
-		return x.EpochsPerPeriod != int64(0)
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.epoch_duration":
+	case "galactica.inflation.QueryCurrentEpochDistributionResponse.distribution":
+		return x.Distribution != nil
+	case "galactica.inflation.QueryCurrentEpochDistributionResponse.epoch_duration":
 		return x.EpochDuration != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentPeriodDistributionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentEpochDistributionResponse"))
 		}
-		panic(fmt.Errorf("message galactica.inflation.QueryCurrentPeriodDistributionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message galactica.inflation.QueryCurrentEpochDistributionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1312,19 +1303,17 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Has(fd protorefl
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.amount":
-		x.Amount = nil
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.epochs_per_period":
-		x.EpochsPerPeriod = int64(0)
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.epoch_duration":
+	case "galactica.inflation.QueryCurrentEpochDistributionResponse.distribution":
+		x.Distribution = nil
+	case "galactica.inflation.QueryCurrentEpochDistributionResponse.epoch_duration":
 		x.EpochDuration = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentPeriodDistributionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentEpochDistributionResponse"))
 		}
-		panic(fmt.Errorf("message galactica.inflation.QueryCurrentPeriodDistributionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message galactica.inflation.QueryCurrentEpochDistributionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1334,22 +1323,19 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Clear(fd protore
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.amount":
-		value := x.Amount
+	case "galactica.inflation.QueryCurrentEpochDistributionResponse.distribution":
+		value := x.Distribution
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.epochs_per_period":
-		value := x.EpochsPerPeriod
-		return protoreflect.ValueOfInt64(value)
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.epoch_duration":
+	case "galactica.inflation.QueryCurrentEpochDistributionResponse.epoch_duration":
 		value := x.EpochDuration
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentPeriodDistributionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentEpochDistributionResponse"))
 		}
-		panic(fmt.Errorf("message galactica.inflation.QueryCurrentPeriodDistributionResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message galactica.inflation.QueryCurrentEpochDistributionResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1363,19 +1349,17 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Get(descriptor p
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.amount":
-		x.Amount = value.Message().Interface().(*v1beta1.DecCoin)
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.epochs_per_period":
-		x.EpochsPerPeriod = value.Int()
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.epoch_duration":
+	case "galactica.inflation.QueryCurrentEpochDistributionResponse.distribution":
+		x.Distribution = value.Message().Interface().(*CurrentEpochInflationDistribution)
+	case "galactica.inflation.QueryCurrentEpochDistributionResponse.epoch_duration":
 		x.EpochDuration = value.Message().Interface().(*durationpb.Duration)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentPeriodDistributionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentEpochDistributionResponse"))
 		}
-		panic(fmt.Errorf("message galactica.inflation.QueryCurrentPeriodDistributionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message galactica.inflation.QueryCurrentEpochDistributionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1389,56 +1373,52 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Set(fd protorefl
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.amount":
-		if x.Amount == nil {
-			x.Amount = new(v1beta1.DecCoin)
+	case "galactica.inflation.QueryCurrentEpochDistributionResponse.distribution":
+		if x.Distribution == nil {
+			x.Distribution = new(CurrentEpochInflationDistribution)
 		}
-		return protoreflect.ValueOfMessage(x.Amount.ProtoReflect())
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.epoch_duration":
+		return protoreflect.ValueOfMessage(x.Distribution.ProtoReflect())
+	case "galactica.inflation.QueryCurrentEpochDistributionResponse.epoch_duration":
 		if x.EpochDuration == nil {
 			x.EpochDuration = new(durationpb.Duration)
 		}
 		return protoreflect.ValueOfMessage(x.EpochDuration.ProtoReflect())
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.epochs_per_period":
-		panic(fmt.Errorf("field epochs_per_period of message galactica.inflation.QueryCurrentPeriodDistributionResponse is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentPeriodDistributionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentEpochDistributionResponse"))
 		}
-		panic(fmt.Errorf("message galactica.inflation.QueryCurrentPeriodDistributionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message galactica.inflation.QueryCurrentEpochDistributionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.amount":
-		m := new(v1beta1.DecCoin)
+	case "galactica.inflation.QueryCurrentEpochDistributionResponse.distribution":
+		m := new(CurrentEpochInflationDistribution)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.epochs_per_period":
-		return protoreflect.ValueOfInt64(int64(0))
-	case "galactica.inflation.QueryCurrentPeriodDistributionResponse.epoch_duration":
+	case "galactica.inflation.QueryCurrentEpochDistributionResponse.epoch_duration":
 		m := new(durationpb.Duration)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentPeriodDistributionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.QueryCurrentEpochDistributionResponse"))
 		}
-		panic(fmt.Errorf("message galactica.inflation.QueryCurrentPeriodDistributionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message galactica.inflation.QueryCurrentEpochDistributionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in galactica.inflation.QueryCurrentPeriodDistributionResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in galactica.inflation.QueryCurrentEpochDistributionResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1446,7 +1426,7 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) WhichOneof(d pro
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1457,7 +1437,7 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) GetUnknown() pro
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1469,7 +1449,7 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) SetUnknown(field
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) IsValid() bool {
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -1479,9 +1459,9 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryCurrentPeriodDistributionResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryCurrentEpochDistributionResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryCurrentPeriodDistributionResponse)
+		x := input.Message.Interface().(*QueryCurrentEpochDistributionResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1493,12 +1473,9 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) ProtoMethods() *
 		var n int
 		var l int
 		_ = l
-		if x.Amount != nil {
-			l = options.Size(x.Amount)
+		if x.Distribution != nil {
+			l = options.Size(x.Distribution)
 			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		if x.EpochsPerPeriod != 0 {
-			n += 1 + runtime.Sov(uint64(x.EpochsPerPeriod))
 		}
 		if x.EpochDuration != nil {
 			l = options.Size(x.EpochDuration)
@@ -1514,7 +1491,7 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) ProtoMethods() *
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryCurrentPeriodDistributionResponse)
+		x := input.Message.Interface().(*QueryCurrentEpochDistributionResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1545,15 +1522,10 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) ProtoMethods() *
 			copy(dAtA[i:], encoded)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
 			i--
-			dAtA[i] = 0x1a
+			dAtA[i] = 0x12
 		}
-		if x.EpochsPerPeriod != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.EpochsPerPeriod))
-			i--
-			dAtA[i] = 0x10
-		}
-		if x.Amount != nil {
-			encoded, err := options.Marshal(x.Amount)
+		if x.Distribution != nil {
+			encoded, err := options.Marshal(x.Distribution)
 			if err != nil {
 				return protoiface.MarshalOutput{
 					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1577,7 +1549,7 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) ProtoMethods() *
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryCurrentPeriodDistributionResponse)
+		x := input.Message.Interface().(*QueryCurrentEpochDistributionResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1609,15 +1581,15 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) ProtoMethods() *
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryCurrentPeriodDistributionResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryCurrentEpochDistributionResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryCurrentPeriodDistributionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryCurrentEpochDistributionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Amount", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Distribution", wireType)
 				}
 				var msglen int
 				for shift := uint(0); ; shift += 7 {
@@ -1644,33 +1616,14 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) ProtoMethods() *
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				if x.Amount == nil {
-					x.Amount = &v1beta1.DecCoin{}
+				if x.Distribution == nil {
+					x.Distribution = &CurrentEpochInflationDistribution{}
 				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Amount); err != nil {
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Distribution); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
 			case 2:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field EpochsPerPeriod", wireType)
-				}
-				x.EpochsPerPeriod = 0
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					x.EpochsPerPeriod |= int64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-			case 3:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field EpochDuration", wireType)
 				}
@@ -1703,6 +1656,1330 @@ func (x *fastReflection_QueryCurrentPeriodDistributionResponse) ProtoMethods() *
 					x.EpochDuration = &durationpb.Duration{}
 				}
 				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.EpochDuration); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var _ protoreflect.Map = (*_CurrentEpochInflationDistribution_2_map)(nil)
+
+type _CurrentEpochInflationDistribution_2_map struct {
+	m *map[string]*CurrentEpochInflationShare
+}
+
+func (x *_CurrentEpochInflationDistribution_2_map) Len() int {
+	if x.m == nil {
+		return 0
+	}
+	return len(*x.m)
+}
+
+func (x *_CurrentEpochInflationDistribution_2_map) Range(f func(protoreflect.MapKey, protoreflect.Value) bool) {
+	if x.m == nil {
+		return
+	}
+	for k, v := range *x.m {
+		mapKey := (protoreflect.MapKey)(protoreflect.ValueOfString(k))
+		mapValue := protoreflect.ValueOfMessage(v.ProtoReflect())
+		if !f(mapKey, mapValue) {
+			break
+		}
+	}
+}
+
+func (x *_CurrentEpochInflationDistribution_2_map) Has(key protoreflect.MapKey) bool {
+	if x.m == nil {
+		return false
+	}
+	keyUnwrapped := key.String()
+	concreteValue := keyUnwrapped
+	_, ok := (*x.m)[concreteValue]
+	return ok
+}
+
+func (x *_CurrentEpochInflationDistribution_2_map) Clear(key protoreflect.MapKey) {
+	if x.m == nil {
+		return
+	}
+	keyUnwrapped := key.String()
+	concreteKey := keyUnwrapped
+	delete(*x.m, concreteKey)
+}
+
+func (x *_CurrentEpochInflationDistribution_2_map) Get(key protoreflect.MapKey) protoreflect.Value {
+	if x.m == nil {
+		return protoreflect.Value{}
+	}
+	keyUnwrapped := key.String()
+	concreteKey := keyUnwrapped
+	v, ok := (*x.m)[concreteKey]
+	if !ok {
+		return protoreflect.Value{}
+	}
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_CurrentEpochInflationDistribution_2_map) Set(key protoreflect.MapKey, value protoreflect.Value) {
+	if !key.IsValid() || !value.IsValid() {
+		panic("invalid key or value provided")
+	}
+	keyUnwrapped := key.String()
+	concreteKey := keyUnwrapped
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*CurrentEpochInflationShare)
+	(*x.m)[concreteKey] = concreteValue
+}
+
+func (x *_CurrentEpochInflationDistribution_2_map) Mutable(key protoreflect.MapKey) protoreflect.Value {
+	keyUnwrapped := key.String()
+	concreteKey := keyUnwrapped
+	v, ok := (*x.m)[concreteKey]
+	if ok {
+		return protoreflect.ValueOfMessage(v.ProtoReflect())
+	}
+	newValue := new(CurrentEpochInflationShare)
+	(*x.m)[concreteKey] = newValue
+	return protoreflect.ValueOfMessage(newValue.ProtoReflect())
+}
+
+func (x *_CurrentEpochInflationDistribution_2_map) NewValue() protoreflect.Value {
+	v := new(CurrentEpochInflationShare)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_CurrentEpochInflationDistribution_2_map) IsValid() bool {
+	return x.m != nil
+}
+
+var (
+	md_CurrentEpochInflationDistribution                  protoreflect.MessageDescriptor
+	fd_CurrentEpochInflationDistribution_validators_share protoreflect.FieldDescriptor
+	fd_CurrentEpochInflationDistribution_other_shares     protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_galactica_inflation_query_proto_init()
+	md_CurrentEpochInflationDistribution = File_galactica_inflation_query_proto.Messages().ByName("CurrentEpochInflationDistribution")
+	fd_CurrentEpochInflationDistribution_validators_share = md_CurrentEpochInflationDistribution.Fields().ByName("validators_share")
+	fd_CurrentEpochInflationDistribution_other_shares = md_CurrentEpochInflationDistribution.Fields().ByName("other_shares")
+}
+
+var _ protoreflect.Message = (*fastReflection_CurrentEpochInflationDistribution)(nil)
+
+type fastReflection_CurrentEpochInflationDistribution CurrentEpochInflationDistribution
+
+func (x *CurrentEpochInflationDistribution) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_CurrentEpochInflationDistribution)(x)
+}
+
+func (x *CurrentEpochInflationDistribution) slowProtoReflect() protoreflect.Message {
+	mi := &file_galactica_inflation_query_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_CurrentEpochInflationDistribution_messageType fastReflection_CurrentEpochInflationDistribution_messageType
+var _ protoreflect.MessageType = fastReflection_CurrentEpochInflationDistribution_messageType{}
+
+type fastReflection_CurrentEpochInflationDistribution_messageType struct{}
+
+func (x fastReflection_CurrentEpochInflationDistribution_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_CurrentEpochInflationDistribution)(nil)
+}
+func (x fastReflection_CurrentEpochInflationDistribution_messageType) New() protoreflect.Message {
+	return new(fastReflection_CurrentEpochInflationDistribution)
+}
+func (x fastReflection_CurrentEpochInflationDistribution_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_CurrentEpochInflationDistribution
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_CurrentEpochInflationDistribution) Descriptor() protoreflect.MessageDescriptor {
+	return md_CurrentEpochInflationDistribution
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_CurrentEpochInflationDistribution) Type() protoreflect.MessageType {
+	return _fastReflection_CurrentEpochInflationDistribution_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_CurrentEpochInflationDistribution) New() protoreflect.Message {
+	return new(fastReflection_CurrentEpochInflationDistribution)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_CurrentEpochInflationDistribution) Interface() protoreflect.ProtoMessage {
+	return (*CurrentEpochInflationDistribution)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_CurrentEpochInflationDistribution) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.ValidatorsShare != nil {
+		value := protoreflect.ValueOfMessage(x.ValidatorsShare.ProtoReflect())
+		if !f(fd_CurrentEpochInflationDistribution_validators_share, value) {
+			return
+		}
+	}
+	if len(x.OtherShares) != 0 {
+		value := protoreflect.ValueOfMap(&_CurrentEpochInflationDistribution_2_map{m: &x.OtherShares})
+		if !f(fd_CurrentEpochInflationDistribution_other_shares, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_CurrentEpochInflationDistribution) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "galactica.inflation.CurrentEpochInflationDistribution.validators_share":
+		return x.ValidatorsShare != nil
+	case "galactica.inflation.CurrentEpochInflationDistribution.other_shares":
+		return len(x.OtherShares) != 0
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.CurrentEpochInflationDistribution"))
+		}
+		panic(fmt.Errorf("message galactica.inflation.CurrentEpochInflationDistribution does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_CurrentEpochInflationDistribution) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "galactica.inflation.CurrentEpochInflationDistribution.validators_share":
+		x.ValidatorsShare = nil
+	case "galactica.inflation.CurrentEpochInflationDistribution.other_shares":
+		x.OtherShares = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.CurrentEpochInflationDistribution"))
+		}
+		panic(fmt.Errorf("message galactica.inflation.CurrentEpochInflationDistribution does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_CurrentEpochInflationDistribution) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "galactica.inflation.CurrentEpochInflationDistribution.validators_share":
+		value := x.ValidatorsShare
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	case "galactica.inflation.CurrentEpochInflationDistribution.other_shares":
+		if len(x.OtherShares) == 0 {
+			return protoreflect.ValueOfMap(&_CurrentEpochInflationDistribution_2_map{})
+		}
+		mapValue := &_CurrentEpochInflationDistribution_2_map{m: &x.OtherShares}
+		return protoreflect.ValueOfMap(mapValue)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.CurrentEpochInflationDistribution"))
+		}
+		panic(fmt.Errorf("message galactica.inflation.CurrentEpochInflationDistribution does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_CurrentEpochInflationDistribution) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "galactica.inflation.CurrentEpochInflationDistribution.validators_share":
+		x.ValidatorsShare = value.Message().Interface().(*v1beta1.Coin)
+	case "galactica.inflation.CurrentEpochInflationDistribution.other_shares":
+		mv := value.Map()
+		cmv := mv.(*_CurrentEpochInflationDistribution_2_map)
+		x.OtherShares = *cmv.m
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.CurrentEpochInflationDistribution"))
+		}
+		panic(fmt.Errorf("message galactica.inflation.CurrentEpochInflationDistribution does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_CurrentEpochInflationDistribution) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "galactica.inflation.CurrentEpochInflationDistribution.validators_share":
+		if x.ValidatorsShare == nil {
+			x.ValidatorsShare = new(v1beta1.Coin)
+		}
+		return protoreflect.ValueOfMessage(x.ValidatorsShare.ProtoReflect())
+	case "galactica.inflation.CurrentEpochInflationDistribution.other_shares":
+		if x.OtherShares == nil {
+			x.OtherShares = make(map[string]*CurrentEpochInflationShare)
+		}
+		value := &_CurrentEpochInflationDistribution_2_map{m: &x.OtherShares}
+		return protoreflect.ValueOfMap(value)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.CurrentEpochInflationDistribution"))
+		}
+		panic(fmt.Errorf("message galactica.inflation.CurrentEpochInflationDistribution does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_CurrentEpochInflationDistribution) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "galactica.inflation.CurrentEpochInflationDistribution.validators_share":
+		m := new(v1beta1.Coin)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	case "galactica.inflation.CurrentEpochInflationDistribution.other_shares":
+		m := make(map[string]*CurrentEpochInflationShare)
+		return protoreflect.ValueOfMap(&_CurrentEpochInflationDistribution_2_map{m: &m})
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.CurrentEpochInflationDistribution"))
+		}
+		panic(fmt.Errorf("message galactica.inflation.CurrentEpochInflationDistribution does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_CurrentEpochInflationDistribution) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in galactica.inflation.CurrentEpochInflationDistribution", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_CurrentEpochInflationDistribution) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_CurrentEpochInflationDistribution) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_CurrentEpochInflationDistribution) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_CurrentEpochInflationDistribution) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*CurrentEpochInflationDistribution)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.ValidatorsShare != nil {
+			l = options.Size(x.ValidatorsShare)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if len(x.OtherShares) > 0 {
+			SiZeMaP := func(k string, v *CurrentEpochInflationShare) {
+				l := 0
+				if v != nil {
+					l = options.Size(v)
+				}
+				l += 1 + runtime.Sov(uint64(l))
+				mapEntrySize := 1 + len(k) + runtime.Sov(uint64(len(k))) + l
+				n += mapEntrySize + 1 + runtime.Sov(uint64(mapEntrySize))
+			}
+			if options.Deterministic {
+				sortme := make([]string, 0, len(x.OtherShares))
+				for k := range x.OtherShares {
+					sortme = append(sortme, k)
+				}
+				sort.Strings(sortme)
+				for _, k := range sortme {
+					v := x.OtherShares[k]
+					SiZeMaP(k, v)
+				}
+			} else {
+				for k, v := range x.OtherShares {
+					SiZeMaP(k, v)
+				}
+			}
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*CurrentEpochInflationDistribution)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.OtherShares) > 0 {
+			MaRsHaLmAp := func(k string, v *CurrentEpochInflationShare) (protoiface.MarshalOutput, error) {
+				baseI := i
+				encoded, err := options.Marshal(v)
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x12
+				i -= len(k)
+				copy(dAtA[i:], k)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(k)))
+				i--
+				dAtA[i] = 0xa
+				i = runtime.EncodeVarint(dAtA, i, uint64(baseI-i))
+				i--
+				dAtA[i] = 0x12
+				return protoiface.MarshalOutput{}, nil
+			}
+			if options.Deterministic {
+				keysForOtherShares := make([]string, 0, len(x.OtherShares))
+				for k := range x.OtherShares {
+					keysForOtherShares = append(keysForOtherShares, string(k))
+				}
+				sort.Slice(keysForOtherShares, func(i, j int) bool {
+					return keysForOtherShares[i] < keysForOtherShares[j]
+				})
+				for iNdEx := len(keysForOtherShares) - 1; iNdEx >= 0; iNdEx-- {
+					v := x.OtherShares[string(keysForOtherShares[iNdEx])]
+					out, err := MaRsHaLmAp(keysForOtherShares[iNdEx], v)
+					if err != nil {
+						return out, err
+					}
+				}
+			} else {
+				for k := range x.OtherShares {
+					v := x.OtherShares[k]
+					out, err := MaRsHaLmAp(k, v)
+					if err != nil {
+						return out, err
+					}
+				}
+			}
+		}
+		if x.ValidatorsShare != nil {
+			encoded, err := options.Marshal(x.ValidatorsShare)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*CurrentEpochInflationDistribution)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: CurrentEpochInflationDistribution: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: CurrentEpochInflationDistribution: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ValidatorsShare", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.ValidatorsShare == nil {
+					x.ValidatorsShare = &v1beta1.Coin{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.ValidatorsShare); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OtherShares", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.OtherShares == nil {
+					x.OtherShares = make(map[string]*CurrentEpochInflationShare)
+				}
+				var mapkey string
+				var mapvalue *CurrentEpochInflationShare
+				for iNdEx < postIndex {
+					entryPreIndex := iNdEx
+					var wire uint64
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+						}
+						if iNdEx >= l {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						wire |= uint64(b&0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					fieldNum := int32(wire >> 3)
+					if fieldNum == 1 {
+						var stringLenmapkey uint64
+						for shift := uint(0); ; shift += 7 {
+							if shift >= 64 {
+								return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+							}
+							if iNdEx >= l {
+								return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+							}
+							b := dAtA[iNdEx]
+							iNdEx++
+							stringLenmapkey |= uint64(b&0x7F) << shift
+							if b < 0x80 {
+								break
+							}
+						}
+						intStringLenmapkey := int(stringLenmapkey)
+						if intStringLenmapkey < 0 {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+						}
+						postStringIndexmapkey := iNdEx + intStringLenmapkey
+						if postStringIndexmapkey < 0 {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+						}
+						if postStringIndexmapkey > l {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+						}
+						mapkey = string(dAtA[iNdEx:postStringIndexmapkey])
+						iNdEx = postStringIndexmapkey
+					} else if fieldNum == 2 {
+						var mapmsglen int
+						for shift := uint(0); ; shift += 7 {
+							if shift >= 64 {
+								return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+							}
+							if iNdEx >= l {
+								return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+							}
+							b := dAtA[iNdEx]
+							iNdEx++
+							mapmsglen |= int(b&0x7F) << shift
+							if b < 0x80 {
+								break
+							}
+						}
+						if mapmsglen < 0 {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+						}
+						postmsgIndex := iNdEx + mapmsglen
+						if postmsgIndex < 0 {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+						}
+						if postmsgIndex > l {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+						}
+						mapvalue = &CurrentEpochInflationShare{}
+						if err := options.Unmarshal(dAtA[iNdEx:postmsgIndex], mapvalue); err != nil {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+						}
+						iNdEx = postmsgIndex
+					} else {
+						iNdEx = entryPreIndex
+						skippy, err := runtime.Skip(dAtA[iNdEx:])
+						if err != nil {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+						}
+						if (skippy < 0) || (iNdEx+skippy) < 0 {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+						}
+						if (iNdEx + skippy) > postIndex {
+							return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+						}
+						iNdEx += skippy
+					}
+				}
+				x.OtherShares[mapkey] = mapvalue
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_CurrentEpochInflationShare         protoreflect.MessageDescriptor
+	fd_CurrentEpochInflationShare_address protoreflect.FieldDescriptor
+	fd_CurrentEpochInflationShare_name    protoreflect.FieldDescriptor
+	fd_CurrentEpochInflationShare_share   protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_galactica_inflation_query_proto_init()
+	md_CurrentEpochInflationShare = File_galactica_inflation_query_proto.Messages().ByName("CurrentEpochInflationShare")
+	fd_CurrentEpochInflationShare_address = md_CurrentEpochInflationShare.Fields().ByName("address")
+	fd_CurrentEpochInflationShare_name = md_CurrentEpochInflationShare.Fields().ByName("name")
+	fd_CurrentEpochInflationShare_share = md_CurrentEpochInflationShare.Fields().ByName("share")
+}
+
+var _ protoreflect.Message = (*fastReflection_CurrentEpochInflationShare)(nil)
+
+type fastReflection_CurrentEpochInflationShare CurrentEpochInflationShare
+
+func (x *CurrentEpochInflationShare) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_CurrentEpochInflationShare)(x)
+}
+
+func (x *CurrentEpochInflationShare) slowProtoReflect() protoreflect.Message {
+	mi := &file_galactica_inflation_query_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_CurrentEpochInflationShare_messageType fastReflection_CurrentEpochInflationShare_messageType
+var _ protoreflect.MessageType = fastReflection_CurrentEpochInflationShare_messageType{}
+
+type fastReflection_CurrentEpochInflationShare_messageType struct{}
+
+func (x fastReflection_CurrentEpochInflationShare_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_CurrentEpochInflationShare)(nil)
+}
+func (x fastReflection_CurrentEpochInflationShare_messageType) New() protoreflect.Message {
+	return new(fastReflection_CurrentEpochInflationShare)
+}
+func (x fastReflection_CurrentEpochInflationShare_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_CurrentEpochInflationShare
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_CurrentEpochInflationShare) Descriptor() protoreflect.MessageDescriptor {
+	return md_CurrentEpochInflationShare
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_CurrentEpochInflationShare) Type() protoreflect.MessageType {
+	return _fastReflection_CurrentEpochInflationShare_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_CurrentEpochInflationShare) New() protoreflect.Message {
+	return new(fastReflection_CurrentEpochInflationShare)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_CurrentEpochInflationShare) Interface() protoreflect.ProtoMessage {
+	return (*CurrentEpochInflationShare)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_CurrentEpochInflationShare) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Address != "" {
+		value := protoreflect.ValueOfString(x.Address)
+		if !f(fd_CurrentEpochInflationShare_address, value) {
+			return
+		}
+	}
+	if x.Name != "" {
+		value := protoreflect.ValueOfString(x.Name)
+		if !f(fd_CurrentEpochInflationShare_name, value) {
+			return
+		}
+	}
+	if x.Share != nil {
+		value := protoreflect.ValueOfMessage(x.Share.ProtoReflect())
+		if !f(fd_CurrentEpochInflationShare_share, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_CurrentEpochInflationShare) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "galactica.inflation.CurrentEpochInflationShare.address":
+		return x.Address != ""
+	case "galactica.inflation.CurrentEpochInflationShare.name":
+		return x.Name != ""
+	case "galactica.inflation.CurrentEpochInflationShare.share":
+		return x.Share != nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.CurrentEpochInflationShare"))
+		}
+		panic(fmt.Errorf("message galactica.inflation.CurrentEpochInflationShare does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_CurrentEpochInflationShare) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "galactica.inflation.CurrentEpochInflationShare.address":
+		x.Address = ""
+	case "galactica.inflation.CurrentEpochInflationShare.name":
+		x.Name = ""
+	case "galactica.inflation.CurrentEpochInflationShare.share":
+		x.Share = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.CurrentEpochInflationShare"))
+		}
+		panic(fmt.Errorf("message galactica.inflation.CurrentEpochInflationShare does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_CurrentEpochInflationShare) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "galactica.inflation.CurrentEpochInflationShare.address":
+		value := x.Address
+		return protoreflect.ValueOfString(value)
+	case "galactica.inflation.CurrentEpochInflationShare.name":
+		value := x.Name
+		return protoreflect.ValueOfString(value)
+	case "galactica.inflation.CurrentEpochInflationShare.share":
+		value := x.Share
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.CurrentEpochInflationShare"))
+		}
+		panic(fmt.Errorf("message galactica.inflation.CurrentEpochInflationShare does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_CurrentEpochInflationShare) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "galactica.inflation.CurrentEpochInflationShare.address":
+		x.Address = value.Interface().(string)
+	case "galactica.inflation.CurrentEpochInflationShare.name":
+		x.Name = value.Interface().(string)
+	case "galactica.inflation.CurrentEpochInflationShare.share":
+		x.Share = value.Message().Interface().(*v1beta1.Coin)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.CurrentEpochInflationShare"))
+		}
+		panic(fmt.Errorf("message galactica.inflation.CurrentEpochInflationShare does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_CurrentEpochInflationShare) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "galactica.inflation.CurrentEpochInflationShare.share":
+		if x.Share == nil {
+			x.Share = new(v1beta1.Coin)
+		}
+		return protoreflect.ValueOfMessage(x.Share.ProtoReflect())
+	case "galactica.inflation.CurrentEpochInflationShare.address":
+		panic(fmt.Errorf("field address of message galactica.inflation.CurrentEpochInflationShare is not mutable"))
+	case "galactica.inflation.CurrentEpochInflationShare.name":
+		panic(fmt.Errorf("field name of message galactica.inflation.CurrentEpochInflationShare is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.CurrentEpochInflationShare"))
+		}
+		panic(fmt.Errorf("message galactica.inflation.CurrentEpochInflationShare does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_CurrentEpochInflationShare) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "galactica.inflation.CurrentEpochInflationShare.address":
+		return protoreflect.ValueOfString("")
+	case "galactica.inflation.CurrentEpochInflationShare.name":
+		return protoreflect.ValueOfString("")
+	case "galactica.inflation.CurrentEpochInflationShare.share":
+		m := new(v1beta1.Coin)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: galactica.inflation.CurrentEpochInflationShare"))
+		}
+		panic(fmt.Errorf("message galactica.inflation.CurrentEpochInflationShare does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_CurrentEpochInflationShare) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in galactica.inflation.CurrentEpochInflationShare", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_CurrentEpochInflationShare) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_CurrentEpochInflationShare) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_CurrentEpochInflationShare) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_CurrentEpochInflationShare) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*CurrentEpochInflationShare)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.Address)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Name)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.Share != nil {
+			l = options.Size(x.Share)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*CurrentEpochInflationShare)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.Share != nil {
+			encoded, err := options.Marshal(x.Share)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0x1a
+		}
+		if len(x.Name) > 0 {
+			i -= len(x.Name)
+			copy(dAtA[i:], x.Name)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Name)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.Address) > 0 {
+			i -= len(x.Address)
+			copy(dAtA[i:], x.Address)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Address)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*CurrentEpochInflationShare)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: CurrentEpochInflationShare: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: CurrentEpochInflationShare: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Address = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Name = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 3:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Share", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.Share == nil {
+					x.Share = &v1beta1.Coin{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Share); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
@@ -1818,16 +3095,16 @@ func (x *QueryParamsResponse) GetParams() *Params {
 	return nil
 }
 
-// QueryCurrentPeriodDistributionRequest is request type for
-// Query/CurrentPeriodDistribution RPC method.
-type QueryCurrentPeriodDistributionRequest struct {
+// QueryCurrentEpochDistributionRequest is request type for
+// Query/CurrentEpochDistribution RPC method.
+type QueryCurrentEpochDistributionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *QueryCurrentPeriodDistributionRequest) Reset() {
-	*x = QueryCurrentPeriodDistributionRequest{}
+func (x *QueryCurrentEpochDistributionRequest) Reset() {
+	*x = QueryCurrentEpochDistributionRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_galactica_inflation_query_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1835,34 +3112,32 @@ func (x *QueryCurrentPeriodDistributionRequest) Reset() {
 	}
 }
 
-func (x *QueryCurrentPeriodDistributionRequest) String() string {
+func (x *QueryCurrentEpochDistributionRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryCurrentPeriodDistributionRequest) ProtoMessage() {}
+func (*QueryCurrentEpochDistributionRequest) ProtoMessage() {}
 
-// Deprecated: Use QueryCurrentPeriodDistributionRequest.ProtoReflect.Descriptor instead.
-func (*QueryCurrentPeriodDistributionRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryCurrentEpochDistributionRequest.ProtoReflect.Descriptor instead.
+func (*QueryCurrentEpochDistributionRequest) Descriptor() ([]byte, []int) {
 	return file_galactica_inflation_query_proto_rawDescGZIP(), []int{2}
 }
 
-// QueryCurrentPeriodDistributionResponse is response type for
-// Query/CurrentPeriodDistribution RPC method.
-type QueryCurrentPeriodDistributionResponse struct {
+// QueryCurrentEpochDistributionResponse is response type for
+// Query/CurrentEpochDistribution RPC method.
+type QueryCurrentEpochDistributionResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// amount of coins provisioned to distribute in the current period.
-	Amount *v1beta1.DecCoin `protobuf:"bytes,1,opt,name=amount,proto3" json:"amount,omitempty"`
-	// epochs_per_period is the number of epochs in the current period.
-	EpochsPerPeriod int64 `protobuf:"varint,2,opt,name=epochs_per_period,json=epochsPerPeriod,proto3" json:"epochs_per_period,omitempty"`
-	// epoch_duration is a duration of one epoch.
-	EpochDuration *durationpb.Duration `protobuf:"bytes,3,opt,name=epoch_duration,json=epochDuration,proto3" json:"epoch_duration,omitempty"`
+	// Distribution of minted tokens for the current epoch.
+	Distribution *CurrentEpochInflationDistribution `protobuf:"bytes,1,opt,name=distribution,proto3" json:"distribution,omitempty"`
+	// Duration of one epoch.
+	EpochDuration *durationpb.Duration `protobuf:"bytes,2,opt,name=epoch_duration,json=epochDuration,proto3" json:"epoch_duration,omitempty"`
 }
 
-func (x *QueryCurrentPeriodDistributionResponse) Reset() {
-	*x = QueryCurrentPeriodDistributionResponse{}
+func (x *QueryCurrentEpochDistributionResponse) Reset() {
+	*x = QueryCurrentEpochDistributionResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_galactica_inflation_query_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1870,34 +3145,130 @@ func (x *QueryCurrentPeriodDistributionResponse) Reset() {
 	}
 }
 
-func (x *QueryCurrentPeriodDistributionResponse) String() string {
+func (x *QueryCurrentEpochDistributionResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryCurrentPeriodDistributionResponse) ProtoMessage() {}
+func (*QueryCurrentEpochDistributionResponse) ProtoMessage() {}
 
-// Deprecated: Use QueryCurrentPeriodDistributionResponse.ProtoReflect.Descriptor instead.
-func (*QueryCurrentPeriodDistributionResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryCurrentEpochDistributionResponse.ProtoReflect.Descriptor instead.
+func (*QueryCurrentEpochDistributionResponse) Descriptor() ([]byte, []int) {
 	return file_galactica_inflation_query_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *QueryCurrentPeriodDistributionResponse) GetAmount() *v1beta1.DecCoin {
+func (x *QueryCurrentEpochDistributionResponse) GetDistribution() *CurrentEpochInflationDistribution {
 	if x != nil {
-		return x.Amount
+		return x.Distribution
 	}
 	return nil
 }
 
-func (x *QueryCurrentPeriodDistributionResponse) GetEpochsPerPeriod() int64 {
-	if x != nil {
-		return x.EpochsPerPeriod
-	}
-	return 0
-}
-
-func (x *QueryCurrentPeriodDistributionResponse) GetEpochDuration() *durationpb.Duration {
+func (x *QueryCurrentEpochDistributionResponse) GetEpochDuration() *durationpb.Duration {
 	if x != nil {
 		return x.EpochDuration
+	}
+	return nil
+}
+
+// CurrentEpochInflationDistribution is a distribution of inflation for the
+// current epoch.
+type CurrentEpochInflationDistribution struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Amount of coins to be distributed to the validators.
+	ValidatorsShare *v1beta1.Coin `protobuf:"bytes,1,opt,name=validators_share,json=validatorsShare,proto3" json:"validators_share,omitempty"`
+	// Distribution of shares for other roles. Role name is used as a key.
+	OtherShares map[string]*CurrentEpochInflationShare `protobuf:"bytes,2,rep,name=other_shares,json=otherShares,proto3" json:"other_shares,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+}
+
+func (x *CurrentEpochInflationDistribution) Reset() {
+	*x = CurrentEpochInflationDistribution{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_galactica_inflation_query_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CurrentEpochInflationDistribution) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CurrentEpochInflationDistribution) ProtoMessage() {}
+
+// Deprecated: Use CurrentEpochInflationDistribution.ProtoReflect.Descriptor instead.
+func (*CurrentEpochInflationDistribution) Descriptor() ([]byte, []int) {
+	return file_galactica_inflation_query_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *CurrentEpochInflationDistribution) GetValidatorsShare() *v1beta1.Coin {
+	if x != nil {
+		return x.ValidatorsShare
+	}
+	return nil
+}
+
+func (x *CurrentEpochInflationDistribution) GetOtherShares() map[string]*CurrentEpochInflationShare {
+	if x != nil {
+		return x.OtherShares
+	}
+	return nil
+}
+
+// CurrentEpochInflationShare defines amount of tokens to be distributed in the
+// current epoch for various roles other than validators.
+type CurrentEpochInflationShare struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Address to which the inflation share would be distributed.
+	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+	// Name is an identifier of a role that would receive the inflation share.
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Share is an amount of coin to be distributed to this role.
+	Share *v1beta1.Coin `protobuf:"bytes,3,opt,name=share,proto3" json:"share,omitempty"`
+}
+
+func (x *CurrentEpochInflationShare) Reset() {
+	*x = CurrentEpochInflationShare{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_galactica_inflation_query_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CurrentEpochInflationShare) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CurrentEpochInflationShare) ProtoMessage() {}
+
+// Deprecated: Use CurrentEpochInflationShare.ProtoReflect.Descriptor instead.
+func (*CurrentEpochInflationShare) Descriptor() ([]byte, []int) {
+	return file_galactica_inflation_query_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *CurrentEpochInflationShare) GetAddress() string {
+	if x != nil {
+		return x.Address
+	}
+	return ""
+}
+
+func (x *CurrentEpochInflationShare) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CurrentEpochInflationShare) GetShare() *v1beta1.Coin {
+	if x != nil {
+		return x.Share
 	}
 	return nil
 }
@@ -1928,62 +3299,92 @@ var file_galactica_inflation_query_proto_rawDesc = []byte{
 	0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x67, 0x61, 0x6c, 0x61, 0x63,
 	0x74, 0x69, 0x63, 0x61, 0x2e, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x50,
 	0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01,
-	0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0x27, 0x0a, 0x25, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x50, 0x65, 0x72, 0x69, 0x6f, 0x64, 0x44, 0x69,
-	0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x22, 0x8b, 0x02, 0x0a, 0x26, 0x51, 0x75, 0x65, 0x72, 0x79, 0x43, 0x75, 0x72, 0x72, 0x65,
-	0x6e, 0x74, 0x50, 0x65, 0x72, 0x69, 0x6f, 0x64, 0x44, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75,
-	0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x34, 0x0a, 0x06,
-	0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x63,
-	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74,
-	0x61, 0x31, 0x2e, 0x44, 0x65, 0x63, 0x43, 0x6f, 0x69, 0x6e, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75,
-	0x6e, 0x74, 0x12, 0x2a, 0x0a, 0x11, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x73, 0x5f, 0x70, 0x65, 0x72,
-	0x5f, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0f, 0x65,
-	0x70, 0x6f, 0x63, 0x68, 0x73, 0x50, 0x65, 0x72, 0x50, 0x65, 0x72, 0x69, 0x6f, 0x64, 0x12, 0x7f,
-	0x0a, 0x0e, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x5f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x42, 0x3d, 0xc8, 0xde, 0x1f, 0x00, 0xea, 0xde, 0x1f, 0x18, 0x65, 0x70, 0x6f, 0x63, 0x68,
-	0x5f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2c, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x6d,
-	0x70, 0x74, 0x79, 0xf2, 0xde, 0x1f, 0x15, 0x79, 0x61, 0x6d, 0x6c, 0x3a, 0x22, 0x65, 0x70, 0x6f,
-	0x63, 0x68, 0x5f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x98, 0xdf, 0x1f, 0x01,
-	0x52, 0x0d, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x32,
-	0xf9, 0x02, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x8f, 0x01, 0x0a, 0x06, 0x50, 0x61,
-	0x72, 0x61, 0x6d, 0x73, 0x12, 0x27, 0x2e, 0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61,
+	0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0x26, 0x0a, 0x24, 0x51, 0x75, 0x65, 0x72,
+	0x79, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x44, 0x69, 0x73,
+	0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x22, 0x8a, 0x02, 0x0a, 0x25, 0x51, 0x75, 0x65, 0x72, 0x79, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e,
+	0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x44, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x69,
+	0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x60, 0x0a, 0x0c, 0x64, 0x69,
+	0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x36, 0x2e, 0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x2e, 0x69, 0x6e, 0x66,
+	0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x45, 0x70,
+	0x6f, 0x63, 0x68, 0x49, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x69, 0x73, 0x74,
+	0x72, 0x69, 0x62, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0c,
+	0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x7f, 0x0a, 0x0e,
+	0x65, 0x70, 0x6f, 0x63, 0x68, 0x5f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42,
+	0x3d, 0xc8, 0xde, 0x1f, 0x00, 0xea, 0xde, 0x1f, 0x18, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x5f, 0x64,
+	0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2c, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x6d, 0x70, 0x74,
+	0x79, 0xf2, 0xde, 0x1f, 0x15, 0x79, 0x61, 0x6d, 0x6c, 0x3a, 0x22, 0x65, 0x70, 0x6f, 0x63, 0x68,
+	0x5f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x98, 0xdf, 0x1f, 0x01, 0x52, 0x0d,
+	0x65, 0x70, 0x6f, 0x63, 0x68, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0xd2, 0x02,
+	0x0a, 0x21, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x49, 0x6e,
+	0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74,
+	0x69, 0x6f, 0x6e, 0x12, 0x4a, 0x0a, 0x10, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x6f, 0x72,
+	0x73, 0x5f, 0x73, 0x68, 0x61, 0x72, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e,
+	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65,
+	0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0f,
+	0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x73, 0x53, 0x68, 0x61, 0x72, 0x65, 0x12,
+	0x70, 0x0a, 0x0c, 0x6f, 0x74, 0x68, 0x65, 0x72, 0x5f, 0x73, 0x68, 0x61, 0x72, 0x65, 0x73, 0x18,
+	0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x47, 0x2e, 0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63,
+	0x61, 0x2e, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x43, 0x75, 0x72, 0x72,
+	0x65, 0x6e, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x49, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x44, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x4f, 0x74,
+	0x68, 0x65, 0x72, 0x53, 0x68, 0x61, 0x72, 0x65, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x42, 0x04,
+	0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0b, 0x6f, 0x74, 0x68, 0x65, 0x72, 0x53, 0x68, 0x61, 0x72, 0x65,
+	0x73, 0x1a, 0x6f, 0x0a, 0x10, 0x4f, 0x74, 0x68, 0x65, 0x72, 0x53, 0x68, 0x61, 0x72, 0x65, 0x73,
+	0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x45, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2f, 0x2e, 0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69,
+	0x63, 0x61, 0x2e, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x43, 0x75, 0x72,
+	0x72, 0x65, 0x6e, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x49, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x53, 0x68, 0x61, 0x72, 0x65, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02,
+	0x38, 0x01, 0x22, 0x81, 0x01, 0x0a, 0x1a, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x45, 0x70,
+	0x6f, 0x63, 0x68, 0x49, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x68, 0x61, 0x72,
+	0x65, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12,
+	0x35, 0x0a, 0x05, 0x73, 0x68, 0x61, 0x72, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19,
+	0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62,
+	0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52,
+	0x05, 0x73, 0x68, 0x61, 0x72, 0x65, 0x32, 0xf5, 0x02, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72, 0x79,
+	0x12, 0x8f, 0x01, 0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x27, 0x2e, 0x67, 0x61,
+	0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x2e, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61,
 	0x2e, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e,
-	0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x2e, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x32, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2c, 0x12,
-	0x2a, 0x2f, 0x47, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x2d, 0x63, 0x6f, 0x72, 0x70,
-	0x2f, 0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x2f, 0x69, 0x6e, 0x66, 0x6c, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0xdd, 0x01, 0x0a, 0x19,
-	0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x50, 0x65, 0x72, 0x69, 0x6f, 0x64, 0x44, 0x69, 0x73,
-	0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x3a, 0x2e, 0x67, 0x61, 0x6c, 0x61,
-	0x63, 0x74, 0x69, 0x63, 0x61, 0x2e, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x50, 0x65, 0x72, 0x69,
-	0x6f, 0x64, 0x44, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3b, 0x2e, 0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63,
-	0x61, 0x2e, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x50, 0x65, 0x72, 0x69, 0x6f, 0x64, 0x44, 0x69,
-	0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x47, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x41, 0x12, 0x3f, 0x2f, 0x47, 0x61, 0x6c,
-	0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x2d, 0x63, 0x6f, 0x72, 0x70, 0x2f, 0x67, 0x61, 0x6c, 0x61,
-	0x63, 0x74, 0x69, 0x63, 0x61, 0x2f, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f,
-	0x63, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x2d, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x64, 0x2d, 0x64,
-	0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0xb8, 0x01, 0x0a, 0x17,
-	0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x2e, 0x69, 0x6e,
-	0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72,
-	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x24, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b,
-	0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63,
-	0x61, 0x2f, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0xa2, 0x02, 0x03, 0x47, 0x49,
-	0x58, 0xaa, 0x02, 0x13, 0x47, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x2e, 0x49, 0x6e,
-	0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0xca, 0x02, 0x13, 0x47, 0x61, 0x6c, 0x61, 0x63, 0x74,
-	0x69, 0x63, 0x61, 0x5c, 0x49, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0xe2, 0x02, 0x1f,
-	0x47, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x5c, 0x49, 0x6e, 0x66, 0x6c, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea,
-	0x02, 0x14, 0x47, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x3a, 0x3a, 0x49, 0x6e, 0x66,
-	0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x32,
+	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2c, 0x12, 0x2a, 0x2f, 0x47, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69,
+	0x63, 0x61, 0x2d, 0x63, 0x6f, 0x72, 0x70, 0x2f, 0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63,
+	0x61, 0x2f, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x70, 0x61, 0x72, 0x61,
+	0x6d, 0x73, 0x12, 0xd9, 0x01, 0x0a, 0x18, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x45, 0x70,
+	0x6f, 0x63, 0x68, 0x44, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x12,
+	0x39, 0x2e, 0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x2e, 0x69, 0x6e, 0x66, 0x6c,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x43, 0x75, 0x72, 0x72, 0x65,
+	0x6e, 0x74, 0x45, 0x70, 0x6f, 0x63, 0x68, 0x44, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74,
+	0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3a, 0x2e, 0x67, 0x61, 0x6c,
+	0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x2e, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x45, 0x70, 0x6f,
+	0x63, 0x68, 0x44, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x46, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x40, 0x12, 0x3e,
+	0x2f, 0x47, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x2d, 0x63, 0x6f, 0x72, 0x70, 0x2f,
+	0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x2f, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x2f, 0x63, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x2d, 0x65, 0x70, 0x6f, 0x63,
+	0x68, 0x2d, 0x64, 0x69, 0x73, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0xb8,
+	0x01, 0x0a, 0x17, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61,
+	0x2e, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72,
+	0x79, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x24, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x61, 0x6c, 0x61, 0x63,
+	0x74, 0x69, 0x63, 0x61, 0x2f, 0x69, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0xa2, 0x02,
+	0x03, 0x47, 0x49, 0x58, 0xaa, 0x02, 0x13, 0x47, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61,
+	0x2e, 0x49, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0xca, 0x02, 0x13, 0x47, 0x61, 0x6c,
+	0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x5c, 0x49, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0xe2, 0x02, 0x1f, 0x47, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x5c, 0x49, 0x6e, 0x66,
+	0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
+	0x74, 0x61, 0xea, 0x02, 0x14, 0x47, 0x61, 0x6c, 0x61, 0x63, 0x74, 0x69, 0x63, 0x61, 0x3a, 0x3a,
+	0x49, 0x6e, 0x66, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -1998,29 +3399,36 @@ func file_galactica_inflation_query_proto_rawDescGZIP() []byte {
 	return file_galactica_inflation_query_proto_rawDescData
 }
 
-var file_galactica_inflation_query_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_galactica_inflation_query_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_galactica_inflation_query_proto_goTypes = []interface{}{
-	(*QueryParamsRequest)(nil),                     // 0: galactica.inflation.QueryParamsRequest
-	(*QueryParamsResponse)(nil),                    // 1: galactica.inflation.QueryParamsResponse
-	(*QueryCurrentPeriodDistributionRequest)(nil),  // 2: galactica.inflation.QueryCurrentPeriodDistributionRequest
-	(*QueryCurrentPeriodDistributionResponse)(nil), // 3: galactica.inflation.QueryCurrentPeriodDistributionResponse
-	(*Params)(nil),                                 // 4: galactica.inflation.Params
-	(*v1beta1.DecCoin)(nil),                        // 5: cosmos.base.v1beta1.DecCoin
-	(*durationpb.Duration)(nil),                    // 6: google.protobuf.Duration
+	(*QueryParamsRequest)(nil),                    // 0: galactica.inflation.QueryParamsRequest
+	(*QueryParamsResponse)(nil),                   // 1: galactica.inflation.QueryParamsResponse
+	(*QueryCurrentEpochDistributionRequest)(nil),  // 2: galactica.inflation.QueryCurrentEpochDistributionRequest
+	(*QueryCurrentEpochDistributionResponse)(nil), // 3: galactica.inflation.QueryCurrentEpochDistributionResponse
+	(*CurrentEpochInflationDistribution)(nil),     // 4: galactica.inflation.CurrentEpochInflationDistribution
+	(*CurrentEpochInflationShare)(nil),            // 5: galactica.inflation.CurrentEpochInflationShare
+	nil,                                           // 6: galactica.inflation.CurrentEpochInflationDistribution.OtherSharesEntry
+	(*Params)(nil),                                // 7: galactica.inflation.Params
+	(*durationpb.Duration)(nil),                   // 8: google.protobuf.Duration
+	(*v1beta1.Coin)(nil),                          // 9: cosmos.base.v1beta1.Coin
 }
 var file_galactica_inflation_query_proto_depIdxs = []int32{
-	4, // 0: galactica.inflation.QueryParamsResponse.params:type_name -> galactica.inflation.Params
-	5, // 1: galactica.inflation.QueryCurrentPeriodDistributionResponse.amount:type_name -> cosmos.base.v1beta1.DecCoin
-	6, // 2: galactica.inflation.QueryCurrentPeriodDistributionResponse.epoch_duration:type_name -> google.protobuf.Duration
-	0, // 3: galactica.inflation.Query.Params:input_type -> galactica.inflation.QueryParamsRequest
-	2, // 4: galactica.inflation.Query.CurrentPeriodDistribution:input_type -> galactica.inflation.QueryCurrentPeriodDistributionRequest
-	1, // 5: galactica.inflation.Query.Params:output_type -> galactica.inflation.QueryParamsResponse
-	3, // 6: galactica.inflation.Query.CurrentPeriodDistribution:output_type -> galactica.inflation.QueryCurrentPeriodDistributionResponse
-	5, // [5:7] is the sub-list for method output_type
-	3, // [3:5] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	7, // 0: galactica.inflation.QueryParamsResponse.params:type_name -> galactica.inflation.Params
+	4, // 1: galactica.inflation.QueryCurrentEpochDistributionResponse.distribution:type_name -> galactica.inflation.CurrentEpochInflationDistribution
+	8, // 2: galactica.inflation.QueryCurrentEpochDistributionResponse.epoch_duration:type_name -> google.protobuf.Duration
+	9, // 3: galactica.inflation.CurrentEpochInflationDistribution.validators_share:type_name -> cosmos.base.v1beta1.Coin
+	6, // 4: galactica.inflation.CurrentEpochInflationDistribution.other_shares:type_name -> galactica.inflation.CurrentEpochInflationDistribution.OtherSharesEntry
+	9, // 5: galactica.inflation.CurrentEpochInflationShare.share:type_name -> cosmos.base.v1beta1.Coin
+	5, // 6: galactica.inflation.CurrentEpochInflationDistribution.OtherSharesEntry.value:type_name -> galactica.inflation.CurrentEpochInflationShare
+	0, // 7: galactica.inflation.Query.Params:input_type -> galactica.inflation.QueryParamsRequest
+	2, // 8: galactica.inflation.Query.CurrentEpochDistribution:input_type -> galactica.inflation.QueryCurrentEpochDistributionRequest
+	1, // 9: galactica.inflation.Query.Params:output_type -> galactica.inflation.QueryParamsResponse
+	3, // 10: galactica.inflation.Query.CurrentEpochDistribution:output_type -> galactica.inflation.QueryCurrentEpochDistributionResponse
+	9, // [9:11] is the sub-list for method output_type
+	7, // [7:9] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_galactica_inflation_query_proto_init() }
@@ -2055,7 +3463,7 @@ func file_galactica_inflation_query_proto_init() {
 			}
 		}
 		file_galactica_inflation_query_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryCurrentPeriodDistributionRequest); i {
+			switch v := v.(*QueryCurrentEpochDistributionRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2067,7 +3475,31 @@ func file_galactica_inflation_query_proto_init() {
 			}
 		}
 		file_galactica_inflation_query_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryCurrentPeriodDistributionResponse); i {
+			switch v := v.(*QueryCurrentEpochDistributionResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_galactica_inflation_query_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CurrentEpochInflationDistribution); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_galactica_inflation_query_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CurrentEpochInflationShare); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2085,7 +3517,7 @@ func file_galactica_inflation_query_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_galactica_inflation_query_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

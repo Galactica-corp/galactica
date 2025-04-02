@@ -33,8 +33,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Query_Params_FullMethodName                    = "/galactica.inflation.Query/Params"
-	Query_CurrentPeriodDistribution_FullMethodName = "/galactica.inflation.Query/CurrentPeriodDistribution"
+	Query_Params_FullMethodName                   = "/galactica.inflation.Query/Params"
+	Query_CurrentEpochDistribution_FullMethodName = "/galactica.inflation.Query/CurrentEpochDistribution"
 )
 
 // QueryClient is the client API for Query service.
@@ -45,9 +45,9 @@ const (
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	// CurrentPeriodDistribution queries amount of tokens to be distributed in the
-	// current period.
-	CurrentPeriodDistribution(ctx context.Context, in *QueryCurrentPeriodDistributionRequest, opts ...grpc.CallOption) (*QueryCurrentPeriodDistributionResponse, error)
+	// CurrentEpochDistribution queries amount of tokens to be distributed in the
+	// current epoch.
+	CurrentEpochDistribution(ctx context.Context, in *QueryCurrentEpochDistributionRequest, opts ...grpc.CallOption) (*QueryCurrentEpochDistributionResponse, error)
 }
 
 type queryClient struct {
@@ -68,10 +68,10 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
-func (c *queryClient) CurrentPeriodDistribution(ctx context.Context, in *QueryCurrentPeriodDistributionRequest, opts ...grpc.CallOption) (*QueryCurrentPeriodDistributionResponse, error) {
+func (c *queryClient) CurrentEpochDistribution(ctx context.Context, in *QueryCurrentEpochDistributionRequest, opts ...grpc.CallOption) (*QueryCurrentEpochDistributionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryCurrentPeriodDistributionResponse)
-	err := c.cc.Invoke(ctx, Query_CurrentPeriodDistribution_FullMethodName, in, out, cOpts...)
+	out := new(QueryCurrentEpochDistributionResponse)
+	err := c.cc.Invoke(ctx, Query_CurrentEpochDistribution_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,9 +86,9 @@ func (c *queryClient) CurrentPeriodDistribution(ctx context.Context, in *QueryCu
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
-	// CurrentPeriodDistribution queries amount of tokens to be distributed in the
-	// current period.
-	CurrentPeriodDistribution(context.Context, *QueryCurrentPeriodDistributionRequest) (*QueryCurrentPeriodDistributionResponse, error)
+	// CurrentEpochDistribution queries amount of tokens to be distributed in the
+	// current epoch.
+	CurrentEpochDistribution(context.Context, *QueryCurrentEpochDistributionRequest) (*QueryCurrentEpochDistributionResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -102,8 +102,8 @@ type UnimplementedQueryServer struct{}
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
 }
-func (UnimplementedQueryServer) CurrentPeriodDistribution(context.Context, *QueryCurrentPeriodDistributionRequest) (*QueryCurrentPeriodDistributionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CurrentPeriodDistribution not implemented")
+func (UnimplementedQueryServer) CurrentEpochDistribution(context.Context, *QueryCurrentEpochDistributionRequest) (*QueryCurrentEpochDistributionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CurrentEpochDistribution not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 func (UnimplementedQueryServer) testEmbeddedByValue()               {}
@@ -144,20 +144,20 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_CurrentPeriodDistribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryCurrentPeriodDistributionRequest)
+func _Query_CurrentEpochDistribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryCurrentEpochDistributionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).CurrentPeriodDistribution(ctx, in)
+		return srv.(QueryServer).CurrentEpochDistribution(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_CurrentPeriodDistribution_FullMethodName,
+		FullMethod: Query_CurrentEpochDistribution_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).CurrentPeriodDistribution(ctx, req.(*QueryCurrentPeriodDistributionRequest))
+		return srv.(QueryServer).CurrentEpochDistribution(ctx, req.(*QueryCurrentEpochDistributionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -174,8 +174,8 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Params_Handler,
 		},
 		{
-			MethodName: "CurrentPeriodDistribution",
-			Handler:    _Query_CurrentPeriodDistribution_Handler,
+			MethodName: "CurrentEpochDistribution",
+			Handler:    _Query_CurrentEpochDistribution_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

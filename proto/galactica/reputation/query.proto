@@ -25,5 +25,5 @@ message QueryParamsRequest {}
 message QueryParamsResponse {
   // params holds all the parameters of this module.
   Params params = 1
-  [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  [ (gogoproto.nullable) = false, (amino.dont_omitempty) = true ];
 }

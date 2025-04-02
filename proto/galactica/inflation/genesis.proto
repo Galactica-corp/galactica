@@ -12,7 +12,7 @@ option go_package = "github.com/Galactica-corp/galactica/x/inflation/types";
 // GenesisState defines the inflation module's genesis state.
 message GenesisState {
   // params defines all the parameters of the module.
-  Params params = 1 [(gogoproto.nullable) = false];
+  Params params = 1 [ (gogoproto.nullable) = false ];
   // period is the amount of past periods, based on the epochs per period param
   uint64 period = 2;
   // epoch_identifier for inflation
@@ -30,5 +30,5 @@ message GenesisState {
   ];
   // inflation_distribution defines the initial distribution of inflation
   InflationDistribution inflation_distribution = 7
-  [(gogoproto.nullable) = false];
+  [ (gogoproto.nullable) = false ];
 }

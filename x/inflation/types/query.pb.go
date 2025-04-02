@@ -135,23 +135,23 @@ func (m *QueryParamsResponse) GetParams() Params {
 	return Params{}
 }
 
-// QueryCurrentPeriodDistributionRequest is request type for
-// Query/CurrentPeriodDistribution RPC method.
-type QueryCurrentPeriodDistributionRequest struct {
+// QueryCurrentEpochDistributionRequest is request type for
+// Query/CurrentEpochDistribution RPC method.
+type QueryCurrentEpochDistributionRequest struct {
 }
 
-func (m *QueryCurrentPeriodDistributionRequest) Reset()         { *m = QueryCurrentPeriodDistributionRequest{} }
-func (m *QueryCurrentPeriodDistributionRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryCurrentPeriodDistributionRequest) ProtoMessage()    {}
-func (*QueryCurrentPeriodDistributionRequest) Descriptor() ([]byte, []int) {
+func (m *QueryCurrentEpochDistributionRequest) Reset()         { *m = QueryCurrentEpochDistributionRequest{} }
+func (m *QueryCurrentEpochDistributionRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryCurrentEpochDistributionRequest) ProtoMessage()    {}
+func (*QueryCurrentEpochDistributionRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ae5baee6426d48ab, []int{2}
 }
-func (m *QueryCurrentPeriodDistributionRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryCurrentEpochDistributionRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryCurrentPeriodDistributionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryCurrentEpochDistributionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryCurrentPeriodDistributionRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryCurrentEpochDistributionRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -161,43 +161,39 @@ func (m *QueryCurrentPeriodDistributionRequest) XXX_Marshal(b []byte, determinis
 		return b[:n], nil
 	}
 }
-func (m *QueryCurrentPeriodDistributionRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryCurrentPeriodDistributionRequest.Merge(m, src)
+func (m *QueryCurrentEpochDistributionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryCurrentEpochDistributionRequest.Merge(m, src)
 }
-func (m *QueryCurrentPeriodDistributionRequest) XXX_Size() int {
+func (m *QueryCurrentEpochDistributionRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryCurrentPeriodDistributionRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryCurrentPeriodDistributionRequest.DiscardUnknown(m)
+func (m *QueryCurrentEpochDistributionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryCurrentEpochDistributionRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryCurrentPeriodDistributionRequest proto.InternalMessageInfo
+var xxx_messageInfo_QueryCurrentEpochDistributionRequest proto.InternalMessageInfo
 
-// QueryCurrentPeriodDistributionResponse is response type for
-// Query/CurrentPeriodDistribution RPC method.
-type QueryCurrentPeriodDistributionResponse struct {
-	// amount of coins provisioned to distribute in the current period.
-	Amount *types.DecCoin `protobuf:"bytes,1,opt,name=amount,proto3" json:"amount,omitempty"`
-	// epochs_per_period is the number of epochs in the current period.
-	EpochsPerPeriod int64 `protobuf:"varint,2,opt,name=epochs_per_period,json=epochsPerPeriod,proto3" json:"epochs_per_period,omitempty"`
-	// epoch_duration is a duration of one epoch.
-	EpochDuration time.Duration `protobuf:"bytes,3,opt,name=epoch_duration,json=epochDuration,proto3,stdduration" json:"epoch_duration,omitempty" yaml:"epoch_duration"`
+// QueryCurrentEpochDistributionResponse is response type for
+// Query/CurrentEpochDistribution RPC method.
+type QueryCurrentEpochDistributionResponse struct {
+	// Distribution of minted tokens for the current epoch.
+	Distribution CurrentEpochInflationDistribution `protobuf:"bytes,1,opt,name=distribution,proto3" json:"distribution"`
+	// Duration of one epoch.
+	EpochDuration time.Duration `protobuf:"bytes,2,opt,name=epoch_duration,json=epochDuration,proto3,stdduration" json:"epoch_duration,omitempty" yaml:"epoch_duration"`
 }
 
-func (m *QueryCurrentPeriodDistributionResponse) Reset() {
-	*m = QueryCurrentPeriodDistributionResponse{}
-}
-func (m *QueryCurrentPeriodDistributionResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryCurrentPeriodDistributionResponse) ProtoMessage()    {}
-func (*QueryCurrentPeriodDistributionResponse) Descriptor() ([]byte, []int) {
+func (m *QueryCurrentEpochDistributionResponse) Reset()         { *m = QueryCurrentEpochDistributionResponse{} }
+func (m *QueryCurrentEpochDistributionResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryCurrentEpochDistributionResponse) ProtoMessage()    {}
+func (*QueryCurrentEpochDistributionResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ae5baee6426d48ab, []int{3}
 }
-func (m *QueryCurrentPeriodDistributionResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryCurrentEpochDistributionResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryCurrentPeriodDistributionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryCurrentEpochDistributionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryCurrentPeriodDistributionResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryCurrentEpochDistributionResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -207,85 +203,210 @@ func (m *QueryCurrentPeriodDistributionResponse) XXX_Marshal(b []byte, determini
 		return b[:n], nil
 	}
 }
-func (m *QueryCurrentPeriodDistributionResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryCurrentPeriodDistributionResponse.Merge(m, src)
+func (m *QueryCurrentEpochDistributionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryCurrentEpochDistributionResponse.Merge(m, src)
 }
-func (m *QueryCurrentPeriodDistributionResponse) XXX_Size() int {
+func (m *QueryCurrentEpochDistributionResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryCurrentPeriodDistributionResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryCurrentPeriodDistributionResponse.DiscardUnknown(m)
+func (m *QueryCurrentEpochDistributionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryCurrentEpochDistributionResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryCurrentPeriodDistributionResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryCurrentEpochDistributionResponse proto.InternalMessageInfo
 
-func (m *QueryCurrentPeriodDistributionResponse) GetAmount() *types.DecCoin {
+func (m *QueryCurrentEpochDistributionResponse) GetDistribution() CurrentEpochInflationDistribution {
 	if m != nil {
-		return m.Amount
+		return m.Distribution
 	}
-	return nil
+	return CurrentEpochInflationDistribution{}
 }
 
-func (m *QueryCurrentPeriodDistributionResponse) GetEpochsPerPeriod() int64 {
-	if m != nil {
-		return m.EpochsPerPeriod
-	}
-	return 0
-}
-
-func (m *QueryCurrentPeriodDistributionResponse) GetEpochDuration() time.Duration {
+func (m *QueryCurrentEpochDistributionResponse) GetEpochDuration() time.Duration {
 	if m != nil {
 		return m.EpochDuration
 	}
 	return 0
 }
 
+// CurrentEpochInflationDistribution is a distribution of inflation for the
+// current epoch.
+type CurrentEpochInflationDistribution struct {
+	// Amount of coins to be distributed to the validators.
+	ValidatorsShare types.Coin `protobuf:"bytes,1,opt,name=validators_share,json=validatorsShare,proto3" json:"validators_share"`
+	// Distribution of shares for other roles. Role name is used as a key.
+	OtherShares map[string]CurrentEpochInflationShare `protobuf:"bytes,2,rep,name=other_shares,json=otherShares,proto3" json:"other_shares" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+}
+
+func (m *CurrentEpochInflationDistribution) Reset()         { *m = CurrentEpochInflationDistribution{} }
+func (m *CurrentEpochInflationDistribution) String() string { return proto.CompactTextString(m) }
+func (*CurrentEpochInflationDistribution) ProtoMessage()    {}
+func (*CurrentEpochInflationDistribution) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae5baee6426d48ab, []int{4}
+}
+func (m *CurrentEpochInflationDistribution) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CurrentEpochInflationDistribution) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CurrentEpochInflationDistribution.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CurrentEpochInflationDistribution) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CurrentEpochInflationDistribution.Merge(m, src)
+}
+func (m *CurrentEpochInflationDistribution) XXX_Size() int {
+	return m.Size()
+}
+func (m *CurrentEpochInflationDistribution) XXX_DiscardUnknown() {
+	xxx_messageInfo_CurrentEpochInflationDistribution.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CurrentEpochInflationDistribution proto.InternalMessageInfo
+
+func (m *CurrentEpochInflationDistribution) GetValidatorsShare() types.Coin {
+	if m != nil {
+		return m.ValidatorsShare
+	}
+	return types.Coin{}
+}
+
+func (m *CurrentEpochInflationDistribution) GetOtherShares() map[string]CurrentEpochInflationShare {
+	if m != nil {
+		return m.OtherShares
+	}
+	return nil
+}
+
+// CurrentEpochInflationShare defines amount of tokens to be distributed in the
+// current epoch for various roles other than validators.
+type CurrentEpochInflationShare struct {
+	// Address to which the inflation share would be distributed.
+	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+	// Name is an identifier of a role that would receive the inflation share.
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Share is an amount of coin to be distributed to this role.
+	Share types.Coin `protobuf:"bytes,3,opt,name=share,proto3" json:"share"`
+}
+
+func (m *CurrentEpochInflationShare) Reset()         { *m = CurrentEpochInflationShare{} }
+func (m *CurrentEpochInflationShare) String() string { return proto.CompactTextString(m) }
+func (*CurrentEpochInflationShare) ProtoMessage()    {}
+func (*CurrentEpochInflationShare) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae5baee6426d48ab, []int{5}
+}
+func (m *CurrentEpochInflationShare) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CurrentEpochInflationShare) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CurrentEpochInflationShare.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CurrentEpochInflationShare) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CurrentEpochInflationShare.Merge(m, src)
+}
+func (m *CurrentEpochInflationShare) XXX_Size() int {
+	return m.Size()
+}
+func (m *CurrentEpochInflationShare) XXX_DiscardUnknown() {
+	xxx_messageInfo_CurrentEpochInflationShare.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CurrentEpochInflationShare proto.InternalMessageInfo
+
+func (m *CurrentEpochInflationShare) GetAddress() string {
+	if m != nil {
+		return m.Address
+	}
+	return ""
+}
+
+func (m *CurrentEpochInflationShare) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *CurrentEpochInflationShare) GetShare() types.Coin {
+	if m != nil {
+		return m.Share
+	}
+	return types.Coin{}
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "galactica.inflation.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "galactica.inflation.QueryParamsResponse")
-	proto.RegisterType((*QueryCurrentPeriodDistributionRequest)(nil), "galactica.inflation.QueryCurrentPeriodDistributionRequest")
-	proto.RegisterType((*QueryCurrentPeriodDistributionResponse)(nil), "galactica.inflation.QueryCurrentPeriodDistributionResponse")
+	proto.RegisterType((*QueryCurrentEpochDistributionRequest)(nil), "galactica.inflation.QueryCurrentEpochDistributionRequest")
+	proto.RegisterType((*QueryCurrentEpochDistributionResponse)(nil), "galactica.inflation.QueryCurrentEpochDistributionResponse")
+	proto.RegisterType((*CurrentEpochInflationDistribution)(nil), "galactica.inflation.CurrentEpochInflationDistribution")
+	proto.RegisterMapType((map[string]CurrentEpochInflationShare)(nil), "galactica.inflation.CurrentEpochInflationDistribution.OtherSharesEntry")
+	proto.RegisterType((*CurrentEpochInflationShare)(nil), "galactica.inflation.CurrentEpochInflationShare")
 }
 
 func init() { proto.RegisterFile("galactica/inflation/query.proto", fileDescriptor_ae5baee6426d48ab) }
 
 var fileDescriptor_ae5baee6426d48ab = []byte{
-	// 546 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x52, 0xcf, 0x6b, 0x13, 0x4f,
-	0x14, 0xcf, 0xa6, 0x7c, 0x03, 0xdf, 0x11, 0x95, 0x4e, 0x2b, 0xa4, 0xb1, 0x6c, 0xca, 0x82, 0xb6,
-	0x84, 0x66, 0x86, 0x46, 0xbd, 0x54, 0x54, 0x4c, 0x03, 0x3d, 0x1a, 0x03, 0x5e, 0xbc, 0x94, 0xd9,
-	0xcd, 0x74, 0x3b, 0x90, 0xdd, 0xb7, 0x9d, 0x9d, 0x15, 0x73, 0x12, 0xbc, 0x7a, 0x50, 0xf0, 0xe2,
-	0x9f, 0xe0, 0xd1, 0x3f, 0xa3, 0xc7, 0x82, 0x17, 0x2f, 0x46, 0x49, 0x04, 0xc1, 0xa3, 0x37, 0x6f,
-	0xb2, 0x33, 0xb3, 0x25, 0xc1, 0x84, 0x88, 0x87, 0x84, 0xd9, 0x37, 0x9f, 0x1f, 0xef, 0x7d, 0xe6,
-	0xa1, 0x7a, 0xc8, 0x06, 0x2c, 0x50, 0x22, 0x60, 0x54, 0xc4, 0xc7, 0x03, 0xa6, 0x04, 0xc4, 0xf4,
-	0x34, 0xe3, 0x72, 0x48, 0x12, 0x09, 0x0a, 0xf0, 0xda, 0x05, 0x80, 0x5c, 0x00, 0x6a, 0xab, 0x2c,
-	0x12, 0x31, 0x50, 0xfd, 0x6f, 0x70, 0xb5, 0x46, 0x00, 0x69, 0x04, 0x29, 0xf5, 0x59, 0xca, 0x8d,
-	0x00, 0x7d, 0xb6, 0xe7, 0x73, 0xc5, 0xf6, 0x68, 0xc2, 0x42, 0x11, 0x6b, 0xa2, 0xc5, 0xba, 0xd3,
-	0xd8, 0x02, 0x15, 0x80, 0x28, 0xee, 0xd7, 0x43, 0x08, 0x41, 0x1f, 0x69, 0x7e, 0xb2, 0xd5, 0xcd,
-	0x10, 0x20, 0x1c, 0x70, 0xca, 0x12, 0x41, 0x59, 0x1c, 0x83, 0xd2, 0x92, 0x69, 0xa1, 0x69, 0x6f,
-	0xf5, 0x97, 0x9f, 0x1d, 0xd3, 0x7e, 0x26, 0xa7, 0x3d, 0xb7, 0xe6, 0x0d, 0x9a, 0x30, 0xc9, 0x22,
-	0xab, 0xe0, 0xad, 0x23, 0xfc, 0x38, 0xef, 0xbb, 0xab, 0x8b, 0x3d, 0x7e, 0x9a, 0xf1, 0x54, 0x79,
-	0x4f, 0xd0, 0xda, 0x4c, 0x35, 0x4d, 0x20, 0x4e, 0x39, 0xbe, 0x8f, 0x2a, 0x86, 0x5c, 0x75, 0xb6,
-	0x9c, 0x9d, 0x4b, 0xad, 0xeb, 0x64, 0x4e, 0x4e, 0xc4, 0x90, 0xda, 0xff, 0x9f, 0x8d, 0xea, 0xa5,
-	0xf7, 0xdf, 0x3f, 0x34, 0x9c, 0x9e, 0x65, 0x79, 0xdb, 0xe8, 0x86, 0x96, 0x3d, 0xc8, 0xa4, 0xe4,
-	0xb1, 0xea, 0x72, 0x29, 0xa0, 0xdf, 0x11, 0xa9, 0x92, 0xc2, 0xcf, 0x72, 0x6e, 0xe1, 0xff, 0xaa,
-	0x8c, 0x6e, 0x2e, 0x43, 0xda, 0x9e, 0x6e, 0xa3, 0x0a, 0x8b, 0x20, 0x8b, 0x95, 0xed, 0x69, 0x93,
-	0x98, 0x9c, 0x49, 0x9e, 0x33, 0xb1, 0x39, 0x93, 0x0e, 0x0f, 0x0e, 0x40, 0xc4, 0x3d, 0x8b, 0xc5,
-	0x0d, 0xb4, 0xca, 0x13, 0x08, 0x4e, 0xd2, 0xa3, 0x84, 0xcb, 0xfc, 0x27, 0xa0, 0x5f, 0x2d, 0x6f,
-	0x39, 0x3b, 0x2b, 0xbd, 0xab, 0xe6, 0xa2, 0xcb, 0xa5, 0x71, 0xc5, 0x2f, 0xd0, 0x15, 0x5d, 0x3a,
-	0x2a, 0xc2, 0xad, 0xae, 0x68, 0xa7, 0x0d, 0x62, 0xd2, 0x27, 0x45, 0xfa, 0xa4, 0x63, 0x01, 0xed,
-	0x7b, 0xf9, 0xec, 0x3f, 0x46, 0xf5, 0xea, 0x2c, 0x71, 0x17, 0x22, 0xa1, 0x78, 0x94, 0xa8, 0xe1,
-	0xcf, 0x51, 0xfd, 0xda, 0x90, 0x45, 0x83, 0x7d, 0x6f, 0x16, 0xe1, 0xbd, 0xfb, 0x52, 0x77, 0x7a,
-	0x97, 0x75, 0xb1, 0x50, 0x6b, 0xfd, 0x2a, 0xa3, 0xff, 0x74, 0x1a, 0xf8, 0xb5, 0x83, 0x2a, 0x26,
-	0x5e, 0xbc, 0x3d, 0x37, 0xfb, 0x3f, 0xdf, 0xb2, 0xb6, 0xb3, 0x1c, 0x68, 0xa2, 0xf4, 0x5a, 0x2f,
-	0x3f, 0x7e, 0x7b, 0x5b, 0xde, 0xc5, 0x0d, 0x7a, 0x58, 0x30, 0x9a, 0x01, 0xc8, 0x84, 0x2e, 0xde,
-	0x22, 0xfc, 0xd9, 0x41, 0x1b, 0x0b, 0x1f, 0x09, 0xef, 0x2f, 0xf6, 0x5e, 0xb6, 0x03, 0xb5, 0xbb,
-	0xff, 0xc4, 0xb5, 0xa3, 0x1c, 0xea, 0x51, 0x1e, 0xe2, 0x07, 0x7f, 0x33, 0x4a, 0x60, 0xe4, 0x9a,
-	0x66, 0x0d, 0x9a, 0xfd, 0x29, 0xc1, 0xf6, 0xa3, 0xb3, 0xb1, 0xeb, 0x9c, 0x8f, 0x5d, 0xe7, 0xeb,
-	0xd8, 0x75, 0xde, 0x4c, 0xdc, 0xd2, 0xf9, 0xc4, 0x2d, 0x7d, 0x9a, 0xb8, 0xa5, 0xa7, 0x77, 0x42,
-	0xa1, 0x4e, 0x32, 0x9f, 0x04, 0x10, 0x2d, 0x36, 0x79, 0x3e, 0x65, 0xa3, 0x86, 0x09, 0x4f, 0xfd,
-	0x8a, 0xde, 0x96, 0x5b, 0xbf, 0x03, 0x00, 0x00, 0xff, 0xff, 0x04, 0x13, 0xcc, 0x05, 0x84, 0x04,
-	0x00, 0x00,
+	// 678 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x54, 0xcf, 0x4f, 0xd4, 0x40,
+	0x18, 0xdd, 0x96, 0x1f, 0x86, 0x01, 0x15, 0x07, 0x4c, 0x96, 0xd5, 0x74, 0xb1, 0xf1, 0x07, 0x21,
+	0xd0, 0x86, 0x35, 0x18, 0x25, 0x91, 0x98, 0x05, 0x24, 0x7a, 0x41, 0x6b, 0xbc, 0x78, 0xc1, 0xd9,
+	0xee, 0xd0, 0x9d, 0xb8, 0xed, 0x94, 0x99, 0x29, 0x71, 0x4f, 0x46, 0x8f, 0x5e, 0x34, 0xf1, 0xe2,
+	0x9f, 0xe0, 0xd1, 0x3f, 0x83, 0x23, 0xd1, 0x8b, 0x5e, 0xd0, 0x80, 0x89, 0x89, 0x47, 0x13, 0xef,
+	0xa6, 0x33, 0x53, 0xe8, 0xea, 0x6e, 0x76, 0xc3, 0x65, 0x33, 0xfd, 0xfa, 0xde, 0xfb, 0xde, 0xf7,
+	0x76, 0xbe, 0x82, 0x72, 0x80, 0x9a, 0xc8, 0x17, 0xc4, 0x47, 0x2e, 0x89, 0xb6, 0x9a, 0x48, 0x10,
+	0x1a, 0xb9, 0xdb, 0x09, 0x66, 0x2d, 0x27, 0x66, 0x54, 0x50, 0x38, 0x71, 0x04, 0x70, 0x8e, 0x00,
+	0xa5, 0x73, 0x28, 0x24, 0x11, 0x75, 0xe5, 0xaf, 0xc2, 0x95, 0x66, 0x7d, 0xca, 0x43, 0xca, 0xdd,
+	0x1a, 0xe2, 0x58, 0x09, 0xb8, 0x3b, 0x0b, 0x35, 0x2c, 0xd0, 0x82, 0x1b, 0xa3, 0x80, 0x44, 0x92,
+	0xa8, 0xb1, 0x56, 0x1e, 0x9b, 0xa1, 0x7c, 0x4a, 0xb2, 0xf7, 0x93, 0x01, 0x0d, 0xa8, 0x3c, 0xba,
+	0xe9, 0x49, 0x57, 0x2f, 0x06, 0x94, 0x06, 0x4d, 0xec, 0xa2, 0x98, 0xb8, 0x28, 0x8a, 0xa8, 0x90,
+	0x92, 0x3c, 0xd3, 0xd4, 0x6f, 0xe5, 0x53, 0x2d, 0xd9, 0x72, 0xeb, 0x09, 0xcb, 0xf7, 0x9c, 0xee,
+	0x34, 0x68, 0x8c, 0x18, 0x0a, 0xb5, 0x82, 0x3d, 0x09, 0xe0, 0xc3, 0xd4, 0xf7, 0x03, 0x59, 0xf4,
+	0xf0, 0x76, 0x82, 0xb9, 0xb0, 0x1f, 0x83, 0x89, 0xb6, 0x2a, 0x8f, 0x69, 0xc4, 0x31, 0x5c, 0x06,
+	0xc3, 0x8a, 0x5c, 0x34, 0xa6, 0x8d, 0x99, 0xd1, 0xca, 0x05, 0xa7, 0x43, 0x4e, 0x8e, 0x22, 0x55,
+	0x47, 0x76, 0xf7, 0xcb, 0x85, 0x0f, 0x3f, 0x3f, 0xce, 0x1a, 0x9e, 0x66, 0xd9, 0x57, 0xc1, 0x65,
+	0x29, 0xbb, 0x92, 0x30, 0x86, 0x23, 0xb1, 0x16, 0x53, 0xbf, 0xb1, 0x4a, 0xb8, 0x60, 0xa4, 0x96,
+	0xa4, 0xd4, 0xac, 0xfd, 0x6b, 0x13, 0x5c, 0xe9, 0x01, 0xd4, 0x8e, 0x9e, 0x82, 0xb1, 0x7a, 0xae,
+	0xae, 0x7d, 0xdd, 0xe8, 0xe8, 0x2b, 0x2f, 0x76, 0x2f, 0xab, 0xe6, 0x55, 0xab, 0x83, 0xa9, 0x65,
+	0xaf, 0x4d, 0x11, 0xbe, 0x00, 0x67, 0x70, 0xca, 0xd8, 0xcc, 0xa2, 0x2d, 0x9a, 0xb2, 0xc7, 0x94,
+	0xa3, 0xb2, 0x77, 0xb2, 0xec, 0x9d, 0x55, 0x0d, 0xa8, 0xde, 0x4e, 0x65, 0x7e, 0xed, 0x97, 0x8b,
+	0xed, 0xc4, 0x39, 0x1a, 0x12, 0x81, 0xc3, 0x58, 0xb4, 0x7e, 0xef, 0x97, 0xcf, 0xb7, 0x50, 0xd8,
+	0x5c, 0xb2, 0xdb, 0x11, 0xf6, 0xfb, 0x6f, 0x65, 0xc3, 0x3b, 0x2d, 0x8b, 0x99, 0x9a, 0xfd, 0xc9,
+	0x04, 0x97, 0x7a, 0x5a, 0x87, 0xf7, 0xc1, 0xf8, 0x0e, 0x6a, 0x92, 0x3a, 0x12, 0x94, 0xf1, 0x4d,
+	0xde, 0x40, 0x0c, 0xeb, 0x30, 0xa6, 0x1c, 0x75, 0xf1, 0x9c, 0xf4, 0xe2, 0x39, 0xfa, 0xe2, 0x39,
+	0x2b, 0x94, 0x64, 0xf3, 0x9e, 0x3d, 0x26, 0x3e, 0x4a, 0x79, 0x30, 0x06, 0x63, 0x54, 0x34, 0x30,
+	0x53, 0x32, 0xbc, 0x68, 0x4e, 0x0f, 0xcc, 0x8c, 0x56, 0xd6, 0x4f, 0x16, 0xaa, 0xb3, 0x91, 0x4a,
+	0x49, 0x61, 0xbe, 0x16, 0x09, 0xd6, 0xd2, 0x5d, 0x47, 0xe9, 0x71, 0xbd, 0x44, 0xc1, 0xf8, 0xbf,
+	0x30, 0x38, 0x0e, 0x06, 0x9e, 0xe1, 0x96, 0x1c, 0x62, 0xc4, 0x4b, 0x8f, 0x70, 0x0d, 0x0c, 0xed,
+	0xa0, 0x66, 0x82, 0xf5, 0x3f, 0xe0, 0xf6, 0x6f, 0x48, 0xea, 0x7a, 0x8a, 0xbd, 0x64, 0xde, 0x34,
+	0xec, 0x97, 0x06, 0x28, 0x75, 0x47, 0xc2, 0x22, 0x38, 0x85, 0xea, 0x75, 0x86, 0x39, 0xd7, 0xfd,
+	0xb3, 0x47, 0x08, 0xc1, 0x60, 0x84, 0x42, 0x65, 0x61, 0xc4, 0x93, 0x67, 0xb8, 0x08, 0x86, 0x54,
+	0xe0, 0x03, 0xfd, 0x05, 0xae, 0xd0, 0x95, 0x3f, 0x26, 0x18, 0x92, 0xb7, 0x1c, 0xbe, 0x31, 0xc0,
+	0xb0, 0xda, 0x1a, 0x78, 0xad, 0xe3, 0x50, 0xff, 0xaf, 0x68, 0x69, 0xa6, 0x37, 0x50, 0xed, 0x88,
+	0x5d, 0x79, 0xf5, 0xf9, 0xc7, 0x3b, 0x73, 0x0e, 0xce, 0xba, 0xeb, 0x19, 0x63, 0xde, 0xa7, 0x2c,
+	0x76, 0xbb, 0x7f, 0x1c, 0xe0, 0x57, 0x03, 0x14, 0xbb, 0x2d, 0x1f, 0xbc, 0xd5, 0xbd, 0x75, 0x8f,
+	0xcd, 0x2e, 0x2d, 0x9d, 0x84, 0xaa, 0xe7, 0xb8, 0x2b, 0xe7, 0xb8, 0x03, 0x97, 0xfb, 0x99, 0xc3,
+	0x57, 0x6a, 0xf3, 0x72, 0x97, 0xe6, 0xf3, 0x1b, 0x5d, 0xdd, 0xd8, 0x3d, 0xb0, 0x8c, 0xbd, 0x03,
+	0xcb, 0xf8, 0x7e, 0x60, 0x19, 0x6f, 0x0f, 0xad, 0xc2, 0xde, 0xa1, 0x55, 0xf8, 0x72, 0x68, 0x15,
+	0x9e, 0x2c, 0x06, 0x44, 0x34, 0x92, 0x9a, 0xe3, 0xd3, 0xb0, 0x7b, 0x8f, 0xe7, 0xb9, 0x2e, 0xa2,
+	0x15, 0x63, 0x5e, 0x1b, 0x96, 0x9f, 0x80, 0xeb, 0x7f, 0x03, 0x00, 0x00, 0xff, 0xff, 0x75, 0xbb,
+	0x84, 0x4f, 0x57, 0x06, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -302,9 +423,9 @@ const _ = grpc.SupportPackageIsVersion4
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	// CurrentPeriodDistribution queries amount of tokens to be distributed in the
-	// current period.
-	CurrentPeriodDistribution(ctx context.Context, in *QueryCurrentPeriodDistributionRequest, opts ...grpc.CallOption) (*QueryCurrentPeriodDistributionResponse, error)
+	// CurrentEpochDistribution queries amount of tokens to be distributed in the
+	// current epoch.
+	CurrentEpochDistribution(ctx context.Context, in *QueryCurrentEpochDistributionRequest, opts ...grpc.CallOption) (*QueryCurrentEpochDistributionResponse, error)
 }
 
 type queryClient struct {
@@ -324,9 +445,9 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
-func (c *queryClient) CurrentPeriodDistribution(ctx context.Context, in *QueryCurrentPeriodDistributionRequest, opts ...grpc.CallOption) (*QueryCurrentPeriodDistributionResponse, error) {
-	out := new(QueryCurrentPeriodDistributionResponse)
-	err := c.cc.Invoke(ctx, "/galactica.inflation.Query/CurrentPeriodDistribution", in, out, opts...)
+func (c *queryClient) CurrentEpochDistribution(ctx context.Context, in *QueryCurrentEpochDistributionRequest, opts ...grpc.CallOption) (*QueryCurrentEpochDistributionResponse, error) {
+	out := new(QueryCurrentEpochDistributionResponse)
+	err := c.cc.Invoke(ctx, "/galactica.inflation.Query/CurrentEpochDistribution", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -337,9 +458,9 @@ func (c *queryClient) CurrentPeriodDistribution(ctx context.Context, in *QueryCu
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
-	// CurrentPeriodDistribution queries amount of tokens to be distributed in the
-	// current period.
-	CurrentPeriodDistribution(context.Context, *QueryCurrentPeriodDistributionRequest) (*QueryCurrentPeriodDistributionResponse, error)
+	// CurrentEpochDistribution queries amount of tokens to be distributed in the
+	// current epoch.
+	CurrentEpochDistribution(context.Context, *QueryCurrentEpochDistributionRequest) (*QueryCurrentEpochDistributionResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -349,8 +470,8 @@ type UnimplementedQueryServer struct {
 func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
 }
-func (*UnimplementedQueryServer) CurrentPeriodDistribution(ctx context.Context, req *QueryCurrentPeriodDistributionRequest) (*QueryCurrentPeriodDistributionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CurrentPeriodDistribution not implemented")
+func (*UnimplementedQueryServer) CurrentEpochDistribution(ctx context.Context, req *QueryCurrentEpochDistributionRequest) (*QueryCurrentEpochDistributionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CurrentEpochDistribution not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -375,20 +496,20 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_CurrentPeriodDistribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryCurrentPeriodDistributionRequest)
+func _Query_CurrentEpochDistribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryCurrentEpochDistributionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).CurrentPeriodDistribution(ctx, in)
+		return srv.(QueryServer).CurrentEpochDistribution(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/galactica.inflation.Query/CurrentPeriodDistribution",
+		FullMethod: "/galactica.inflation.Query/CurrentEpochDistribution",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).CurrentPeriodDistribution(ctx, req.(*QueryCurrentPeriodDistributionRequest))
+		return srv.(QueryServer).CurrentEpochDistribution(ctx, req.(*QueryCurrentEpochDistributionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -403,8 +524,8 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Params_Handler,
 		},
 		{
-			MethodName: "CurrentPeriodDistribution",
-			Handler:    _Query_CurrentPeriodDistribution_Handler,
+			MethodName: "CurrentEpochDistribution",
+			Handler:    _Query_CurrentEpochDistribution_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -467,7 +588,7 @@ func (m *QueryParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryCurrentPeriodDistributionRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryCurrentEpochDistributionRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -477,12 +598,12 @@ func (m *QueryCurrentPeriodDistributionRequest) Marshal() (dAtA []byte, err erro
 	return dAtA[:n], nil
 }
 
-func (m *QueryCurrentPeriodDistributionRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryCurrentEpochDistributionRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryCurrentPeriodDistributionRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryCurrentEpochDistributionRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -490,7 +611,7 @@ func (m *QueryCurrentPeriodDistributionRequest) MarshalToSizedBuffer(dAtA []byte
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryCurrentPeriodDistributionResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryCurrentEpochDistributionResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -500,12 +621,12 @@ func (m *QueryCurrentPeriodDistributionResponse) Marshal() (dAtA []byte, err err
 	return dAtA[:n], nil
 }
 
-func (m *QueryCurrentPeriodDistributionResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryCurrentEpochDistributionResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryCurrentPeriodDistributionResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryCurrentEpochDistributionResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -517,21 +638,118 @@ func (m *QueryCurrentPeriodDistributionResponse) MarshalToSizedBuffer(dAtA []byt
 	i -= n2
 	i = encodeVarintQuery(dAtA, i, uint64(n2))
 	i--
-	dAtA[i] = 0x1a
-	if m.EpochsPerPeriod != 0 {
-		i = encodeVarintQuery(dAtA, i, uint64(m.EpochsPerPeriod))
-		i--
-		dAtA[i] = 0x10
-	}
-	if m.Amount != nil {
-		{
-			size, err := m.Amount.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintQuery(dAtA, i, uint64(size))
+	dAtA[i] = 0x12
+	{
+		size, err := m.Distribution.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
 		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *CurrentEpochInflationDistribution) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CurrentEpochInflationDistribution) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CurrentEpochInflationDistribution) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.OtherShares) > 0 {
+		for k := range m.OtherShares {
+			v := m.OtherShares[k]
+			baseI := i
+			{
+				size, err := (&v).MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+			i -= len(k)
+			copy(dAtA[i:], k)
+			i = encodeVarintQuery(dAtA, i, uint64(len(k)))
+			i--
+			dAtA[i] = 0xa
+			i = encodeVarintQuery(dAtA, i, uint64(baseI-i))
+			i--
+			dAtA[i] = 0x12
+		}
+	}
+	{
+		size, err := m.ValidatorsShare.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *CurrentEpochInflationShare) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CurrentEpochInflationShare) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CurrentEpochInflationShare) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Share.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x1a
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Address) > 0 {
+		i -= len(m.Address)
+		copy(dAtA[i:], m.Address)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Address)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -569,7 +787,7 @@ func (m *QueryParamsResponse) Size() (n int) {
 	return n
 }
 
-func (m *QueryCurrentPeriodDistributionRequest) Size() (n int) {
+func (m *QueryCurrentEpochDistributionRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -578,20 +796,54 @@ func (m *QueryCurrentPeriodDistributionRequest) Size() (n int) {
 	return n
 }
 
-func (m *QueryCurrentPeriodDistributionResponse) Size() (n int) {
+func (m *QueryCurrentEpochDistributionResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Amount != nil {
-		l = m.Amount.Size()
+	l = m.Distribution.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	l = github_com_cosmos_gogoproto_types.SizeOfStdDuration(m.EpochDuration)
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *CurrentEpochInflationDistribution) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.ValidatorsShare.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	if len(m.OtherShares) > 0 {
+		for k, v := range m.OtherShares {
+			_ = k
+			_ = v
+			l = v.Size()
+			mapEntrySize := 1 + len(k) + sovQuery(uint64(len(k))) + 1 + l + sovQuery(uint64(l))
+			n += mapEntrySize + 1 + sovQuery(uint64(mapEntrySize))
+		}
+	}
+	return n
+}
+
+func (m *CurrentEpochInflationShare) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Address)
+	if l > 0 {
 		n += 1 + l + sovQuery(uint64(l))
 	}
-	if m.EpochsPerPeriod != 0 {
-		n += 1 + sovQuery(uint64(m.EpochsPerPeriod))
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
 	}
-	l = github_com_cosmos_gogoproto_types.SizeOfStdDuration(m.EpochDuration)
+	l = m.Share.Size()
 	n += 1 + l + sovQuery(uint64(l))
 	return n
 }
@@ -735,7 +987,7 @@ func (m *QueryParamsResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryCurrentPeriodDistributionRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryCurrentEpochDistributionRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -758,10 +1010,10 @@ func (m *QueryCurrentPeriodDistributionRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryCurrentPeriodDistributionRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryCurrentEpochDistributionRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryCurrentPeriodDistributionRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryCurrentEpochDistributionRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
@@ -785,7 +1037,7 @@ func (m *QueryCurrentPeriodDistributionRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryCurrentPeriodDistributionResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryCurrentEpochDistributionResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -808,15 +1060,15 @@ func (m *QueryCurrentPeriodDistributionResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryCurrentPeriodDistributionResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryCurrentEpochDistributionResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryCurrentPeriodDistributionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryCurrentEpochDistributionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Amount", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Distribution", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -843,33 +1095,11 @@ func (m *QueryCurrentPeriodDistributionResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Amount == nil {
-				m.Amount = &types.DecCoin{}
-			}
-			if err := m.Amount.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.Distribution.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
 		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field EpochsPerPeriod", wireType)
-			}
-			m.EpochsPerPeriod = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.EpochsPerPeriod |= int64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field EpochDuration", wireType)
 			}
@@ -899,6 +1129,365 @@ func (m *QueryCurrentPeriodDistributionResponse) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if err := github_com_cosmos_gogoproto_types.StdDurationUnmarshal(&m.EpochDuration, dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *CurrentEpochInflationDistribution) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CurrentEpochInflationDistribution: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CurrentEpochInflationDistribution: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ValidatorsShare", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.ValidatorsShare.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OtherShares", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.OtherShares == nil {
+				m.OtherShares = make(map[string]CurrentEpochInflationShare)
+			}
+			var mapkey string
+			mapvalue := &CurrentEpochInflationShare{}
+			for iNdEx < postIndex {
+				entryPreIndex := iNdEx
+				var wire uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowQuery
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					wire |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				fieldNum := int32(wire >> 3)
+				if fieldNum == 1 {
+					var stringLenmapkey uint64
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return ErrIntOverflowQuery
+						}
+						if iNdEx >= l {
+							return io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						stringLenmapkey |= uint64(b&0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					intStringLenmapkey := int(stringLenmapkey)
+					if intStringLenmapkey < 0 {
+						return ErrInvalidLengthQuery
+					}
+					postStringIndexmapkey := iNdEx + intStringLenmapkey
+					if postStringIndexmapkey < 0 {
+						return ErrInvalidLengthQuery
+					}
+					if postStringIndexmapkey > l {
+						return io.ErrUnexpectedEOF
+					}
+					mapkey = string(dAtA[iNdEx:postStringIndexmapkey])
+					iNdEx = postStringIndexmapkey
+				} else if fieldNum == 2 {
+					var mapmsglen int
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return ErrIntOverflowQuery
+						}
+						if iNdEx >= l {
+							return io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						mapmsglen |= int(b&0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					if mapmsglen < 0 {
+						return ErrInvalidLengthQuery
+					}
+					postmsgIndex := iNdEx + mapmsglen
+					if postmsgIndex < 0 {
+						return ErrInvalidLengthQuery
+					}
+					if postmsgIndex > l {
+						return io.ErrUnexpectedEOF
+					}
+					mapvalue = &CurrentEpochInflationShare{}
+					if err := mapvalue.Unmarshal(dAtA[iNdEx:postmsgIndex]); err != nil {
+						return err
+					}
+					iNdEx = postmsgIndex
+				} else {
+					iNdEx = entryPreIndex
+					skippy, err := skipQuery(dAtA[iNdEx:])
+					if err != nil {
+						return err
+					}
+					if (skippy < 0) || (iNdEx+skippy) < 0 {
+						return ErrInvalidLengthQuery
+					}
+					if (iNdEx + skippy) > postIndex {
+						return io.ErrUnexpectedEOF
+					}
+					iNdEx += skippy
+				}
+			}
+			m.OtherShares[mapkey] = *mapvalue
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *CurrentEpochInflationShare) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CurrentEpochInflationShare: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CurrentEpochInflationShare: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Address = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Share", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Share.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

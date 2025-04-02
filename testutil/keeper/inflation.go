@@ -1,4 +1,4 @@
-// Copyright 2024 Galactica Network
+// Copyright 2025 Galactica Network
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,12 +29,20 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	"github.com/stretchr/testify/require"
+	"go.uber.org/mock/gomock"
 
 	"github.com/Galactica-corp/galactica/x/inflation/keeper"
+	"github.com/Galactica-corp/galactica/x/inflation/testutil"
 	"github.com/Galactica-corp/galactica/x/inflation/types"
 )
 
-func InflationKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
+func InflationKeeper(t testing.TB) (
+	keeper.Keeper,
+	*testutil.MockBankKeeper,
+	*testutil.MockDistributionKeeper,
+	*testutil.MockEpochsKeeper,
+	sdk.Context,
+) {
 	storeKey := sdktypes.NewKVStoreKey(types.StoreKey)
 	memStoreKey := storetypes.NewMemoryStoreKey(types.MemStoreKey)
 	logger := log.NewNopLogger()
@@ -49,13 +57,20 @@ func InflationKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
 	cdc := codec.NewProtoCodec(registry)
 	authority := authtypes.NewModuleAddress(govtypes.ModuleName)
 
+	ctrl := gomock.NewController(t)
+
+	bankKeeper := testutil.NewMockBankKeeper(ctrl)
+	distributionKeeper := testutil.NewMockDistributionKeeper(ctrl)
+	epochsKeeper := testutil.NewMockEpochsKeeper(ctrl)
+
 	k := keeper.NewKeeper(
 		cdc,
 		storeKey,
 		memStoreKey,
 		authority.String(),
-		nil,
-		nil,
+		bankKeeper,
+		distributionKeeper,
+		epochsKeeper,
 	)
 
 	ctx := sdk.NewContext(stateStore, tmproto.Header{}, false, log.NewNopLogger())
@@ -63,5 +78,5 @@ func InflationKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
 	// Initialize params
 	k.SetParams(ctx, types.DefaultParams())
 
-	return k, ctx
+	return k, bankKeeper, distributionKeeper, epochsKeeper, ctx
 }

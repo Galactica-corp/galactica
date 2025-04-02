@@ -11,5 +11,5 @@ option go_package = "github.com/Galactica-corp/galactica/x/reputation/types";
 message GenesisState {
   // params defines all the parameters of the module.
   Params params = 1
-  [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  [ (gogoproto.nullable) = false, (amino.dont_omitempty) = true ];
 }
