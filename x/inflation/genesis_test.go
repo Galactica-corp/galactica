@@ -1,4 +1,4 @@
-// Copyright 2024 Galactica Network
+// Copyright 2025 Galactica Network
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ func TestGenesis(t *testing.T) {
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
-	k, ctx := keepertest.InflationKeeper(t)
+	k, _, _, _, ctx := keepertest.InflationKeeper(t)
 	inflation.InitGenesis(ctx, k, genesisState)
 	got := inflation.ExportGenesis(ctx, k)
 	require.NotNil(t, got)

@@ -43,6 +43,14 @@ To compile and prepare the **Galactica** project for deployment, ensure you have
 
 Ensure the installation path is included in your system's PATH environment variable to run Galactica from any terminal.
 
+### Generate Protobuf files
+
+To generate Protobuf files, run the following Make target:
+
+```shell
+make proto-gen
+```
+
 ## galactica-testnet-v1
 
 After successfully building and installing the Galactica binary, the next step is to connect to the Galactica testnet v1. This involves generating a key, setting up your node's home directory, and ultimately submitting a genesis transaction (gentx) to become a validator. Follow these steps to join the network:

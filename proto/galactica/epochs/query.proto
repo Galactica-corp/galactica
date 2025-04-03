@@ -13,18 +13,18 @@ option go_package = "github.com/Galactica-corp/galactica/x/epochs/types";
 
 // Query defines the gRPC querier service.
 service Query {
-  
+
   // Parameters queries the parameters of the module.
-  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/Galactica-corp/galactica/epochs/params";
-  
   }
   // EpochInfos provide running epochInfos
   rpc EpochInfos(QueryEpochsInfoRequest) returns (QueryEpochsInfoResponse) {
     option (google.api.http).get = "/evmos/epochs/v1/epochs";
   }
   // CurrentEpoch provide current epoch of specified identifier
-  rpc CurrentEpoch(QueryCurrentEpochRequest) returns (QueryCurrentEpochResponse) {
+  rpc CurrentEpoch(QueryCurrentEpochRequest)
+      returns (QueryCurrentEpochResponse) {
     option (google.api.http).get = "/evmos/epochs/v1/current_epoch";
   }
 }
@@ -35,7 +35,8 @@ message QueryParamsRequest {}
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
   // params holds all the parameters of this module.
-  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  Params params = 1
+  [ (gogoproto.nullable) = false, (amino.dont_omitempty) = true ];
 }
 
 // QueryEpochsInfoRequest is the request type for the Query/EpochInfos RPC
@@ -49,7 +50,7 @@ message QueryEpochsInfoRequest {
 // method.
 message QueryEpochsInfoResponse {
   // epochs is a slice of all EpochInfos
-  repeated EpochInfo epochs = 1 [(gogoproto.nullable) = false];
+  repeated EpochInfo epochs = 1 [ (gogoproto.nullable) = false ];
   // pagination defines an optional pagination for the request.
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }

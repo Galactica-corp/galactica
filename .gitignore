@@ -4,8 +4,10 @@ release/
 vendor/
 .vscode/
 .DS_Store
-build/
+/build/
 .galactica/
+go.work
+go.work.sum
 
 # Make sure that each team member have the same LICENSING/COPYRIGHT settings.
 .idea/*

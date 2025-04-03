@@ -1,4 +1,4 @@
-// Copyright 2024 Galactica Network
+// Copyright 2025 Galactica Network
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import (
 )
 
 func TestGetParams(t *testing.T) {
-	k, ctx := keepertest.InflationKeeper(t)
+	k, _, _, _, ctx := keepertest.InflationKeeper(t)
 	params := types.DefaultParams()
 
 	require.NoError(t, k.SetParams(ctx, params))

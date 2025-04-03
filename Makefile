@@ -114,6 +114,10 @@ endif
 ###                                  Build                                  ###
 ###############################################################################
 
+include scripts/build/protobuf.mk
+include scripts/build/localnet.mk
+include scripts/build/build.mk
+
 BUILD_TARGETS := build install
 
 build: BUILD_ARGS=-o $(BUILDDIR)/

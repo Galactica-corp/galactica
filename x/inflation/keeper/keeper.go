@@ -19,8 +19,8 @@ package keeper
 import (
 	"fmt"
 
-	storetypes "cosmossdk.io/store/types"
 	"cosmossdk.io/log"
+	storetypes "cosmossdk.io/store/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
@@ -37,8 +37,9 @@ type (
 		// should be the x/gov module account.
 		authority string
 
-		bankKeeper  types.BankKeeper
-		distrKeeper types.DistrKeeper
+		bankKeeper   types.BankKeeper
+		distrKeeper  types.DistrKeeper
+		epochsKeeper types.EpochsKeeper
 	}
 )
 
@@ -50,6 +51,7 @@ func NewKeeper(
 
 	bankKeeper types.BankKeeper,
 	distrKeeper types.DistrKeeper,
+	epochsKeeper types.EpochsKeeper,
 ) Keeper {
 	if _, err := sdk.AccAddressFromBech32(authority); err != nil {
 		panic(fmt.Sprintf("invalid authority address: %s", authority))
@@ -61,8 +63,9 @@ func NewKeeper(
 		memKey:    memKey,
 		authority: authority,
 
-		bankKeeper:  bankKeeper,
-		distrKeeper: distrKeeper,
+		bankKeeper:   bankKeeper,
+		distrKeeper:  distrKeeper,
+		epochsKeeper: epochsKeeper,
 	}
 }
 

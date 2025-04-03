@@ -10,6 +10,4 @@ option go_package = "github.com/Galactica-corp/galactica/x/epochs/types";
 message Params {
   option (amino.name) = "galactica/x/epochs/Params";
   option (gogoproto.equal) = true;
-
-  
 }

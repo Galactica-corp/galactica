@@ -2,9 +2,12 @@ syntax = "proto3";
 package galactica.inflation;
 
 import "amino/amino.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "cosmos/base/v1beta1/coin.proto";
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
-import "cosmos/base/query/v1beta1/pagination.proto";
+import "google/protobuf/duration.proto";
+
 import "galactica/inflation/params.proto";
 
 option go_package = "github.com/Galactica-corp/galactica/x/inflation/types";
@@ -15,6 +18,14 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/Galactica-corp/galactica/inflation/params";
   }
+
+  // CurrentEpochDistribution queries amount of tokens to be distributed in the
+  // current epoch.
+  rpc CurrentEpochDistribution(QueryCurrentEpochDistributionRequest)
+      returns (QueryCurrentEpochDistributionResponse) {
+    option (google.api.http).get =
+        "/Galactica-corp/galactica/inflation/current-epoch-distribution";
+  }
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -23,8 +34,47 @@ message QueryParamsRequest {}
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
   // params holds all the parameters of this module.
-  Params params = 1 [
+  Params params = 1
+  [ (gogoproto.nullable) = false, (amino.dont_omitempty) = true ];
+}
+
+// QueryCurrentEpochDistributionRequest is request type for
+// Query/CurrentEpochDistribution RPC method.
+message QueryCurrentEpochDistributionRequest {}
+
+// QueryCurrentEpochDistributionResponse is response type for
+// Query/CurrentEpochDistribution RPC method.
+message QueryCurrentEpochDistributionResponse {
+  // Distribution of minted tokens for the current epoch.
+  CurrentEpochInflationDistribution distribution = 1
+  [ (gogoproto.nullable) = false ];
+  // Duration of one epoch.
+  google.protobuf.Duration epoch_duration = 2 [
     (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
+    (gogoproto.stdduration) = true,
+    (gogoproto.jsontag) = "epoch_duration,omitempty",
+    (gogoproto.moretags) = "yaml:\"epoch_duration\""
   ];
+}
+
+// CurrentEpochInflationDistribution is a distribution of inflation for the
+// current epoch.
+message CurrentEpochInflationDistribution {
+  // Amount of coins to be distributed to the validators.
+  cosmos.base.v1beta1.Coin validators_share = 1
+  [ (gogoproto.nullable) = false ];
+  // Distribution of shares for other roles. Role name is used as a key.
+  map<string, CurrentEpochInflationShare> other_shares = 2
+  [ (gogoproto.nullable) = false ];
+}
+
+// CurrentEpochInflationShare defines amount of tokens to be distributed in the
+// current epoch for various roles other than validators.
+message CurrentEpochInflationShare {
+  // Address to which the inflation share would be distributed.
+  string address = 1;
+  // Name is an identifier of a role that would receive the inflation share.
+  string name = 2;
+  // Share is an amount of coin to be distributed to this role.
+  cosmos.base.v1beta1.Coin share = 3 [ (gogoproto.nullable) = false ];
 }
