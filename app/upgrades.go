@@ -27,23 +27,15 @@ import (
 	"github.com/Galactica-corp/galactica/app/upgrades/v0_1_2"
 )
 
+const (
+	planName_0_2_2 = "0.2.2" // for andromeda
+	planName_0_2_4 = "0.2.4"
+	planName_0_2_7 = "0.2.7" // solve 0.1.2 update problem on andromeda
+)
+
 // applyUpgrade_v0_1_2 checks and applies the upgrade plan if necessary.
 func (app *App) applyUpgrade_v0_1_2() {
-	latestBlock := app.LastBlockHeight()
-	logger := app.Logger().With("upgrade", v0_1_2.UpgradeName)
-
-	ctx, err := app.CreateQueryContext(latestBlock, false)
-	if err != nil {
-		logger.Error("Failed to create query context with block", "error", err, "block", latestBlock)
-		return
-	}
-
-	plan, err := app.UpgradeKeeper.ReadUpgradeInfoFromDisk()
-	if err != nil || plan.Height < v0_1_2.UpgradeBlockHeight {
-		logger.Info("Applying upgrade plan", "info", plan.Info)
-		app.UpgradeKeeper.SetUpgradeHandler(v0_1_2.UpgradeName, app.upgradeHandler_v0_1_2())
-		app.UpgradeKeeper.ApplyUpgrade(ctx, v0_1_2.Plan)
-	}
+	app.UpgradeKeeper.SetUpgradeHandler(v0_1_2.UpgradeName, app.upgradeHandler_v0_1_2())
 }
 
 // upgradeHandler_v0_1_2 returns a handler function for processing the upgrade.
@@ -100,4 +92,46 @@ func (app *App) updateValidatorPowerIndex(ctx context.Context, validator staking
 	}
 
 	return nil
+}
+
+func (app *App) applyUpgrade_v0_2_4() {
+	app.UpgradeKeeper.SetUpgradeHandler(planName_0_2_4, func(ctx context.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+		logger := sdk.UnwrapSDKContext(ctx).Logger()
+
+		logger.Info("Starting module migrations...")
+
+		vm, err := app.ModuleManager.RunMigrations(ctx, app.Configurator(), fromVM)
+		if err != nil {
+			return vm, err
+		}
+
+		logger.Info("Upgrade " + plan.Name + " complete")
+
+		return vm, err
+	})
+}
+
+// for andromeda
+func (app *App) applyUpgrade_v0_2_2() {
+	app.UpgradeKeeper.SetUpgradeHandler(planName_0_2_2, func(ctx context.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+		logger := sdk.UnwrapSDKContext(ctx).Logger()
+
+		logger.Info("Starting module migrations...")
+
+		vm, err := app.ModuleManager.RunMigrations(ctx, app.Configurator(), fromVM)
+		if err != nil {
+			return vm, err
+		}
+
+		logger.Info("Upgrade " + plan.Name + " complete")
+
+		return vm, err
+	})
+}
+
+func (app *App) applyUpgrade_v0_2_7() {
+	app.UpgradeKeeper.SetUpgradeHandler(planName_0_2_7, func(ctx context.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+		sdk.UnwrapSDKContext(ctx).Logger().Info("Upgrade " + plan.Name + " complete")
+		return fromVM, nil
+	})
 }

@@ -23,7 +23,7 @@ import (
 	"github.com/Galactica-corp/galactica/app"
 	"github.com/Galactica-corp/galactica/cmd/galacticad/cmd"
 )
-
+// v1
 func main() {
 	rootCmd, _ := cmd.NewRootCmd()
 	if err := svrcmd.Execute(rootCmd, "", app.DefaultNodeHome); err != nil {

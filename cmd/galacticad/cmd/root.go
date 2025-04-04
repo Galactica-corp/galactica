@@ -65,18 +65,21 @@ import (
 
 	// ethertypes "github.com/evmos/ethermint/types"
 
-	"github.com/Galactica-corp/galactica/app"
-	authtxconfig "github.com/cosmos/cosmos-sdk/x/auth/tx/config"
-	txsign "github.com/cosmos/cosmos-sdk/types/tx/signing"
-	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
 	"slices"
+
+	confixcmd "cosmossdk.io/tools/confix/cmd"
+	"github.com/Galactica-corp/galactica/app"
 	appparams "github.com/Galactica-corp/galactica/app/params"
 	"github.com/Galactica-corp/galactica/cmd/galacticad/cmd/ethkeys"
 	dbm "github.com/cosmos/cosmos-db"
+	"github.com/cosmos/cosmos-sdk/client/pruning"
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
 	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
+	txsign "github.com/cosmos/cosmos-sdk/types/tx/signing"
+	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
+	authtxconfig "github.com/cosmos/cosmos-sdk/x/auth/tx/config"
+	memiavlcfg "github.com/crypto-org-chain/cronos/store/config"
 	evmenc "github.com/evmos/ethermint/encoding"
-	confixcmd "cosmossdk.io/tools/confix/cmd"
 )
 
 // NewRootCmd creates a new root command for a Cosmos SDK application
@@ -229,6 +232,7 @@ func initRootCmd(
 
 	rootCmd.AddCommand(
 		snapshot.Cmd(a.newApp),
+		pruning.Cmd(a.newApp, app.DefaultNodeHome),
 	)
 
 	rootCmd, err := srvflags.AddGlobalFlags(rootCmd)
@@ -431,6 +435,9 @@ func initAppConfig() (string, interface{}) {
 
 	type CustomAppConfig struct {
 		ethermintconfig.Config
+
+		MemIAVL   memiavlcfg.MemIAVLConfig `mapstructure:"memiavl"`
+		VersionDB VersionDBConfig          `mapstructure:"versiondb"`
 	}
 
 	// Optionally allow the chain developer to overwrite the SDK's default
@@ -452,7 +459,9 @@ func initAppConfig() (string, interface{}) {
 	srvCfg.JSONRPC.API = ethermintconfig.GetAPINamespaces()
 
 	customAppConfig := CustomAppConfig{
-		Config: *srvCfg,
+		Config:    *srvCfg,
+		MemIAVL:   memiavlcfg.DefaultMemIAVLConfig(),
+		VersionDB: DefaultVersionDBConfig(),
 	}
 	customAppTemplate := serverconfig.DefaultConfigTemplate + ethermintconfig.DefaultConfigTemplate
 
