@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"math/big"
 
-	cmn "github.com/cosmos/evm/precompiles/common"
-	"github.com/cosmos/evm/precompiles/distribution"
-	testutiltx "github.com/cosmos/evm/testutil/tx"
-	"github.com/cosmos/evm/x/vm/core/vm"
+	cmn "github.com/Galactica-corp/galactica/precompiles/common"
+	"github.com/Galactica-corp/galactica/precompiles/distribution"
+	testutiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
 
 	"cosmossdk.io/math"
 

@@ -6,7 +6,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 
-	ethutils "github.com/cosmos/evm/utils/eth"
+	ethutils "github.com/Galactica-corp/galactica/utils/eth"
 )
 
 // GetChainID returns the chain id field from the AccessListTx

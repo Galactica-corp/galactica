@@ -5,10 +5,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	testkeyring "github.com/cosmos/evm/testutil/integration/os/keyring"
-	"github.com/cosmos/evm/testutil/integration/os/network"
-	"github.com/cosmos/evm/testutil/integration/os/utils"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	testkeyring "github.com/Galactica-corp/galactica/testutil/integration/os/keyring"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/network"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/utils"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	"cosmossdk.io/math"
 

@@ -6,10 +6,10 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/signer/core/apitypes"
 
-	cryptocodec "github.com/cosmos/evm/crypto/codec"
-	"github.com/cosmos/evm/ethereum/eip712"
-	exampleapp "github.com/cosmos/evm/evmd"
-	"github.com/cosmos/evm/types"
+	cryptocodec "github.com/Galactica-corp/galactica/crypto/codec"
+	"github.com/Galactica-corp/galactica/ethereum/eip712"
+	exampleapp "github.com/Galactica-corp/galactica/galacticad"
+	"github.com/Galactica-corp/galactica/types"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"

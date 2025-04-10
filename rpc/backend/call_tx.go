@@ -14,9 +14,9 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	rpctypes "github.com/cosmos/evm/rpc/types"
-	"github.com/cosmos/evm/x/vm/core/vm"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	rpctypes "github.com/Galactica-corp/galactica/rpc/types"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	errorsmod "cosmossdk.io/errors"
 

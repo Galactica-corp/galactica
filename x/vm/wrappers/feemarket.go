@@ -3,8 +3,8 @@ package wrappers
 import (
 	"math/big"
 
-	feemarkettypes "github.com/cosmos/evm/x/feemarket/types"
-	"github.com/cosmos/evm/x/vm/types"
+	feemarkettypes "github.com/Galactica-corp/galactica/x/feemarket/types"
+	"github.com/Galactica-corp/galactica/x/vm/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

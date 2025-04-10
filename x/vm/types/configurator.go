@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"slices"
 
-	"github.com/cosmos/evm/x/vm/core/vm"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
 )
 
 // EVMConfigurator allows to extend x/evm module configurations. The configurator modifies

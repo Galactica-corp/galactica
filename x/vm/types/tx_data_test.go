@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	ethutils "github.com/cosmos/evm/utils/eth"
+	ethutils "github.com/Galactica-corp/galactica/utils/eth"
 
 	sdkmath "cosmossdk.io/math"
 )

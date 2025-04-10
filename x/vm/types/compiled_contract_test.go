@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 )
 
 func TestHardhatCompiledContract(t *testing.T) {

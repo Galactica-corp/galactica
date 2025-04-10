@@ -6,12 +6,12 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/cosmos/evm/precompiles/bank"
-	"github.com/cosmos/evm/testutil/integration/os/factory"
-	"github.com/cosmos/evm/testutil/integration/os/grpc"
-	testkeyring "github.com/cosmos/evm/testutil/integration/os/keyring"
-	"github.com/cosmos/evm/testutil/integration/os/network"
-	integrationutils "github.com/cosmos/evm/testutil/integration/os/utils"
+	"github.com/Galactica-corp/galactica/precompiles/bank"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/factory"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/grpc"
+	testkeyring "github.com/Galactica-corp/galactica/testutil/integration/os/keyring"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/network"
+	integrationutils "github.com/Galactica-corp/galactica/testutil/integration/os/utils"
 
 	"cosmossdk.io/math"
 

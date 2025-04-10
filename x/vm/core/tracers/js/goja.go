@@ -25,9 +25,9 @@ import (
 
 	"github.com/dop251/goja"
 
-	"github.com/cosmos/evm/x/vm/core/tracers"
-	jsassets "github.com/cosmos/evm/x/vm/core/tracers/js/internal/tracers"
-	"github.com/cosmos/evm/x/vm/core/vm"
+	"github.com/Galactica-corp/galactica/x/vm/core/tracers"
+	jsassets "github.com/Galactica-corp/galactica/x/vm/core/tracers/js/internal/tracers"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"

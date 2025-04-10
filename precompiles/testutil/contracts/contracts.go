@@ -9,11 +9,11 @@ import (
 
 	abci "github.com/cometbft/cometbft/abci/types"
 
-	"github.com/cosmos/evm/crypto/ethsecp256k1"
-	exampleapp "github.com/cosmos/evm/evmd"
-	chainutil "github.com/cosmos/evm/evmd/testutil"
-	precompiletestutil "github.com/cosmos/evm/precompiles/testutil"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	"github.com/Galactica-corp/galactica/crypto/ethsecp256k1"
+	exampleapp "github.com/Galactica-corp/galactica/galacticad"
+	chainutil "github.com/Galactica-corp/galactica/galacticad/testutil"
+	precompiletestutil "github.com/Galactica-corp/galactica/precompiles/testutil"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

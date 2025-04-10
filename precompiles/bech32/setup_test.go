@@ -5,9 +5,9 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/cosmos/evm/precompiles/bech32"
-	testkeyring "github.com/cosmos/evm/testutil/integration/os/keyring"
-	"github.com/cosmos/evm/testutil/integration/os/network"
+	"github.com/Galactica-corp/galactica/precompiles/bech32"
+	testkeyring "github.com/Galactica-corp/galactica/testutil/integration/os/keyring"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/network"
 )
 
 var s *PrecompileTestSuite

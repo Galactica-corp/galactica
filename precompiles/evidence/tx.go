@@ -4,7 +4,7 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/cosmos/evm/x/vm/core/vm"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
 
 	evidencekeeper "cosmossdk.io/x/evidence/keeper"
 

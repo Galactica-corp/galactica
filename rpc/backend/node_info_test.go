@@ -11,11 +11,11 @@ import (
 
 	tmrpcclient "github.com/cometbft/cometbft/rpc/client"
 
-	"github.com/cosmos/evm/crypto/ethsecp256k1"
-	"github.com/cosmos/evm/rpc/backend/mocks"
-	"github.com/cosmos/evm/server/config"
-	"github.com/cosmos/evm/testutil/constants"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	"github.com/Galactica-corp/galactica/crypto/ethsecp256k1"
+	"github.com/Galactica-corp/galactica/rpc/backend/mocks"
+	"github.com/Galactica-corp/galactica/server/config"
+	"github.com/Galactica-corp/galactica/testutil/constants"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	"cosmossdk.io/math"
 

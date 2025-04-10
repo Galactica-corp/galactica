@@ -19,8 +19,8 @@ import (
 	"github.com/cometbft/cometbft/types"
 	cmttime "github.com/cometbft/cometbft/types/time"
 
-	"github.com/cosmos/evm/server"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	"github.com/Galactica-corp/galactica/server"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	"cosmossdk.io/log"
 

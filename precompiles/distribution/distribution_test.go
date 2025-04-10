@@ -7,11 +7,11 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	gethtypes "github.com/ethereum/go-ethereum/core/types"
 
-	chainutil "github.com/cosmos/evm/evmd/testutil"
-	"github.com/cosmos/evm/precompiles/distribution"
-	"github.com/cosmos/evm/testutil/constants"
-	"github.com/cosmos/evm/x/vm/core/vm"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	chainutil "github.com/Galactica-corp/galactica/galacticad/testutil"
+	"github.com/Galactica-corp/galactica/precompiles/distribution"
+	"github.com/Galactica-corp/galactica/testutil/constants"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	"cosmossdk.io/math"
 

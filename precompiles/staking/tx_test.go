@@ -8,13 +8,13 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 
-	cmn "github.com/cosmos/evm/precompiles/common"
-	"github.com/cosmos/evm/precompiles/staking"
-	"github.com/cosmos/evm/precompiles/testutil"
-	testkeyring "github.com/cosmos/evm/testutil/integration/os/keyring"
-	cosmosevmutiltx "github.com/cosmos/evm/testutil/tx"
-	"github.com/cosmos/evm/x/vm/core/vm"
-	"github.com/cosmos/evm/x/vm/statedb"
+	cmn "github.com/Galactica-corp/galactica/precompiles/common"
+	"github.com/Galactica-corp/galactica/precompiles/staking"
+	"github.com/Galactica-corp/galactica/precompiles/testutil"
+	testkeyring "github.com/Galactica-corp/galactica/testutil/integration/os/keyring"
+	cosmosevmutiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
+	"github.com/Galactica-corp/galactica/x/vm/statedb"
 
 	"cosmossdk.io/math"
 

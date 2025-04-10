@@ -9,8 +9,8 @@ import (
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/stretchr/testify/suite"
 
-	utiltx "github.com/cosmos/evm/testutil/tx"
-	"github.com/cosmos/evm/x/vm/types"
+	utiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	"github.com/Galactica-corp/galactica/x/vm/types"
 
 	sdkmath "cosmossdk.io/math"
 )

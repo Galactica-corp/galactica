@@ -8,12 +8,12 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/cosmos/evm/encoding"
-	"github.com/cosmos/evm/ethereum/eip712"
-	"github.com/cosmos/evm/testutil/constants"
-	utiltx "github.com/cosmos/evm/testutil/tx"
-	"github.com/cosmos/evm/types"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	"github.com/Galactica-corp/galactica/encoding"
+	"github.com/Galactica-corp/galactica/ethereum/eip712"
+	"github.com/Galactica-corp/galactica/testutil/constants"
+	utiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	"github.com/Galactica-corp/galactica/types"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	"cosmossdk.io/math"
 

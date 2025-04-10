@@ -9,12 +9,12 @@ import (
 
 	cmttypes "github.com/cometbft/cometbft/types"
 
+	exampleapp "github.com/Galactica-corp/galactica/galacticad"
+	cosmosevmtypes "github.com/Galactica-corp/galactica/types"
+	erc20types "github.com/Galactica-corp/galactica/x/erc20/types"
+	feemarkettypes "github.com/Galactica-corp/galactica/x/feemarket/types"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 	dbm "github.com/cosmos/cosmos-db"
-	exampleapp "github.com/cosmos/evm/evmd"
-	cosmosevmtypes "github.com/cosmos/evm/types"
-	erc20types "github.com/cosmos/evm/x/erc20/types"
-	feemarkettypes "github.com/cosmos/evm/x/feemarket/types"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
 	"github.com/cosmos/gogoproto/proto"
 	capabilitytypes "github.com/cosmos/ibc-go/modules/capability/types"
 

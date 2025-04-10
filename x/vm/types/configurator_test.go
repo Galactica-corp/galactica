@@ -5,9 +5,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	testconstants "github.com/cosmos/evm/testutil/constants"
-	"github.com/cosmos/evm/x/vm/core/vm"
-	"github.com/cosmos/evm/x/vm/types"
+	testconstants "github.com/Galactica-corp/galactica/testutil/constants"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
+	"github.com/Galactica-corp/galactica/x/vm/types"
 )
 
 func TestEVMConfigurator(t *testing.T) {

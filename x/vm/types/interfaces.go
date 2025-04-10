@@ -6,8 +6,8 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	feemarkettypes "github.com/cosmos/evm/x/feemarket/types"
-	"github.com/cosmos/evm/x/vm/core/vm"
+	feemarkettypes "github.com/Galactica-corp/galactica/x/feemarket/types"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
 
 	"cosmossdk.io/core/address"
 	"cosmossdk.io/math"

@@ -10,7 +10,7 @@ import (
 
 	tmcrypto "github.com/cometbft/cometbft/crypto"
 
-	"github.com/cosmos/evm/ethereum/eip712"
+	"github.com/Galactica-corp/galactica/ethereum/eip712"
 
 	errorsmod "cosmossdk.io/errors"
 

@@ -3,7 +3,7 @@ package hd
 import (
 	"testing"
 
-	"github.com/cosmos/evm/types"
+	"github.com/Galactica-corp/galactica/types"
 
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
 )

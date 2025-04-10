@@ -7,8 +7,8 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/cosmos/evm/utils"
-	"github.com/cosmos/evm/x/vm/types"
+	"github.com/Galactica-corp/galactica/utils"
+	"github.com/Galactica-corp/galactica/x/vm/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

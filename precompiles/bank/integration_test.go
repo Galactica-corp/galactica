@@ -11,16 +11,16 @@ import (
 	//nolint:revive // dot imports are fine for Ginkgo
 	. "github.com/onsi/gomega"
 
-	"github.com/cosmos/evm/precompiles/bank"
-	"github.com/cosmos/evm/precompiles/bank/testdata"
-	"github.com/cosmos/evm/precompiles/testutil"
-	"github.com/cosmos/evm/testutil/integration/os/factory"
-	"github.com/cosmos/evm/testutil/integration/os/grpc"
-	"github.com/cosmos/evm/testutil/integration/os/keyring"
-	"github.com/cosmos/evm/testutil/integration/os/network"
-	testutils "github.com/cosmos/evm/testutil/integration/os/utils"
-	utiltx "github.com/cosmos/evm/testutil/tx"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	"github.com/Galactica-corp/galactica/precompiles/bank"
+	"github.com/Galactica-corp/galactica/precompiles/bank/testdata"
+	"github.com/Galactica-corp/galactica/precompiles/testutil"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/factory"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/grpc"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/keyring"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/network"
+	testutils "github.com/Galactica-corp/galactica/testutil/integration/os/utils"
+	utiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	"cosmossdk.io/math"
 

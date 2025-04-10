@@ -5,10 +5,10 @@ import (
 
 	"github.com/stretchr/testify/mock"
 
-	"github.com/cosmos/evm/testutil/integration/os/keyring"
-	testutils "github.com/cosmos/evm/testutil/integration/os/utils"
-	"github.com/cosmos/evm/x/ibc/transfer/keeper"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/keyring"
+	testutils "github.com/Galactica-corp/galactica/testutil/integration/os/utils"
+	"github.com/Galactica-corp/galactica/x/ibc/transfer/keeper"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 	"github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 	channeltypes "github.com/cosmos/ibc-go/v8/modules/core/04-channel/types"
 

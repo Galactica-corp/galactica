@@ -5,17 +5,17 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/cosmos/evm/ante"
-	evmante "github.com/cosmos/evm/ante/evm"
-	chainante "github.com/cosmos/evm/evmd/ante"
-	chainutil "github.com/cosmos/evm/evmd/testutil"
-	"github.com/cosmos/evm/testutil/integration/os/factory"
-	"github.com/cosmos/evm/testutil/integration/os/grpc"
-	"github.com/cosmos/evm/testutil/integration/os/keyring"
-	"github.com/cosmos/evm/testutil/integration/os/network"
-	"github.com/cosmos/evm/types"
-	feemarkettypes "github.com/cosmos/evm/x/feemarket/types"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	"github.com/Galactica-corp/galactica/ante"
+	evmante "github.com/Galactica-corp/galactica/ante/evm"
+	chainante "github.com/Galactica-corp/galactica/galacticad/ante"
+	chainutil "github.com/Galactica-corp/galactica/galacticad/testutil"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/factory"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/grpc"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/keyring"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/network"
+	"github.com/Galactica-corp/galactica/types"
+	feemarkettypes "github.com/Galactica-corp/galactica/x/feemarket/types"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	sdkmath "cosmossdk.io/math"
 

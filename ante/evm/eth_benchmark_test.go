@@ -7,12 +7,12 @@ import (
 
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 
-	ethante "github.com/cosmos/evm/ante/evm"
-	"github.com/cosmos/evm/ante/testutils"
-	"github.com/cosmos/evm/testutil"
-	testutiltx "github.com/cosmos/evm/testutil/tx"
-	"github.com/cosmos/evm/x/vm/statedb"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	ethante "github.com/Galactica-corp/galactica/ante/evm"
+	"github.com/Galactica-corp/galactica/ante/testutils"
+	"github.com/Galactica-corp/galactica/testutil"
+	testutiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	"github.com/Galactica-corp/galactica/x/vm/statedb"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	sdkmath "cosmossdk.io/math"
 	storetypes "cosmossdk.io/store/types"

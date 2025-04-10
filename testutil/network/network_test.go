@@ -10,11 +10,11 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/cosmos/evm/server/config"
-	"github.com/cosmos/evm/testutil/network"
+	"github.com/Galactica-corp/galactica/server/config"
+	"github.com/Galactica-corp/galactica/testutil/network"
 	"github.com/ethereum/go-ethereum/ethclient"
 
-	cosmosevmnetwork "github.com/cosmos/evm/testutil/network"
+	cosmosevmnetwork "github.com/Galactica-corp/galactica/testutil/network"
 )
 
 type IntegrationTestSuite struct {

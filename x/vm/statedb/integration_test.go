@@ -11,14 +11,14 @@ import (
 	//nolint:revive // okay to use dot imports for Ginkgo
 	. "github.com/onsi/gomega"
 
-	"github.com/cosmos/evm/contracts"
-	stakingprecompile "github.com/cosmos/evm/precompiles/staking"
-	testcontracts "github.com/cosmos/evm/precompiles/testutil/contracts"
-	testfactory "github.com/cosmos/evm/testutil/integration/os/factory"
-	"github.com/cosmos/evm/testutil/integration/os/grpc"
-	testkeyring "github.com/cosmos/evm/testutil/integration/os/keyring"
-	testnetwork "github.com/cosmos/evm/testutil/integration/os/network"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	"github.com/Galactica-corp/galactica/contracts"
+	stakingprecompile "github.com/Galactica-corp/galactica/precompiles/staking"
+	testcontracts "github.com/Galactica-corp/galactica/precompiles/testutil/contracts"
+	testfactory "github.com/Galactica-corp/galactica/testutil/integration/os/factory"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/grpc"
+	testkeyring "github.com/Galactica-corp/galactica/testutil/integration/os/keyring"
+	testnetwork "github.com/Galactica-corp/galactica/testutil/integration/os/network"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	"cosmossdk.io/math"
 )

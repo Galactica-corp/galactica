@@ -10,11 +10,11 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/stretchr/testify/require"
 
-	servercfg "github.com/cosmos/evm/server/config"
-	utiltx "github.com/cosmos/evm/testutil/tx"
-	"github.com/cosmos/evm/x/vm/keeper/testdata"
-	"github.com/cosmos/evm/x/vm/statedb"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	servercfg "github.com/Galactica-corp/galactica/server/config"
+	utiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	"github.com/Galactica-corp/galactica/x/vm/keeper/testdata"
+	"github.com/Galactica-corp/galactica/x/vm/statedb"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

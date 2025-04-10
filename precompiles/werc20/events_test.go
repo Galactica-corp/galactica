@@ -8,13 +8,13 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/stretchr/testify/suite"
 
-	cmn "github.com/cosmos/evm/precompiles/common"
-	"github.com/cosmos/evm/precompiles/werc20"
-	testconstants "github.com/cosmos/evm/testutil/constants"
-	"github.com/cosmos/evm/testutil/integration/os/factory"
-	"github.com/cosmos/evm/testutil/integration/os/grpc"
-	"github.com/cosmos/evm/testutil/integration/os/keyring"
-	"github.com/cosmos/evm/testutil/integration/os/network"
+	cmn "github.com/Galactica-corp/galactica/precompiles/common"
+	"github.com/Galactica-corp/galactica/precompiles/werc20"
+	testconstants "github.com/Galactica-corp/galactica/testutil/constants"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/factory"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/grpc"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/keyring"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/network"
 )
 
 type PrecompileUnitTestSuite struct {

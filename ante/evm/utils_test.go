@@ -8,12 +8,12 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/cosmos/evm/ante/testutils"
-	"github.com/cosmos/evm/crypto/ethsecp256k1"
-	"github.com/cosmos/evm/ethereum/eip712"
-	"github.com/cosmos/evm/testutil"
-	utiltx "github.com/cosmos/evm/testutil/tx"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	"github.com/Galactica-corp/galactica/ante/testutils"
+	"github.com/Galactica-corp/galactica/crypto/ethsecp256k1"
+	"github.com/Galactica-corp/galactica/ethereum/eip712"
+	"github.com/Galactica-corp/galactica/testutil"
+	utiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 	ibctypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 	ibcclienttypes "github.com/cosmos/ibc-go/v8/modules/core/02-client/types"
 

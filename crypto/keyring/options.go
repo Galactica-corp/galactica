@@ -1,9 +1,9 @@
 package keyring
 
 import (
-	"github.com/cosmos/evm/crypto/ethsecp256k1"
-	"github.com/cosmos/evm/crypto/hd"
-	"github.com/cosmos/evm/wallets/ledger"
+	"github.com/Galactica-corp/galactica/crypto/ethsecp256k1"
+	"github.com/Galactica-corp/galactica/crypto/hd"
+	"github.com/Galactica-corp/galactica/wallets/ledger"
 
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
 	cosmosLedger "github.com/cosmos/cosmos-sdk/crypto/ledger"

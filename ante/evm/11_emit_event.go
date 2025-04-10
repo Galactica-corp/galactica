@@ -3,8 +3,8 @@ package evm
 import (
 	"strconv"
 
-	anteinterfaces "github.com/cosmos/evm/ante/interfaces"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	anteinterfaces "github.com/Galactica-corp/galactica/ante/interfaces"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	errorsmod "cosmossdk.io/errors"
 

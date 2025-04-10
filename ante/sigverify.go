@@ -3,7 +3,7 @@ package ante
 import (
 	"fmt"
 
-	"github.com/cosmos/evm/crypto/ethsecp256k1"
+	"github.com/Galactica-corp/galactica/crypto/ethsecp256k1"
 
 	errorsmod "cosmossdk.io/errors"
 	storetypes "cosmossdk.io/store/types"

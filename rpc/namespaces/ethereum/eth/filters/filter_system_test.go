@@ -13,7 +13,7 @@ import (
 
 	coretypes "github.com/cometbft/cometbft/rpc/core/types"
 
-	"github.com/cosmos/evm/rpc/ethereum/pubsub"
+	"github.com/Galactica-corp/galactica/rpc/ethereum/pubsub"
 
 	"cosmossdk.io/log"
 )

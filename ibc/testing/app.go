@@ -10,10 +10,10 @@ import (
 	abci "github.com/cometbft/cometbft/abci/types"
 	cmttypes "github.com/cometbft/cometbft/types"
 
-	exampleapp "github.com/cosmos/evm/evmd"
-	chainutil "github.com/cosmos/evm/evmd/testutil"
-	"github.com/cosmos/evm/testutil/constants"
-	cosmosevmtypes "github.com/cosmos/evm/types"
+	exampleapp "github.com/Galactica-corp/galactica/galacticad"
+	chainutil "github.com/Galactica-corp/galactica/galacticad/testutil"
+	"github.com/Galactica-corp/galactica/testutil/constants"
+	cosmosevmtypes "github.com/Galactica-corp/galactica/types"
 	ibcgotesting "github.com/cosmos/ibc-go/v8/testing"
 
 	"cosmossdk.io/math"

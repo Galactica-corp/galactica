@@ -6,12 +6,12 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 
-	chainconfig "github.com/cosmos/evm/cmd/evmd/config"
-	cmn "github.com/cosmos/evm/precompiles/common"
-	"github.com/cosmos/evm/precompiles/distribution"
-	"github.com/cosmos/evm/testutil/constants"
-	"github.com/cosmos/evm/x/vm/core/vm"
-	"github.com/cosmos/evm/x/vm/statedb"
+	chainconfig "github.com/Galactica-corp/galactica/cmd/galacticad/config"
+	cmn "github.com/Galactica-corp/galactica/precompiles/common"
+	"github.com/Galactica-corp/galactica/precompiles/distribution"
+	"github.com/Galactica-corp/galactica/testutil/constants"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
+	"github.com/Galactica-corp/galactica/x/vm/statedb"
 
 	"cosmossdk.io/math"
 	storetypes "cosmossdk.io/store/types"

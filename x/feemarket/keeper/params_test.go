@@ -6,8 +6,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/cosmos/evm/testutil/integration/os/network"
-	"github.com/cosmos/evm/x/feemarket/types"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/network"
+	"github.com/Galactica-corp/galactica/x/feemarket/types"
 )
 
 func TestGetParams(t *testing.T) {

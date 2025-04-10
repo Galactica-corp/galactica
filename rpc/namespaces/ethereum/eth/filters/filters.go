@@ -14,8 +14,8 @@ import (
 
 	tmrpctypes "github.com/cometbft/cometbft/rpc/core/types"
 
-	"github.com/cosmos/evm/rpc/backend"
-	"github.com/cosmos/evm/rpc/types"
+	"github.com/Galactica-corp/galactica/rpc/backend"
+	"github.com/Galactica-corp/galactica/rpc/types"
 
 	"cosmossdk.io/log"
 )

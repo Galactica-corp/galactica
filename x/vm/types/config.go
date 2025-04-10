@@ -12,7 +12,7 @@ import (
 
 	geth "github.com/ethereum/go-ethereum/params"
 
-	"github.com/cosmos/evm/x/vm/core/vm"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
 )
 
 // Configure applies the changes to the virtual machine configuration.

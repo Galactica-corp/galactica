@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	cosmosevmibc "github.com/cosmos/evm/ibc/testing"
-	"github.com/cosmos/evm/testutil/integration/common/network"
-	ibcchain "github.com/cosmos/evm/testutil/integration/ibc/chain"
+	cosmosevmibc "github.com/Galactica-corp/galactica/ibc/testing"
+	"github.com/Galactica-corp/galactica/testutil/integration/common/network"
+	ibcchain "github.com/Galactica-corp/galactica/testutil/integration/ibc/chain"
 	ibctesting "github.com/cosmos/ibc-go/v8/testing"
 
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"

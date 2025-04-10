@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/cosmos/evm/testutil/integration/common/network"
+	"github.com/Galactica-corp/galactica/testutil/integration/common/network"
 	ibctesting "github.com/cosmos/ibc-go/v8/testing"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"

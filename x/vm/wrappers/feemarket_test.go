@@ -7,10 +7,10 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
 
-	feemarkettypes "github.com/cosmos/evm/x/feemarket/types"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
-	"github.com/cosmos/evm/x/vm/wrappers"
-	"github.com/cosmos/evm/x/vm/wrappers/testutil"
+	feemarkettypes "github.com/Galactica-corp/galactica/x/feemarket/types"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
+	"github.com/Galactica-corp/galactica/x/vm/wrappers"
+	"github.com/Galactica-corp/galactica/x/vm/wrappers/testutil"
 
 	sdkmath "cosmossdk.io/math"
 

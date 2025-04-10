@@ -1,12 +1,12 @@
 package utils
 
 import (
-	exampleapp "github.com/cosmos/evm/evmd"
-	"github.com/cosmos/evm/testutil/constants"
-	testkeyring "github.com/cosmos/evm/testutil/integration/os/keyring"
-	"github.com/cosmos/evm/testutil/integration/os/network"
-	utiltx "github.com/cosmos/evm/testutil/tx"
-	erc20types "github.com/cosmos/evm/x/erc20/types"
+	exampleapp "github.com/Galactica-corp/galactica/galacticad"
+	"github.com/Galactica-corp/galactica/testutil/constants"
+	testkeyring "github.com/Galactica-corp/galactica/testutil/integration/os/keyring"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/network"
+	utiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	erc20types "github.com/Galactica-corp/galactica/x/erc20/types"
 
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"

@@ -3,7 +3,7 @@ package transfer
 import (
 	"fmt"
 
-	"github.com/cosmos/evm/x/ibc/transfer/keeper"
+	"github.com/Galactica-corp/galactica/x/ibc/transfer/keeper"
 	ibctransfer "github.com/cosmos/ibc-go/v8/modules/apps/transfer"
 	ibctransferkeeper "github.com/cosmos/ibc-go/v8/modules/apps/transfer/keeper"
 	"github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"

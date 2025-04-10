@@ -7,7 +7,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/cosmos/evm/types"
+	"github.com/Galactica-corp/galactica/types"
 )
 
 // Parameter store key

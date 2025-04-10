@@ -3,7 +3,7 @@ package keeper
 import (
 	"math/big"
 
-	"github.com/cosmos/evm/x/feemarket/types"
+	"github.com/Galactica-corp/galactica/x/feemarket/types"
 
 	"cosmossdk.io/log"
 	storetypes "cosmossdk.io/store/types"

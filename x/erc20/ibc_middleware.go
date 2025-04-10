@@ -1,8 +1,8 @@
 package erc20
 
 import (
-	"github.com/cosmos/evm/ibc"
-	"github.com/cosmos/evm/x/erc20/keeper"
+	"github.com/Galactica-corp/galactica/ibc"
+	"github.com/Galactica-corp/galactica/x/erc20/keeper"
 	transfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 	channeltypes "github.com/cosmos/ibc-go/v8/modules/core/04-channel/types"
 	porttypes "github.com/cosmos/ibc-go/v8/modules/core/05-port/types"

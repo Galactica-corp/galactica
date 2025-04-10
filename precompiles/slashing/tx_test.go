@@ -5,10 +5,10 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	cmn "github.com/cosmos/evm/precompiles/common"
-	"github.com/cosmos/evm/precompiles/slashing"
-	"github.com/cosmos/evm/precompiles/testutil"
-	utiltx "github.com/cosmos/evm/testutil/tx"
+	cmn "github.com/Galactica-corp/galactica/precompiles/common"
+	"github.com/Galactica-corp/galactica/precompiles/slashing"
+	"github.com/Galactica-corp/galactica/precompiles/testutil"
+	utiltx "github.com/Galactica-corp/galactica/testutil/tx"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

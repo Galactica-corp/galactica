@@ -8,10 +8,10 @@ import (
 	abci "github.com/cometbft/cometbft/abci/types"
 	cmttypes "github.com/cometbft/cometbft/types"
 
+	rpctypes "github.com/Galactica-corp/galactica/rpc/types"
+	cosmosevmtypes "github.com/Galactica-corp/galactica/types"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 	dbm "github.com/cosmos/cosmos-db"
-	rpctypes "github.com/cosmos/evm/rpc/types"
-	cosmosevmtypes "github.com/cosmos/evm/types"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
 
 	errorsmod "cosmossdk.io/errors"
 	"cosmossdk.io/log"

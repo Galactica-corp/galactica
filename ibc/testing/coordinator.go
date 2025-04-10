@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	exampleapp "github.com/cosmos/evm/evmd"
+	exampleapp "github.com/Galactica-corp/galactica/galacticad"
 	ibctesting "github.com/cosmos/ibc-go/v8/testing"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"

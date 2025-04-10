@@ -12,12 +12,12 @@ import (
 	tmrpctypes "github.com/cometbft/cometbft/rpc/core/types"
 	"github.com/cometbft/cometbft/types"
 
+	"github.com/Galactica-corp/galactica/indexer"
+	"github.com/Galactica-corp/galactica/rpc/backend/mocks"
+	rpctypes "github.com/Galactica-corp/galactica/rpc/types"
+	cosmosevmtypes "github.com/Galactica-corp/galactica/types"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 	dbm "github.com/cosmos/cosmos-db"
-	"github.com/cosmos/evm/indexer"
-	"github.com/cosmos/evm/rpc/backend/mocks"
-	rpctypes "github.com/cosmos/evm/rpc/types"
-	cosmosevmtypes "github.com/cosmos/evm/types"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
 
 	"cosmossdk.io/log"
 	"cosmossdk.io/math"

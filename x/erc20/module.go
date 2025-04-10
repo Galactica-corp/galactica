@@ -11,9 +11,9 @@ import (
 
 	abci "github.com/cometbft/cometbft/abci/types"
 
-	"github.com/cosmos/evm/x/erc20/client/cli"
-	"github.com/cosmos/evm/x/erc20/keeper"
-	"github.com/cosmos/evm/x/erc20/types"
+	"github.com/Galactica-corp/galactica/x/erc20/client/cli"
+	"github.com/Galactica-corp/galactica/x/erc20/keeper"
+	"github.com/Galactica-corp/galactica/x/erc20/types"
 
 	"cosmossdk.io/core/appmodule"
 

@@ -8,14 +8,14 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 
-	chainutil "github.com/cosmos/evm/evmd/testutil"
-	"github.com/cosmos/evm/precompiles/authorization"
-	"github.com/cosmos/evm/precompiles/staking"
-	testconstants "github.com/cosmos/evm/testutil/constants"
-	testkeyring "github.com/cosmos/evm/testutil/integration/os/keyring"
-	"github.com/cosmos/evm/x/vm/core/vm"
-	"github.com/cosmos/evm/x/vm/statedb"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	chainutil "github.com/Galactica-corp/galactica/galacticad/testutil"
+	"github.com/Galactica-corp/galactica/precompiles/authorization"
+	"github.com/Galactica-corp/galactica/precompiles/staking"
+	testconstants "github.com/Galactica-corp/galactica/testutil/constants"
+	testkeyring "github.com/Galactica-corp/galactica/testutil/integration/os/keyring"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
+	"github.com/Galactica-corp/galactica/x/vm/statedb"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	"cosmossdk.io/math"
 

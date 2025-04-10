@@ -3,10 +3,10 @@ package cosmos_test
 import (
 	"fmt"
 
-	cosmosante "github.com/cosmos/evm/ante/cosmos"
-	"github.com/cosmos/evm/testutil"
-	"github.com/cosmos/evm/testutil/constants"
-	testutiltx "github.com/cosmos/evm/testutil/tx"
+	cosmosante "github.com/Galactica-corp/galactica/ante/cosmos"
+	"github.com/Galactica-corp/galactica/testutil"
+	"github.com/Galactica-corp/galactica/testutil/constants"
+	testutiltx "github.com/Galactica-corp/galactica/testutil/tx"
 
 	"cosmossdk.io/math"
 

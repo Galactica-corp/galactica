@@ -1,9 +1,9 @@
 package network
 
 import (
-	erc20types "github.com/cosmos/evm/x/erc20/types"
-	feemarkettypes "github.com/cosmos/evm/x/feemarket/types"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	erc20types "github.com/Galactica-corp/galactica/x/erc20/types"
+	feemarkettypes "github.com/Galactica-corp/galactica/x/feemarket/types"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	sdktypes "github.com/cosmos/cosmos-sdk/types"

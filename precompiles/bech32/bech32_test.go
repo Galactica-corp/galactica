@@ -5,9 +5,9 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	chainconfig "github.com/cosmos/evm/cmd/evmd/config"
-	"github.com/cosmos/evm/precompiles/bech32"
-	"github.com/cosmos/evm/x/vm/core/vm"
+	chainconfig "github.com/Galactica-corp/galactica/cmd/galacticad/config"
+	"github.com/Galactica-corp/galactica/precompiles/bech32"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

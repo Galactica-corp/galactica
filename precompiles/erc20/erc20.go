@@ -6,11 +6,11 @@ import (
 
 	"github.com/ethereum/go-ethereum/accounts/abi"
 
-	auth "github.com/cosmos/evm/precompiles/authorization"
-	cmn "github.com/cosmos/evm/precompiles/common"
-	erc20types "github.com/cosmos/evm/x/erc20/types"
-	transferkeeper "github.com/cosmos/evm/x/ibc/transfer/keeper"
-	"github.com/cosmos/evm/x/vm/core/vm"
+	auth "github.com/Galactica-corp/galactica/precompiles/authorization"
+	cmn "github.com/Galactica-corp/galactica/precompiles/common"
+	erc20types "github.com/Galactica-corp/galactica/x/erc20/types"
+	transferkeeper "github.com/Galactica-corp/galactica/x/ibc/transfer/keeper"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
 
 	storetypes "cosmossdk.io/store/types"
 

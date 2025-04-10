@@ -1,8 +1,8 @@
 package evm
 
 import (
-	anteinterfaces "github.com/cosmos/evm/ante/interfaces"
-	evmante "github.com/cosmos/evm/x/vm/ante"
+	anteinterfaces "github.com/Galactica-corp/galactica/ante/interfaces"
+	evmante "github.com/Galactica-corp/galactica/x/vm/ante"
 
 	errorsmod "cosmossdk.io/errors"
 	storetypes "cosmossdk.io/store/types"

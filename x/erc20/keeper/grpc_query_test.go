@@ -3,9 +3,9 @@ package keeper_test
 import (
 	"fmt"
 
-	exampleapp "github.com/cosmos/evm/evmd"
-	utiltx "github.com/cosmos/evm/testutil/tx"
-	"github.com/cosmos/evm/x/erc20/types"
+	exampleapp "github.com/Galactica-corp/galactica/galacticad"
+	utiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	"github.com/Galactica-corp/galactica/x/erc20/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"

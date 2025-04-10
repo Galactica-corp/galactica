@@ -11,12 +11,12 @@ import (
 
 	abci "github.com/cometbft/cometbft/abci/types"
 
-	cosmosante "github.com/cosmos/evm/ante/cosmos"
-	"github.com/cosmos/evm/testutil"
-	"github.com/cosmos/evm/testutil/integration/common/factory"
-	"github.com/cosmos/evm/testutil/integration/os/network"
-	utiltx "github.com/cosmos/evm/testutil/tx"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	cosmosante "github.com/Galactica-corp/galactica/ante/cosmos"
+	"github.com/Galactica-corp/galactica/testutil"
+	"github.com/Galactica-corp/galactica/testutil/integration/common/factory"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/network"
+	utiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	"cosmossdk.io/math"
 

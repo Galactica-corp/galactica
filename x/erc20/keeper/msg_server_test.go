@@ -8,12 +8,12 @@ import (
 	"github.com/stretchr/testify/mock"
 	gomock "go.uber.org/mock/gomock"
 
-	testutils "github.com/cosmos/evm/testutil/integration/os/utils"
-	"github.com/cosmos/evm/x/erc20/keeper"
-	"github.com/cosmos/evm/x/erc20/types"
-	erc20mocks "github.com/cosmos/evm/x/erc20/types/mocks"
-	"github.com/cosmos/evm/x/vm/statedb"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	testutils "github.com/Galactica-corp/galactica/testutil/integration/os/utils"
+	"github.com/Galactica-corp/galactica/x/erc20/keeper"
+	"github.com/Galactica-corp/galactica/x/erc20/types"
+	erc20mocks "github.com/Galactica-corp/galactica/x/erc20/types/mocks"
+	"github.com/Galactica-corp/galactica/x/vm/statedb"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	"cosmossdk.io/math"
 

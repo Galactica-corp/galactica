@@ -1,7 +1,7 @@
 package evm
 
 import (
-	anteinterfaces "github.com/cosmos/evm/ante/interfaces"
+	anteinterfaces "github.com/Galactica-corp/galactica/ante/interfaces"
 
 	errorsmod "cosmossdk.io/errors"
 

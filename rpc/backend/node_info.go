@@ -11,11 +11,11 @@ import (
 
 	cmttypes "github.com/cometbft/cometbft/types"
 
-	"github.com/cosmos/evm/crypto/ethsecp256k1"
-	rpctypes "github.com/cosmos/evm/rpc/types"
-	"github.com/cosmos/evm/server/config"
-	"github.com/cosmos/evm/testutil/constants"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	"github.com/Galactica-corp/galactica/crypto/ethsecp256k1"
+	rpctypes "github.com/Galactica-corp/galactica/rpc/types"
+	"github.com/Galactica-corp/galactica/server/config"
+	"github.com/Galactica-corp/galactica/testutil/constants"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	errorsmod "cosmossdk.io/errors"
 	sdkmath "cosmossdk.io/math"

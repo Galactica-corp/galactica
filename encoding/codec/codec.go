@@ -1,8 +1,8 @@
 package codec
 
 import (
-	cryptocodec "github.com/cosmos/evm/crypto/codec"
-	"github.com/cosmos/evm/types"
+	cryptocodec "github.com/Galactica-corp/galactica/crypto/codec"
+	"github.com/Galactica-corp/galactica/types"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"

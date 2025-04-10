@@ -1,7 +1,7 @@
 package codec
 
 import (
-	"github.com/cosmos/evm/crypto/ethsecp256k1"
+	"github.com/Galactica-corp/galactica/crypto/ethsecp256k1"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/codec/legacy"

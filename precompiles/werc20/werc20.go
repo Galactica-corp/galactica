@@ -8,11 +8,11 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
 
-	cmn "github.com/cosmos/evm/precompiles/common"
-	erc20 "github.com/cosmos/evm/precompiles/erc20"
-	erc20types "github.com/cosmos/evm/x/erc20/types"
-	transferkeeper "github.com/cosmos/evm/x/ibc/transfer/keeper"
-	"github.com/cosmos/evm/x/vm/core/vm"
+	cmn "github.com/Galactica-corp/galactica/precompiles/common"
+	erc20 "github.com/Galactica-corp/galactica/precompiles/erc20"
+	erc20types "github.com/Galactica-corp/galactica/x/erc20/types"
+	transferkeeper "github.com/Galactica-corp/galactica/x/ibc/transfer/keeper"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
 
 	authzkeeper "github.com/cosmos/cosmos-sdk/x/authz/keeper"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"

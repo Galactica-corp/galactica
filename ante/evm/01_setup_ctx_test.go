@@ -3,10 +3,10 @@ package evm_test
 import (
 	"math/big"
 
-	evmante "github.com/cosmos/evm/ante/evm"
-	"github.com/cosmos/evm/testutil"
-	testutiltx "github.com/cosmos/evm/testutil/tx"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	evmante "github.com/Galactica-corp/galactica/ante/evm"
+	"github.com/Galactica-corp/galactica/testutil"
+	testutiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 
 	storetypes "cosmossdk.io/store/types"
 

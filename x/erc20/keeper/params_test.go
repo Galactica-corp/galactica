@@ -1,8 +1,8 @@
 package keeper_test
 
 import (
-	testconstants "github.com/cosmos/evm/testutil/constants"
-	"github.com/cosmos/evm/x/erc20/types"
+	testconstants "github.com/Galactica-corp/galactica/testutil/constants"
+	"github.com/Galactica-corp/galactica/x/erc20/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

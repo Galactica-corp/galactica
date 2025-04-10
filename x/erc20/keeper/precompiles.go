@@ -5,10 +5,10 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/cosmos/evm/precompiles/erc20"
-	"github.com/cosmos/evm/precompiles/werc20"
-	"github.com/cosmos/evm/x/erc20/types"
-	"github.com/cosmos/evm/x/vm/core/vm"
+	"github.com/Galactica-corp/galactica/precompiles/erc20"
+	"github.com/Galactica-corp/galactica/precompiles/werc20"
+	"github.com/Galactica-corp/galactica/x/erc20/types"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
 
 	errorsmod "cosmossdk.io/errors"
 

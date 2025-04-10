@@ -3,8 +3,8 @@ package erc20_test
 import (
 	"math/big"
 
-	auth "github.com/cosmos/evm/precompiles/authorization"
-	"github.com/cosmos/evm/precompiles/erc20"
+	auth "github.com/Galactica-corp/galactica/precompiles/authorization"
+	"github.com/Galactica-corp/galactica/precompiles/erc20"
 )
 
 func (s *PrecompileTestSuite) TestIsTransaction() {

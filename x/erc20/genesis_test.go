@@ -11,12 +11,12 @@ import (
 	tmversion "github.com/cometbft/cometbft/proto/tendermint/version"
 	"github.com/cometbft/cometbft/version"
 
-	exampleapp "github.com/cosmos/evm/evmd"
-	"github.com/cosmos/evm/testutil/constants"
-	"github.com/cosmos/evm/testutil/integration/os/network"
-	utiltx "github.com/cosmos/evm/testutil/tx"
-	"github.com/cosmos/evm/x/erc20"
-	"github.com/cosmos/evm/x/erc20/types"
+	exampleapp "github.com/Galactica-corp/galactica/galacticad"
+	"github.com/Galactica-corp/galactica/testutil/constants"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/network"
+	utiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	"github.com/Galactica-corp/galactica/x/erc20"
+	"github.com/Galactica-corp/galactica/x/erc20/types"
 	transfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"

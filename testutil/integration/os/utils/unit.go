@@ -7,8 +7,8 @@ package utils
 import (
 	"fmt"
 
-	"github.com/cosmos/evm/testutil/integration/os/network"
-	erc20types "github.com/cosmos/evm/x/erc20/types"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/network"
+	erc20types "github.com/Galactica-corp/galactica/x/erc20/types"
 	transfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 
 	"cosmossdk.io/math"

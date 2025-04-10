@@ -5,8 +5,8 @@
 package network
 
 import (
-	testconstants "github.com/cosmos/evm/testutil/constants"
-	erc20types "github.com/cosmos/evm/x/erc20/types"
+	testconstants "github.com/Galactica-corp/galactica/testutil/constants"
+	erc20types "github.com/Galactica-corp/galactica/x/erc20/types"
 
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 )

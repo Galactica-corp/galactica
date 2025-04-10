@@ -5,7 +5,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/cosmos/evm/x/erc20/types"
+	"github.com/Galactica-corp/galactica/x/erc20/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

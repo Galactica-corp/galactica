@@ -40,7 +40,7 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/cosmos/evm/x/vm/core/tracers"
+	"github.com/Galactica-corp/galactica/x/vm/core/tracers"
 )
 
 // init registers itself this packages as a lookup for tracers.

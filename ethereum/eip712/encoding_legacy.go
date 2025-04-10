@@ -7,7 +7,7 @@ import (
 
 	apitypes "github.com/ethereum/go-ethereum/signer/core/apitypes"
 
-	ostypes "github.com/cosmos/evm/types"
+	ostypes "github.com/Galactica-corp/galactica/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	txTypes "github.com/cosmos/cosmos-sdk/types/tx"

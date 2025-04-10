@@ -1,7 +1,7 @@
 package evm_test
 
 import (
-	"github.com/cosmos/evm/ante/evm"
+	"github.com/Galactica-corp/galactica/ante/evm"
 
 	sdkmath "cosmossdk.io/math"
 

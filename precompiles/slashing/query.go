@@ -3,7 +3,7 @@ package slashing
 import (
 	"github.com/ethereum/go-ethereum/accounts/abi"
 
-	"github.com/cosmos/evm/x/vm/core/vm"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/slashing/types"

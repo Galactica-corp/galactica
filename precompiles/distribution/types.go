@@ -7,7 +7,7 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
 
-	cmn "github.com/cosmos/evm/precompiles/common"
+	cmn "github.com/Galactica-corp/galactica/precompiles/common"
 
 	"cosmossdk.io/math"
 

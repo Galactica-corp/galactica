@@ -4,7 +4,7 @@ import (
 	"context"
 	"math/big"
 
-	"github.com/cosmos/evm/x/vm/types"
+	"github.com/Galactica-corp/galactica/x/vm/types"
 
 	"cosmossdk.io/errors"
 	sdkmath "cosmossdk.io/math"

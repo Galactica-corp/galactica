@@ -1,8 +1,8 @@
 package factory
 
 import (
-	"github.com/cosmos/evm/testutil/integration/os/grpc"
-	"github.com/cosmos/evm/testutil/integration/os/network"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/grpc"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/network"
 )
 
 const (

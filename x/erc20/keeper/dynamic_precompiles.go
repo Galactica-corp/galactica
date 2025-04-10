@@ -7,9 +7,9 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 
-	"github.com/cosmos/evm/utils"
-	"github.com/cosmos/evm/x/erc20/types"
-	"github.com/cosmos/evm/x/vm/statedb"
+	"github.com/Galactica-corp/galactica/utils"
+	"github.com/Galactica-corp/galactica/x/erc20/types"
+	"github.com/Galactica-corp/galactica/x/vm/statedb"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

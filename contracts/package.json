@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cosmos/evm.git"
+    "url": "git+https://github.com/Galactica-corp/galactica.git"
   },
   "author": "Evmos Core Team",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cosmos/evm/issues"
+    "url": "https://github.com/Galactica-corp/galactica/issues"
   },
-  "homepage": "https://github.com/cosmos/evm#readme"
+  "homepage": "https://github.com/Galactica-corp/galactica#readme"
 }

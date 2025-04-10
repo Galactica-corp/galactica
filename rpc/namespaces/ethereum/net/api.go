@@ -6,7 +6,7 @@ import (
 
 	rpcclient "github.com/cometbft/cometbft/rpc/client"
 
-	"github.com/cosmos/evm/types"
+	"github.com/Galactica-corp/galactica/types"
 
 	"github.com/cosmos/cosmos-sdk/client"
 )

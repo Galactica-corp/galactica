@@ -7,7 +7,7 @@ import (
 
 	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
 
-	"github.com/cosmos/evm/testutil/integration/os/network"
+	"github.com/Galactica-corp/galactica/testutil/integration/os/network"
 
 	"cosmossdk.io/math"
 

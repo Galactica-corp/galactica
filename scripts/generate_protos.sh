@@ -18,5 +18,5 @@ for dir in $proto_dirs; do
 done
 
 # move proto files to the right places
-cp -r github.com/cosmos/evm/* ./
+cp -r github.com/Galactica-corp/galactica/* ./
 rm -rf github.com

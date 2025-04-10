@@ -1,7 +1,7 @@
 package grpc
 
 import (
-	"github.com/cosmos/evm/testutil/integration/common/network"
+	"github.com/Galactica-corp/galactica/testutil/integration/common/network"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/authz"

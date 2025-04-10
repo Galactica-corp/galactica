@@ -8,7 +8,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"golang.org/x/exp/constraints"
 
-	"github.com/cosmos/evm/crypto/ethsecp256k1"
+	"github.com/Galactica-corp/galactica/crypto/ethsecp256k1"
 	ibctransfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 
 	errorsmod "cosmossdk.io/errors"

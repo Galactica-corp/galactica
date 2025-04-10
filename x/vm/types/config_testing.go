@@ -11,7 +11,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/cosmos/evm/x/vm/core/vm"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
 	geth "github.com/ethereum/go-ethereum/params"
 )
 

@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/cosmos/evm/ante/testutils"
-	"github.com/cosmos/evm/crypto/ethsecp256k1"
+	"github.com/Galactica-corp/galactica/ante/testutils"
+	"github.com/Galactica-corp/galactica/crypto/ethsecp256k1"
 
 	sdkmath "cosmossdk.io/math"
 

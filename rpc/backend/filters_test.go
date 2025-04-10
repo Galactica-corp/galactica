@@ -8,9 +8,9 @@ import (
 
 	cmttypes "github.com/cometbft/cometbft/types"
 
-	"github.com/cosmos/evm/rpc/backend/mocks"
-	ethrpc "github.com/cosmos/evm/rpc/types"
-	evmtypes "github.com/cosmos/evm/x/vm/types"
+	"github.com/Galactica-corp/galactica/rpc/backend/mocks"
+	ethrpc "github.com/Galactica-corp/galactica/rpc/types"
+	evmtypes "github.com/Galactica-corp/galactica/x/vm/types"
 )
 
 func (suite *BackendTestSuite) TestGetLogs() {

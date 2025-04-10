@@ -25,8 +25,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/cosmos/evm/x/vm/core/tracers"
-	"github.com/cosmos/evm/x/vm/core/vm"
+	"github.com/Galactica-corp/galactica/x/vm/core/tracers"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
 	"github.com/ethereum/go-ethereum/common"
 )
 

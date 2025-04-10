@@ -8,7 +8,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	gethparams "github.com/ethereum/go-ethereum/params"
 
-	"github.com/cosmos/evm/types"
+	"github.com/Galactica-corp/galactica/types"
 
 	errorsmod "cosmossdk.io/errors"
 	sdkmath "cosmossdk.io/math"

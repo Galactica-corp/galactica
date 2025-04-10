@@ -7,10 +7,10 @@ import (
 	"github.com/ethereum/go-ethereum/crypto/secp256k1"
 	"github.com/ethereum/go-ethereum/signer/core/apitypes"
 
-	anteinterfaces "github.com/cosmos/evm/ante/interfaces"
-	"github.com/cosmos/evm/crypto/ethsecp256k1"
-	"github.com/cosmos/evm/ethereum/eip712"
-	"github.com/cosmos/evm/types"
+	anteinterfaces "github.com/Galactica-corp/galactica/ante/interfaces"
+	"github.com/Galactica-corp/galactica/crypto/ethsecp256k1"
+	"github.com/Galactica-corp/galactica/ethereum/eip712"
+	"github.com/Galactica-corp/galactica/types"
 
 	errorsmod "cosmossdk.io/errors"
 

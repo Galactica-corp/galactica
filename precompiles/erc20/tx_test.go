@@ -4,12 +4,12 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/cosmos/evm/precompiles/erc20"
-	"github.com/cosmos/evm/precompiles/testutil"
-	utiltx "github.com/cosmos/evm/testutil/tx"
-	erc20types "github.com/cosmos/evm/x/erc20/types"
-	"github.com/cosmos/evm/x/vm/core/vm"
-	"github.com/cosmos/evm/x/vm/statedb"
+	"github.com/Galactica-corp/galactica/precompiles/erc20"
+	"github.com/Galactica-corp/galactica/precompiles/testutil"
+	utiltx "github.com/Galactica-corp/galactica/testutil/tx"
+	erc20types "github.com/Galactica-corp/galactica/x/erc20/types"
+	"github.com/Galactica-corp/galactica/x/vm/core/vm"
+	"github.com/Galactica-corp/galactica/x/vm/statedb"
 
 	"cosmossdk.io/math"
 

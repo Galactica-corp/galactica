@@ -3,8 +3,8 @@ package network
 import (
 	"github.com/ethereum/go-ethereum/common"
 
-	exampleapp "github.com/cosmos/evm/evmd"
-	"github.com/cosmos/evm/x/vm/statedb"
+	exampleapp "github.com/Galactica-corp/galactica/galacticad"
+	"github.com/Galactica-corp/galactica/x/vm/statedb"
 
 	sdktypes "github.com/cosmos/cosmos-sdk/types"
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"

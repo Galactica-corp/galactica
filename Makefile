@@ -7,7 +7,7 @@ COMMIT := $(shell git log -1 --format='%H')
 BINDIR ?= $(GOPATH)/bin
 EXAMPLE_BINARY = evmd
 BUILDDIR ?= $(CURDIR)/build
-HTTPS_GIT := https://github.com/cosmos/evm.git
+HTTPS_GIT := https://github.com/Galactica-corp/galactica.git
 DOCKER := $(shell which docker)
 
 export GO111MODULE = on
@@ -230,7 +230,7 @@ proto-check-breaking:
 ###                                Releasing                                ###
 ###############################################################################
 
-PACKAGE_NAME:=github.com/cosmos/evm
+PACKAGE_NAME:=github.com/Galactica-corp/galactica
 GOLANG_CROSS_VERSION  = v1.22
 GOPATH ?= '$(HOME)/go'
 release-dry-run:

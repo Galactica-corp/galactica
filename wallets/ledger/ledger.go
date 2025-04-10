@@ -9,9 +9,9 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/signer/core/apitypes"
 
-	"github.com/cosmos/evm/ethereum/eip712"
-	"github.com/cosmos/evm/wallets/accounts"
-	"github.com/cosmos/evm/wallets/usbwallet"
+	"github.com/Galactica-corp/galactica/ethereum/eip712"
+	"github.com/Galactica-corp/galactica/wallets/accounts"
+	"github.com/Galactica-corp/galactica/wallets/usbwallet"
 
 	sdkledger "github.com/cosmos/cosmos-sdk/crypto/ledger"
 	sdk "github.com/cosmos/cosmos-sdk/types"
