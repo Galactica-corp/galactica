@@ -14,7 +14,7 @@ By default, this chain has the following configuration:
 
 | Option              | Value                  |
 |---------------------|------------------------|
-| Binary              | `evmd`                 |
+| Binary              | `galacticad`                 |
 | Chain ID            | `cosmos_262144-1`      |
 | Custom Opcodes      | -                      |
 | Default Token Pairs | 1 for the native token |

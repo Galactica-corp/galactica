@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
   "contractName": "Counter",
-  "sourceName": "solidity/evmd/eips/testdata/Counter.sol",
+  "sourceName": "solidity/galacticad/eips/testdata/Counter.sol",
   "abi": [
     {
       "inputs": [],

@@ -1,4 +1,4 @@
-package evmd
+package galacticad
 
 import (
 	"encoding/json"
@@ -136,13 +136,13 @@ func init() {
 
 	// get the user's home directory
 	var err error
-	DefaultNodeHome, err = clienthelpers.GetNodeHomeDirectory(".evmd")
+	DefaultNodeHome, err = clienthelpers.GetNodeHomeDirectory(".galacticad")
 	if err != nil {
 		panic(err)
 	}
 }
 
-const appName = "evmd"
+const appName = "galacticad"
 
 var (
 	// DefaultNodeHome default home directories for the application daemon

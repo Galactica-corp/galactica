@@ -13,9 +13,9 @@ import (
 	cmtcli "github.com/cometbft/cometbft/libs/cli"
 
 	cosmosevmcmd "github.com/Galactica-corp/galactica/client"
-	evmdconfig "github.com/Galactica-corp/galactica/cmd/galacticad/config"
+	galacticadconfig "github.com/Galactica-corp/galactica/cmd/galacticad/config"
 	cosmosevmkeyring "github.com/Galactica-corp/galactica/crypto/keyring"
-	evmd "github.com/Galactica-corp/galactica/galacticad"
+	galacticad "github.com/Galactica-corp/galactica/galacticad"
 	cosmosevmserver "github.com/Galactica-corp/galactica/server"
 	cosmosevmserverconfig "github.com/Galactica-corp/galactica/server/config"
 	srvflags "github.com/Galactica-corp/galactica/server/flags"
@@ -57,13 +57,13 @@ func NoOpEvmAppOptions(_ string) error {
 	return nil
 }
 
-// NewRootCmd creates a new root command for evmd. It is called once in the
+// NewRootCmd creates a new root command for galacticad. It is called once in the
 // main function.
 func NewRootCmd() *cobra.Command {
 	// we "pre"-instantiate the application for getting the injected/configured encoding configuration
 	// and the CLI options for the modules
 	// add keyring to autocli opts
-	tempApp := evmd.NewExampleApp(
+	tempApp := galacticad.NewExampleApp(
 		log.NewNopLogger(),
 		dbm.NewMemDB(),
 		nil,
@@ -87,14 +87,14 @@ func NewRootCmd() *cobra.Command {
 		WithInput(os.Stdin).
 		WithAccountRetriever(authtypes.AccountRetriever{}).
 		WithBroadcastMode(flags.FlagBroadcastMode).
-		WithHomeDir(evmd.DefaultNodeHome).
+		WithHomeDir(galacticad.DefaultNodeHome).
 		WithViper(""). // In simapp, we don't use any prefix for env variables.
 		// Cosmos EVM specific setup
 		WithKeyringOptions(cosmosevmkeyring.Option()).
 		WithLedgerHasProtobuf(true)
 
 	rootCmd := &cobra.Command{
-		Use:   "evmd",
+		Use:   "galacticad",
 		Short: "exemplary Cosmos EVM app",
 		PersistentPreRunE: func(cmd *cobra.Command, _ []string) error {
 			// set the default command outputs
@@ -136,7 +136,7 @@ func NewRootCmd() *cobra.Command {
 				return err
 			}
 
-			customAppTemplate, customAppConfig := InitAppConfig(evmdconfig.BaseDenom)
+			customAppTemplate, customAppConfig := InitAppConfig(galacticadconfig.BaseDenom)
 			customTMConfig := initTendermintConfig()
 
 			return sdkserver.InterceptConfigsPreRunHandler(cmd, customAppTemplate, customAppConfig, customTMConfig)
@@ -209,34 +209,34 @@ func InitAppConfig(denom string) (string, interface{}) {
 	return customAppTemplate, customAppConfig
 }
 
-func initRootCmd(rootCmd *cobra.Command, osApp *evmd.EVMD) {
+func initRootCmd(rootCmd *cobra.Command, osApp *galacticad.EVMD) {
 	cfg := sdk.GetConfig()
 	cfg.Seal()
 
 	rootCmd.AddCommand(
 		genutilcli.InitCmd(
 			osApp.BasicModuleManager,
-			evmd.DefaultNodeHome,
+			galacticad.DefaultNodeHome,
 		),
-		genutilcli.Commands(osApp.TxConfig(), osApp.BasicModuleManager, evmd.DefaultNodeHome),
+		genutilcli.Commands(osApp.TxConfig(), osApp.BasicModuleManager, galacticad.DefaultNodeHome),
 		cmtcli.NewCompletionCmd(rootCmd, true),
 		debug.Cmd(),
 		confixcmd.ConfigCommand(),
-		pruning.Cmd(newApp, evmd.DefaultNodeHome),
+		pruning.Cmd(newApp, galacticad.DefaultNodeHome),
 		snapshot.Cmd(newApp),
 	)
 
 	// add Cosmos EVM' flavored TM commands to start server, etc.
 	cosmosevmserver.AddCommands(
 		rootCmd,
-		cosmosevmserver.NewDefaultStartOptions(newApp, evmd.DefaultNodeHome),
+		cosmosevmserver.NewDefaultStartOptions(newApp, galacticad.DefaultNodeHome),
 		appExport,
 		addModuleInitFlags,
 	)
 
 	// add Cosmos EVM key commands
 	rootCmd.AddCommand(
-		cosmosevmcmd.KeyCommands(evmd.DefaultNodeHome, true),
+		cosmosevmcmd.KeyCommands(galacticad.DefaultNodeHome, true),
 	)
 
 	// add keybase, auxiliary RPC, query, genesis, and tx child commands
@@ -327,7 +327,7 @@ func newApp(
 	homeDir := cast.ToString(appOpts.Get(flags.FlagHome))
 	chainID := cast.ToString(appOpts.Get(flags.FlagChainID))
 	if chainID == "" {
-		chainID, err = evmdconfig.GetChainIDFromHome(homeDir)
+		chainID, err = galacticadconfig.GetChainIDFromHome(homeDir)
 		if err != nil {
 			panic(err)
 		}
@@ -368,10 +368,10 @@ func newApp(
 		app.SetProcessProposal(handler.ProcessProposalHandler())
 	})
 
-	return evmd.NewExampleApp(
+	return galacticad.NewExampleApp(
 		logger, db, traceStore, true,
 		appOpts,
-		evmd.EvmAppOptions,
+		galacticad.EvmAppOptions,
 		baseappOptions...,
 	)
 }
@@ -387,7 +387,7 @@ func appExport(
 	appOpts servertypes.AppOptions,
 	modulesToExport []string,
 ) (servertypes.ExportedApp, error) {
-	var exampleApp *evmd.EVMD
+	var exampleApp *galacticad.EVMD
 
 	// this check is necessary as we use the flag in x/upgrade.
 	// we can exit more gracefully by checking the flag here.
@@ -406,13 +406,13 @@ func appExport(
 	appOpts = viperAppOpts
 
 	if height != -1 {
-		exampleApp = evmd.NewExampleApp(logger, db, traceStore, false, appOpts, evmd.EvmAppOptions)
+		exampleApp = galacticad.NewExampleApp(logger, db, traceStore, false, appOpts, galacticad.EvmAppOptions)
 
 		if err := exampleApp.LoadHeight(height); err != nil {
 			return servertypes.ExportedApp{}, err
 		}
 	} else {
-		exampleApp = evmd.NewExampleApp(logger, db, traceStore, true, appOpts, evmd.EvmAppOptions)
+		exampleApp = galacticad.NewExampleApp(logger, db, traceStore, true, appOpts, galacticad.EvmAppOptions)
 	}
 
 	return exampleApp.ExportAppStateAndValidators(forZeroHeight, jailAllowedAddrs, modulesToExport)

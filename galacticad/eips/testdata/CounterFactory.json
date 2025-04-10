@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
   "contractName": "Counterfactory",
-  "sourceName": "solidity/evmd/eips/testdata/CounterFactory.sol",
+  "sourceName": "solidity/galacticad/eips/testdata/CounterFactory.sol",
   "abi": [
     {
       "inputs": [],

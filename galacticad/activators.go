@@ -1,4 +1,4 @@
-package evmd
+package galacticad
 
 import (
 	"github.com/Galactica-corp/galactica/galacticad/eips"

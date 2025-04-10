@@ -1,4 +1,4 @@
-package evmd
+package galacticad
 
 import (
 	"encoding/json"

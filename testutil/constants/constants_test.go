@@ -6,14 +6,14 @@ import (
 	"github.com/stretchr/testify/require"
 
 	chainconfig "github.com/Galactica-corp/galactica/cmd/galacticad/config"
-	evmd "github.com/Galactica-corp/galactica/galacticad"
+	galacticad "github.com/Galactica-corp/galactica/galacticad"
 	"github.com/Galactica-corp/galactica/testutil/constants"
 )
 
 func TestRequireSameTestDenom(t *testing.T) {
 	require.Equal(t,
 		constants.ExampleAttoDenom,
-		evmd.ExampleChainDenom,
+		galacticad.ExampleChainDenom,
 		"test denoms should be the same across the repo",
 	)
 }
@@ -29,7 +29,7 @@ func TestRequireSameTestBech32Prefix(t *testing.T) {
 func TestRequireSameWEVMOSMainnet(t *testing.T) {
 	require.Equal(t,
 		constants.WEVMOSContractMainnet,
-		evmd.WEVMOSContractMainnet,
+		galacticad.WEVMOSContractMainnet,
 		"wevmos contract addresses should be the same across the repo",
 	)
 }

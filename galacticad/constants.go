@@ -1,4 +1,4 @@
-package evmd
+package galacticad
 
 const (
 	// ExampleChainDenom is the denomination of the Cosmos EVM example chain's base coin.

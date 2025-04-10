@@ -1,4 +1,4 @@
-package evmd
+package galacticad
 
 import erc20types "github.com/Galactica-corp/galactica/x/erc20/types"
 
