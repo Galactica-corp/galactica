@@ -15,3 +15,13 @@ const (
 
 	CosmosChainID = "cosmos_262144"
 )
+
+const (
+	// ExampleChainDenom is the denomination of the Cosmos EVM example chain's base coin.
+	GalacticaChainDenom = "agnet"
+
+	// ExampleDisplayDenom is the display denomination of the Cosmos EVM example chain's base coin.
+	GalacticaDisplayDenom = "gnet"
+
+	GalacticadChainID = "galactica_262144"
+)

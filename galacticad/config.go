@@ -41,6 +41,11 @@ var ChainsCoinInfo = map[string]evmtypes.EvmCoinInfo{
 		DisplayDenom: "test",
 		Decimals:     evmtypes.EighteenDecimals,
 	},
+	GalacticadChainID: {
+		Denom: GalacticaChainDenom,
+		DisplayDenom: GalacticaDisplayDenom,
+		Decimals: evmtypes.EighteenDecimals,
+	},
 }
 
 // EvmAppOptions allows to setup the global configuration
